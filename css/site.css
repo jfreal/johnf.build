@@ -1,0 +1,48 @@
+﻿.gradient-bg {
+    min-height: auto;
+    
+    background: url(./img/bg-pattern.png),#7b4397;
+    background: url(./img/bg-pattern.png),-webkit-linear-gradient(to left,#7b4397,#dc2430);
+    background: url(./img/bg-pattern.png),linear-gradient(to left,#7b4397,#dc2430);
+    color: #fff;
+}
+
+.yellow-bg {
+    background: #fdcc52;
+    background: -webkit-linear-gradient(#fdcc52,#fdc539);
+    background: linear-gradient(#fdcc52,#fdc539);
+}
+
+.row { margin-top: 20px; }
+
+.pd-md { padding: 30px 0 30px 0; }
+
+.mg-top-none { margin-top: 0px; }
+
+.white{ color: #fff }
+
+
+#logos {
+    height: 100px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.text-align-center { text-align: center; }
+
+blockquote {
+    font-size: 14px
+}
+
+#tech-icons img { margin: 0 10px}
+
+.framed img {
+    display: block;
+    width: 60vw;
+    height: 25vh;
+    object-fit: cover;
+    object-position: 0 0;
+}
