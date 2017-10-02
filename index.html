@@ -3,69 +3,85 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>John Farrell - Full Stack - ASP.NET C# Developer</title>
-    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/site.css" />
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-sm">
+        <a class="navbar-brand" href="#">John Farrell</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="container">
-        <div class="navbar-left">
-            John Farrell johnefarrell@gmail.com
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <div class="navbar-right">
-            www.linkedin.com/in/johnefarrell<br /> github.com/jfreal
+    </nav>
+
+    <div class="container-fluid gradient-bg">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <img src="./img/me.jpg" class="img-rounded" />
+                </div>
+                <div class="col-sm-4">
+                    <h3>Key Strengths:</h3>
+                    <p>Leadership, Communication, Troubleshooting, Problem Solving, Prioritization and Time Management, Product Management, Working Independently, Agile</p>
+                    <h3>Primary Technologies:</h3>
+                    <p>
+                        C#, ASP.NET, ASP.NET MVC 1-5, Visual Studio 2015-2017, Azure, EC2, T-SQL, SQL Server 2008-2016, LINQ, Entity Framework, HTML5, CSS3, JavaScript, AngularJs
+                    </p>
+                </div>
+
+                <div class="col-sm-4">
+                    <h2>Experience:</h2>
+                    <h3>15 Years of Web Development </h3>
+                    <h3>10 Years of Full Stack ASP.NET</h3>
+                    <h3>3 Years of Leadership </h3>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="row gradient-bg">
-        <div class="container pd-md">
-            <div class="col-sm-4">
-                <img src="./img/me.jpg" class="img-rounded" />
-            </div>
-            <div class="col-sm-4">
-                <h3>Key Strengths:</h3>
-                <p>Leadership, Communication, Troubleshooting, Problem Solving, Prioritization and Time Management, Product
-                    Management, Working Independently, Agile</p>
-                <h3>Primary Technologies:</h3>
-                <p>
-                    C#, ASP.NET, ASP.NET MVC 1-5, Visual Studio 2015-2017, Azure, EC2, T-SQL, SQL Server 2008-2016, LINQ, Entity Framework, HTML5,
-                    CSS3, JavaScript, AngularJs
-                </p>
-            </div>
-
-            <div class="col-sm-4">
-                <h2>Experience:</h2>
-                <h3>15 Years of Web Development </h3>
-                <h3>10 Years of Full Stack ASP.NET</h3>
-                <h3>3 Years of Leadership </h3>
-            </div>
-        </div>
-    </div>
-
-
     <div class="container">
-        <div class="row pd-md">
+        <div class="row">
             <div class="col-sm-6">
                 <p>
-                    Results-orientated web developer with leadership and management experience. Passionate about usability, great customer experiences
-                    and writing maintainable and extensible code. Programming enthusiast continually increasing his knowledge
-                    and skill set. Comfortable and productive working alone or in a team environment. Productive telecommute
-                    worker.
+                    Results-orientated web developer with leadership and management experience. Passionate about usability, great customer experiences and writing maintainable and extensible code. Programming enthusiast continually increasing his knowledge and skill set.
+                    Comfortable and productive working alone or in a team environment. Productive telecommute worker.
                 </p>
             </div>
             <div class="col-sm-6">
                 <p>
-                    Throughout my career I've worked on a large variety of projects from high traffic facebook games to enterprise routing systems.
-                    I've been a sole developer for a small business and part of a team of 20.
+                    Throughout my career I've worked on a large variety of projects from high traffic facebook games to enterprise routing systems. I've been a sole developer for a small business and part of a team of 20.
                 </p>
             </div>
         </div>
     </div>
     <div class="row yellow-bg pd-md" id="tech-icons">
-        <div class="container body-content text-align-center">
+        <div class="container text-align-center">
             <img src="./img/vs2015.png" />
             <img src="./img/dotnet.png" />
             <img src="./img/sqlserver.png" />
@@ -144,30 +160,20 @@
         </div>
 
 
-        <div class="row">
-            <div class="col-sm-3">
+        <div class="row justify-content-around">
+            <div class="col-4">
                 <a class="pull-left" target="_blank" href="http://www.teacherlingo.com/">
-                            <img class="media-object img-rounded" src="./images/tl.png">
-                        </a>
+                    <img class="media-object img-rounded" src="./img/tl.png">
+                </a>
             </div>
-            <div class="col-sm-6">
+            <div class="col-4">
                 <h3 class="media-heading">P2P Ecommerce - teacherlingo.com</h3>
-                <p>
-                    <a href="http://www.teacherlingo.com/">Teacherlingo.com</a> is a peer to peer ecommerce site where teachers
-                    buy and sell lesson plans from each other. I added some line of business and user administration features
-                    to an existing site working with a legacy Community Server code base including UI improvements and new
-                    user onboarding features.
-                </p>
-            </div>
-            <div class="col-sm-3">
-                <span class="technologies">
-                            <ul>
-                                <li>ASP.Net</li>
-                                <li>Community Server</li>
-                                <li>SQL 2008</li>
-                                <li>Petapoco</li>
-                            </ul>
-                        </span>
+                <ul>
+                    <li>ASP.Net</li>
+                    <li>Community Server</li>
+                    <li>SQL Server</li>
+                    <li>Petapoco</li>
+                </ul>
             </div>
         </div>
 
@@ -176,25 +182,29 @@
             <div class="col-sm-3">
 
                 <a class="pull-left" target="_blank" href="/images/hype-large.png">
-                            <img class="media-object img-rounded" src="/images/hype.png">
-                        </a>
+                    <img class="media-object img-rounded" src="/images/hype.png">
+                </a>
             </div>
             <div class="col-sm-6">
 
                 <h4 class="media-heading">Mobile Event App - events.hypehartford.com/reg</h4>
                 <p>
-                    Hartford Young Professionals and Entrepreneurs needed to better track event attendance as well as offer a platform so attendees
-                    could pay and "check in" onsite during the event. The platform is almost exclusively JavaScript with
-                    a thin web services layer connecting to an old foxpro database.
+                    Hartford Young Professionals and Entrepreneurs needed to better track event attendance as well as offer a platform so attendees could pay and "check in" onsite during the event. The platform is almost exclusively JavaScript with a thin web services layer
+                    connecting to an old foxpro database.
                 </p>
                 <p>
-                    This project had the coolest software launch I've ever had. Signs, banners and everything. <a href="/images/hypelaunch-large.jpg"
-                        target="_blank">Picture of the launch.</a>
+                    This project had the coolest software launch I've ever had. Signs, banners and everything. <a href="/images/hypelaunch-large.jpg" target="_blank">Picture of the launch.</a>
                 </p>
 
             </div>
             <div class="col-sm-3">
-                <span class="technologies"><strong>Technologies:</strong> ASP.Net MVC, Javascript, Jquery, JQuery Mobile, Classic ASP</span>
+                <ul>
+                    <li>ASP.Net MVC</li>
+                    <li>Javascript</li>
+                    <li>JQuery</li>
+                    <li>JQuery Mobile</li>
+                    <li>Classic ASP</li>
+                </ul>
             </div>
         </div>
 
@@ -202,22 +212,26 @@
             <div class="col-sm-3">
 
                 <a class="pull-left" target="_blank" href="/images/movid-large.png">
-                            <img class="media-object img-rounded" src="./images/movid.png">
-                        </a>
+                    <img class="media-object img-rounded" src="./img/movid.png">
+                </a>
             </div>
             <div class="col-sm-3">
 
                 <h3 class="media-heading">Web Saas - app.movidhep.com</h3>
                 <p>
-                    <a href="http://app.movidhep.com/">Movidhep</a> helps physiotherapists prescribe their customers high
-                    definition video home exercise plans. As the sole developer behind Movid I worked on everything from
-                    UI design to the nosql back end.
+                    <a href="http://app.movidhep.com/">Movidhep</a> helps physiotherapists prescribe their customers high definition video home exercise plans. As the sole developer behind Movid I worked on everything from UI design to the nosql back
+                    end.
 
                 </p>
             </div>
             <div class="col-sm-3">
                 <ul>
-                    <li></li>ASP.Net MVC, JavaScript, Knockout, Ravendb</ul>
+                    <li>Full Stack</li>
+                    <li>ASP.Net MVC</li>
+                    <li>JavaScript</li>
+                    <li>Knockout</li>
+                    <li>Ravendb</li>
+                </ul>
             </div>
         </div>
 
@@ -225,23 +239,20 @@
 
         <div class="row">
             <div class="col-sm-3">
-
                 <a class="pull-left" target="_blank" href="/images/bt-large.png">
-                            <img class="media-object img-rounded" src="./images/bt.png">
-                        </a>
+                    <img class="media-object img-rounded" src="./img/bt.png">
+                </a>
             </div>
 
 
             <div class="col-sm-6">
                 <h3 class="media-heading">Order Management for Small Business </h3>
                 <p>
-                    Worked with a client to streamline a manual and paper intensive process into a digital one. The business uses this software
-                    on a daily basis to help manage a large quantity of incoming orders and customer support issues.
+                    Worked with a client to streamline a manual and paper intensive process into a digital one. The business uses this software on a daily basis to help manage a large quantity of incoming orders and customer support issues.
                 </p>
                 <p>
-                    Although simple conceptually the system relies on a 3rd party SQL Server database backend which wasn't built with extensibility
-                    in mind. Working through the challenges with the client we built a system which runs alongside the existing
-                    database and integrates without being obtrusive or posing any risks to the integrity of 3rd party data.
+                    Although simple conceptually the system relies on a 3rd party SQL Server database backend which wasn't built with extensibility in mind. Working through the challenges with the client we built a system which runs alongside the existing database and integrates
+                    without being obtrusive or posing any risks to the integrity of 3rd party data.
                 </p>
             </div>
             <div class="col-sm-3">
@@ -259,31 +270,28 @@
             <div class="col-sm-3">
 
                 <a class="pull-left" target="_blank" href="http://guitarcenter.com/">
-                    <img class="media-object img-rounded" src="./images/gc.png">
+                    <img class="media-object img-rounded" src="./img/gc.png">
                 </a>
             </div>
             <div class="col-sm-6">
 
                 <h3 class="media-heading">High Traffic Ecommerce - guitarcenter.com</h3>
-                <p>
-                    I was involved in the development with several projects for <a href="http://www.guitarcenter.com/">Guitar Center's</a>      
-                                  portfolio of <a href="http://www.musicarts.com/">half</a> a <a href="http://www.wwbw.com/">dozen ecommerce websites</a>..
-                    The first was re-engineering existing Loyalty program software to add new features and stabalize existing
-                    funcationality. The software was left half finished and buggy by another developer and it was up to me
-                    to create a suite of unit tests, improve performance and get the project launched and into users hands.
-                </p>
+                <ul>
+                    <li>Full Stack</li>
+                    <li>Asp.net</li>
+                </ul>
 
                 <p>
-                    The second project was back office administration systems for managing promotions and customer support systems including
-                    writing job systems to synchronize employee data adding new reporting capabilities over complex data
-                    structures.
+                    I was involved in the development with several projects for <a href="http://www.guitarcenter.com/">Guitar Center's</a> portfolio of <a href="http://www.musicarts.com/">half</a> a <a href="http://www.wwbw.com/">dozen ecommerce websites</a>..
+                    The first was re-engineering existing Loyalty program software to add new features and stabalize existing funcationality. The software was left half finished and buggy by another developer and it was up to me to create a suite of unit
+                    tests, improve performance and get the project launched and into users hands.
                 </p>
 
+
+
                 <p>
-                    Overall working on guitarcenter.com was a challenging project involving lots of different pieces of the ASP.NET framework.
-                    Some days I was working on very old school old school hardcoded ado.net sql queries and the next using
-                    mvvm style JavaScript screens. guitarcenter.com is a 10 year old project and underneath the covers was
-                    a wide mixture of different ASP.NET methodologies and techniques used over the years.
+                    Overall working on guitarcenter.com was a challenging project involving lots of different pieces of the ASP.NET framework. Some days I was working on very old school old school hardcoded ado.net sql queries and the next using mvvm style JavaScript screens.
+                    guitarcenter.com is a 10 year old project and underneath the covers was a wide mixture of different ASP.NET methodologies and techniques used over the years.
                 </p>
             </div>
             <div class="col-sm-3">
@@ -300,20 +308,15 @@
         <div class="row">
             <div class="col-sm-6 quote-block">
                 <blockquote>
-                    <p>Sometime you come across an individual who really makes you question your own abilities. John is such
-                        a person. He produces excellent quality code using the right technology and truly understands the
-                        depths of the technology that he is utilizing. He's up to date on the latest ideas and trends and
-                        yet implements them wisely and not because it's the latest trend. I look forward to working with
-                        him again in the future.</p>
+                    <p>Sometime you come across an individual who really makes you question your own abilities. John is such a person. He produces excellent quality code using the right technology and truly understands the depths of the technology that he
+                        is utilizing. He's up to date on the latest ideas and trends and yet implements them wisely and not because it's the latest trend. I look forward to working with him again in the future.</p>
                     <small>Mark Adams - Senior .Net Developer and Application Architect</small>
                 </blockquote>
             </div>
             <div class="col-sm-6 quote-block">
                 <blockquote>
-                    <p>John is an excellent programmer with an in-depth grasp of the entire ASP.Net MVC framework as well as
-                        the Entity Framework. It was a pleasure to work with him on the project we were on. I know that in
-                        the intervening time he has kept his knowledge up to date and I would have no problem recommending
-                        him for a position.</p>
+                    <p>John is an excellent programmer with an in-depth grasp of the entire ASP.Net MVC framework as well as the Entity Framework. It was a pleasure to work with him on the project we were on. I know that in the intervening time he has kept
+                        his knowledge up to date and I would have no problem recommending him for a position.</p>
                     <small>David Melinosky - Business Systems Developer at CNC Software</small>
                 </blockquote>
             </div>
@@ -323,15 +326,12 @@
             <div class="col-sm-6 quote-block">
                 <blockquote>
                     <p>
-                        I have known John Farrell professionally for a number of years and have placed him at multiple clients in the greater Hartford
-                        area as a .NET Developer. He is a talented IT professional who consistently receives positive feedback
-                        on his work and has been requested to return to client sites as additional needs arise.
+                        I have known John Farrell professionally for a number of years and have placed him at multiple clients in the greater Hartford area as a .NET Developer. He is a talented IT professional who consistently receives positive feedback on his work and has been
+                        requested to return to client sites as additional needs arise.
                     </p>
 
                     <p>
-                        John’s skill set is in high demand at the moment and his easygoing and engaging personality makes him one of my most marketable
-                        candidates. We continue to receive great feedback on his work, reliability and ability to fit in
-                        with the team.
+                        John’s skill set is in high demand at the moment and his easygoing and engaging personality makes him one of my most marketable candidates. We continue to receive great feedback on his work, reliability and ability to fit in with the team.
                     </p>
                     <small>Lisa Drew - Senior Technical Recruiter</small>
                 </blockquote>
@@ -339,52 +339,39 @@
             <div class="col col-sm-6 quote-block">
                 <blockquote>
                     <p>
-                        As a small business owner with limited technical knowledge finding a software developer who can understand your business
-                        needs and turn them into usable functioning software is very difficult. John has done an extraordinary
-                        job of sitting down with me, analyzing my problems, and using outside the box thinking to come up
-                        with creative solutions to solve my problems. I have lots of ideas but I don’t have lots of time,
-                        working with John has enabled me to write a brief description of what I want and then he spends the
-                        time to figure out what the problem is and how to solve it. Many other developers stray down the
-                        wrong path and waste your money because they don’t fully understand your needs.
+                        As a small business owner with limited technical knowledge finding a software developer who can understand your business needs and turn them into usable functioning software is very difficult. John has done an extraordinary job of sitting down with me,
+                        analyzing my problems, and using outside the box thinking to come up with creative solutions to solve my problems. I have lots of ideas but I don’t have lots of time, working with John has enabled me to write a brief description
+                        of what I want and then he spends the time to figure out what the problem is and how to solve it. Many other developers stray down the wrong path and waste your money because they don’t fully understand your needs.
                     </p>
 
                     <p>
-                        If John is not 100% sure of the direction he is headed he will setup a meeting to discuss and gain full clarity before proceeding
-                        forward. The main application that John has created for my business has completely streamlined my
-                        operation. I couldn't imagine not having it at this point. It has been a pleasure working with John
-                        and I look forward to working with him for years to come.
+                        If John is not 100% sure of the direction he is headed he will setup a meeting to discuss and gain full clarity before proceeding forward. The main application that John has created for my business has completely streamlined my operation. I couldn't imagine
+                        not having it at this point. It has been a pleasure working with John and I look forward to working with him for years to come.
                     </p>
 
                     <small>Ryan Andrew - Small Business Owner Client</small>
                 </blockquote>
             </div>
-
         </div>
-
-
 
         <div class="row">
             <div class="col col-sm-6 quote-block">
                 <blockquote>
-                    <p>As a colleague of John at the UConn Health Center I can honestly say he is one of the brightest programmers
-                        I have ever had the pleasure to work with. His abilities in the .Net world, and in all other aspects
-                        of programing, is remarkable. I would proudly recommend John for any endeavor he wished to embark
-                        upon.</p>
+                    <p>As a colleague of John at the UConn Health Center I can honestly say he is one of the brightest programmers I have ever had the pleasure to work with. His abilities in the .Net world, and in all other aspects of programing, is remarkable.
+                        I would proudly recommend John for any endeavor he wished to embark upon.
+                    </p>
                     <small>Jack Lotko - Application Developer at University of Connecticut Health Center</small>
                 </blockquote>
             </div>
             <div class="col col-sm-6 quote-block">
                 <blockquote>
                     <p>
-                        John and I were co-workers at PageFad. John was hired as a Junior Level Developer but quickly proved himself to be more knowledgeable
-                        than that. He was well versed in C#, ASP.NET, CSS, JavaScript and Ajax. Now, although he was hired
-                        to do mostly Web Development his skills also shined in SQL Server 2005. He worked well in both Database
-                        administration and design.
+                        John and I were co-workers at PageFad. John was hired as a Junior Level Developer but quickly proved himself to be more knowledgeable than that. He was well versed in C#, ASP.NET, CSS, JavaScript and Ajax. Now, although he was hired to do mostly Web Development
+                        his skills also shined in SQL Server 2005. He worked well in both Database administration and design.
                     </p>
 
                     <p>
-                        I would have to say his knowledge of Web Development is his greatest attribute. However, that is not to take away from the
-                        fact that he is very easy to work with. I would definitely work with him again if had the chance.
+                        I would have to say his knowledge of Web Development is his greatest attribute. However, that is not to take away from the fact that he is very easy to work with. I would definitely work with him again if had the chance.
                     </p>
 
                     <small>Jeff Gadoury - Software Developer</small>
@@ -393,17 +380,16 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col">
                 <h4>Volunteer Work</h4>
                 <div class="media work">
                     <a class="pull-left" target="_blank" href="http://www.bushnellpark.org/">
-                        <img class="media-object img-rounded" src="./images/bpf.png">
+                        <img class="media-object img-rounded" src="./img/bpf.png">
                     </a>
                     <div class="media-body">
                         <h3 class="media-heading">Wordpress for Non-Profit - bushnellpark.org</h3>
                         <p>
-                            <a href="http://www.bushnellpark.org/">bushnellpark.org</a> is a Wordpress installation I perform
-                            page design and maintenance services for.
+                            <a href="http://www.bushnellpark.org/">bushnellpark.org</a> is a Wordpress installation I perform page design and maintenance services for.
                         </p>
                         <span class="technologies"><strong>Technologies:</strong> Php, Wordpress</span>
 
@@ -437,5 +423,10 @@
     <footer>
         <p>&copy; 2017 - John Farrell</p>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
+
 </html>
