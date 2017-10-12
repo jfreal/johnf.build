@@ -1,20 +1,22 @@
 ﻿.gradient-bg {
     min-height: auto;
-    
-    background: url(../img/bg-pattern.png),#7b4397;
-    background: url(../img/bg-pattern.png),-webkit-linear-gradient(to left,#7b4397,#dc2430);
-    background: url(../img/bg-pattern.png),linear-gradient(to left,#7b4397,#dc2430);
+    background: url(../img/bg-pattern.png), #004e66;
+    background: url(../img/bg-pattern.png), -webkit-linear-gradient(to bottom, #004e66, #788CA7);
+    background: url(../img/bg-pattern.png), linear-gradient(to bottom, #004e66, #788CA7);
     color: #fff;
 }
 
-.yellow-bg {
-    background: #fdcc52;
-    background: -webkit-linear-gradient(#fdcc52,#fdc539);
-    background: linear-gradient(#fdcc52,#fdc539);
+.blue-bg {
+    background: #e1eef6;
 }
 
-.white{ color: #fff }
+.yellow-bg {
+    background: #fcbe32;
+}
 
+.white {
+    color: #fff
+}
 
 #logos {
     height: 100px;
@@ -25,12 +27,13 @@ img {
     height: auto;
 }
 
-
 blockquote {
     font-size: 14px
 }
 
-#tech-icons img { margin: 0 10px}
+#tech-icons img {
+    margin: 0 20px
+}
 
 .framed img {
     display: block;
@@ -39,3 +42,22 @@ blockquote {
     object-fit: cover;
     object-position: 0 0;
 }
+
+table#experience {
+    font-size: 1.5rem;
+}
+
+table#experience td {
+    padding-right: 15px;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+h5 {
+    color: #ff5f2e
+}
+
+
+/* h3 {color: #004e66} */
