@@ -5,7 +5,7 @@ var app = new Vue({
                 role: 'Senior Developer',
                 title: 'Power Inbox',
                 technology: ['ASP.NET', 'Service Bus', 'Redis'],
-                imageUrl: './img/pi.JPG',
+                imageUrl: './img/pi.jpg',
                 timeline: '6/2017-Present'
             }, {
                 role: 'Founder / CTO',
