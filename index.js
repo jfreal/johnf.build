@@ -25,7 +25,7 @@ var app = new Vue({
                 role: 'Founder / CTO',
                 title: 'Movid HEP',
                 technology: ['ASP.NET', 'AngularJS', 'RavenDb'],
-                imageUrl: './img/movid-hep.png ',
+                imageUrl: './img/movid-hep.png',
                 timeline: '2/2012 - 01/2014',
                 description: `<a href="http://app.movidhep.com/ ">Movidhep</a> helps physiotherapists prescribe their
                 customers high definition video home exercise plans. As the sole developer behind Movid I
