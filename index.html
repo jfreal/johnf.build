@@ -112,8 +112,12 @@
     <div id="app" class="container ">
         <div class="row mt-4">
             <div class="col-8">
-                <h3>Recent Experience</h3>
+                <h3>Recent Professional Experience</h3>
                 <div v-for="experience in recentExperiences">
+                    <experience-component v-bind:experience="experience"></experience-component>
+                </div>
+                <h3>My Projects</h3>
+                <div v-for="experience in myProjects">
                     <experience-component v-bind:experience="experience"></experience-component>
                 </div>
                 <h3>Older Experience</h3>
@@ -332,20 +336,13 @@
                 different
                 ASP.NET methodologies and techniques used over the years.
             </p>
-
-
         </div>
         <div class="col-sm-4">
-
             <a class="pull-left " target="_blank " href="http://guitarcenter.com/ ">
                 <img class="media-object img-rounded " src="./img/gc.png ">
             </a>
-
         </div>
     </div>
-
-
-
     <div class="row ">
         <div class="col ">
             <h4>Volunteer Work</h4>

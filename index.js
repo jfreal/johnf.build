@@ -7,12 +7,6 @@ var app = new Vue({
                 technology: ['ASP.NET', 'Service Bus', 'Redis'],
                 imageUrl: './img/pi.jpg',
                 timeline: '6/2017-Present'
-            }, {
-                role: 'Founder / CTO',
-                title: 'One Bag Travel',
-                technology: ['ASP.NET Core', 'Azure Functions', 'Cosmos Db'],
-                imageUrl: './img/onebagthumb.JPG',
-                timeline: '2017-Present'
             },
             {
                 role: 'Director of Technology',
@@ -21,12 +15,29 @@ var app = new Vue({
                 imageUrl: './img/bte.png',
                 timeline: '2/2013 - 01/2017'
             },
+
+        ],
+        myProjects: [{
+                role: 'Full-Stack Development',
+                title: 'One Bag Travel',
+                technology: ['ASP.NET Core', 'Azure Functions', 'Cosmos Db'],
+                imageUrl: './img/onebagthumb.JPG',
+                timeline: '2017-Present'
+            },
             {
-                role: 'Founder / CTO',
+                role: 'Full-Stack Development',
+                title: 'Terraforming Mars Cards',
+                technology: ['Angular', 'Bootstrap', 'Typescript'],
+                imageUrl: './img/tmcthumb.png',
+                link: 'https://terraformingmars.cards/',
+                timeline: '2018-Present'
+            },
+            {
+                role: 'Full-Stack Development',
                 title: 'Movid HEP',
                 technology: ['ASP.NET', 'AngularJS', 'RavenDb'],
                 imageUrl: './img/movid-hep.png',
-                timeline: '2/2012 - 01/2014',
+                timeline: '2/2012 - 1/2014',
                 description: `<a href="http://app.movidhep.com/ ">Movidhep</a> helps physiotherapists prescribe their
                 customers high definition video home exercise plans. As the sole developer behind Movid I
                 worked on everything from UI design to the nosql
