@@ -1,21 +1,26 @@
 ﻿body {
     font-family: 'Open Sans', sans-serif;
+    background-color: #FFFFF0;
+}
+
+a {
+    color: #218DA6
 }
 
 .gradient-bg {
     min-height: auto;
-    background: url(../img/bg-pattern.png), #004e66;
-    background: url(../img/bg-pattern.png), -webkit-linear-gradient(to bottom, #004e66, #788CA7);
-    background: url(../img/bg-pattern.png), linear-gradient(to bottom, #004e66, #788CA7);
+    background: url(../img/bg-pattern.png), #218DA6;
+    background: url(../img/bg-pattern.png), -webkit-linear-gradient(to bottom, #218DA6, #218DA6);
+    background: url(../img/bg-pattern.png), linear-gradient(to bottom, #218DA6, #218DA6);
     color: #fff;
 }
 
 .blue-bg {
-    background: #e1eef6;
+    background: #FFFFF0;
 }
 
 .yellow-bg {
-    background: #fcbe32;
+    background: #FEB2AD;
 }
 
 .white {
@@ -32,7 +37,16 @@ img {
 }
 
 blockquote {
-    font-size: 14px
+    font-size: 14px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1em;
+
+
+}
+
+blockquote strong {
+    color: #F56358
 }
 
 #tech-icons i {
@@ -60,7 +74,7 @@ table#experience td {
 }
 
 h5 {
-    color: #ff5f2e;
+    color: #F56358;
     font-weight: bold;
 }
 

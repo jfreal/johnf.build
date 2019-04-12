@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>John Farrell - Full Stack JavaScript/ASP.NET/C# Developer</title>
+    <title>John Farrell - Builder of Software, Teams, and Businesses</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/site.css" />
@@ -24,7 +24,6 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-
 </head>
 
 <body>
@@ -53,15 +52,23 @@
     <div class="container-fluid gradient-bg ">
         <div class="container ">
             <div class="row justify-content-center ">
-                <div class="col-4 p-4">
-                    <img src="./img/squared.jpg " class="rounded-circle" width="170px" />
+                <div class="col-8 p-4">
+                    <h1>👋 Hi, I'm John</h1>
+                    <!-- <img src="./img/squared.jpg " class="rounded-circle" width="170px" /> -->
+                    <h2 class="mt-3">I <strong>🔨</strong> Websites, Teams, and Businesses </h2>
                 </div>
-                <div class="col-4 p-4">
-                    <h3>John Farrell</h5>
-                        <p>
-                            johnefarrell@gmail.com<br />
-                            8607782522
-                        </p>
+                <!-- <div class="col-4 p-4">
+
+                    <h2>I Build:</h2>
+                    <ul>
+                        <li>Web Software</li>
+                        <li>Teams</li>
+                        <li>Businesses</li>
+                    </ul>
+                    <p>
+                        johnefarrell@gmail.com<br />
+                        8607782522
+                    </p>
                 </div>
                 <div class="col-4 p-4 ">
                     <h3>Full Stack Developer</h3>
@@ -80,7 +87,7 @@
                             <td>Years of Leadership</td>
                         </tr>
                     </table>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -110,13 +117,92 @@
     </div>
 
     <div id="app" class="container ">
-        <div class="row mt-4">
+        <div class="row justify-content-center">
             <div class="col-8">
-                <h3>Recent Professional Experience</h3>
+                <p>I've been lucky to experience a diverse range of experiences driven by intrinsic curiosity and
+                    ambition
+                    to build stuff with
+                    web technology.</p>
+
+                <p>I love shipping, trying new things, and failing forward.</p>
+
+                <h3 class="mt-5">Building Web Software</h3>
+                <p>
+                    Recent full time, 9-5, W2 work.
+                </p>
+
                 <div v-for="experience in recentExperiences">
                     <experience-component v-bind:experience="experience"></experience-component>
                 </div>
-                <h3>My Projects</h3>
+
+                <blockquote>
+                    <p>"Sometime you come across an individual who really makes you question your own
+                        abilities. John is such a person. He produces <strong>excellent quality code</strong> using
+                        the
+                        right technology and truly understands the depths of the
+                        technology that he is utilizing. He's up to date on the latest ideas and trends and yet
+                        <strong>implements
+                            them wisely</strong> and not because it's the latest trend. I look forward to working
+                        with
+                        him again in the future."</p>
+                    <footer class="blockquote-footer text-right">Mark Adams - Senior .Net Developer and Application
+                        Architect</footer>
+                </blockquote>
+
+                <div class="container">
+
+                    <div class="row py-4 ">
+                        <div class="col-12">
+
+                            <h3>Building Teams</h3>
+                            <p>I strongly believe in the <a
+                                    href="https://en.wikipedia.org/wiki/Servant_leadership">servant leadership</a> model
+                                of management
+                                and team building. </p>
+                            <p>Software is easy, humans are the hard part of development. A good
+                                leader exists to support and serve the people on his team.
+                            </p>
+                            <p>
+                                At a lot of companies, to much of the software process is counting closed tickets or
+                                lines of code.
+                            </p>
+                            <p>
+                                Not enough leaders take the time to ask, "hey, how are you doing?".
+                            </p>
+
+                            <h5>Offsite Dinner in Thailand</h5>
+                            <div class="yellow-bg p-2 rounded">
+                                <div class="rounded  "
+                                    style="width: 100%; height: 250px; min-height: 120px; background: url('./img/thailand-dinner.jpg') no-repeat center center; background-size: cover;">
+                                </div>
+                            </div>
+
+                            <p>
+                                At BTE, LLC I hired and built a team of eight developers and project managers. The team
+                                grew from a single person development to a team of eight contributing to various
+                                projects and initiatives.
+                            </p>
+
+
+                            <strong>Product Launch</strong>
+                            <div class="rounded"
+                                style="width: 100%; height: 250px; min-height: 120px; background: url('./img/hype-app-tall.jpg') no-repeat center center; background-size: cover;">
+                            </div>
+
+
+
+                            <strong>Conference Display</strong>
+                            <div class="rounded"
+                                style="width: 100%; height: 250px; min-height: 120px; background: url('./img/movid-conference.jpg') no-repeat center center; background-size: cover;">
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
                 <div v-for="experience in myProjects">
                     <experience-component v-bind:experience="experience"></experience-component>
                 </div>
@@ -125,8 +211,11 @@
                     <experience-component v-bind:experience="experience"></experience-component>
                 </div>
             </div>
-            <div class="col-4" id="testimonials">
-                <h3>Testimonials</h3>
+
+
+
+            <!-- <div class="col-4" id="testimonials">
+                <h3 class="mt-5">Testimonials</h3>
                 <blockquote>
                     <p>Sometime you come across an individual who really makes you question your own
                         abilities. John is such a person. He produces <strong>excellent quality code</strong> using
@@ -237,158 +326,20 @@
                     </p>
                     <footer class="blockquote-footer text-right">Jeff Gadoury - Software Developer</footer>
                 </blockquote>
-            </div>
+            </div> -->
         </div>
-    </div>
-
-    <div class="container-fluid yellow-bg">
-        <div class="container">
-            Some great experiences along the way...
-            <div class="row py-4 ">
-                <div class="col-4">
-                    <strong>Product Launch</strong>
-                    <div class="rounded"
-                        style="width: 100%; height: 250px; min-height: 120px; background: url('./img/hype-app-tall.jpg') no-repeat center center; background-size: cover;">
-
-                    </div>
-                </div>
-                <div class="col-4 ">
-                    <strong>Conference Display</strong>
-                    <div class="rounded"
-                        style="width: 100%; height: 250px; min-height: 120px; background: url('./img/movid-conference.jpg') no-repeat center center; background-size: cover;">
-
-                    </div>
-                </div>
-                <div class="col-4 ">
-                    <strong>Offsite Dinner in Thailand</strong>
-                    <div class="rounded"
-                        style="width: 100%; height: 250px; min-height: 120px; background: url('./img/thailand-dinner.jpg') no-repeat center center; background-size: cover;">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container ">
         <div class="row justify-content-center">
-            <div class="col-sm-8 ">
-                <h4>Recent Work:</h4>
+            <div class="col-8">
+                <footer>
+                    <p>&copy; 2019 - John Farrell</p>
+                </footer>
             </div>
         </div>
+
+
     </div>
 
 
-    <div class="col-4 ">
-        <a class="pull-left " target="_blank " href="http://www.teacherlingo.com/ ">
-            src="./img/tl.png ">
-        </a>
-    </div>
-    </div>
-
-
-
-
-    <div class="row justify-content-center">
-        <div class="col-sm-4 ">
-            <h3 class="media-heading ">Order Management for Small Business </h3>
-
-            <ul>
-                <li>Asp.net MVC</li>
-                <li>JavaScript</li>
-                <li>JQueryC</li>
-                <li>Petapoco</li>
-                <li>Twitter Bootstrap</li>
-            </ul>
-        </div>
-        <div class="col-sm-4 ">
-            <a class="pull-left " target="_blank " href="/images/bt-large.png ">
-                <img class="media-object img-rounded " src="./img/bt.png ">
-            </a>
-        </div>
-    </div>
-
-    <div class="row justify-content-center">
-        <div class="col-sm-4">
-            <h5 class="media-heading ">High Traffic Ecommerce - guitarcenter.com</h5>
-            <strong>Technologies:</strong> ASP.NET Webforms and MVC, JQuery, Entity Framework, WCF
-
-
-            <ul>
-                <li>Full Stack</li>
-                <li>Asp.net WebForms</li>
-                <li>Asp.net Mvc</li>
-                <li>JQuery</li>
-                <li>Entity Framework</li>
-                <li>WCF</li>
-            </ul>
-
-
-
-
-            <p>
-                Overall working on guitarcenter.com was a challenging project involving lots of different
-                pieces of
-                the ASP.NET framework. Some days I was working on very old school old school hardcoded ado.net
-                sql
-                queries and the next using mvvm style JavaScript screens.
-                guitarcenter.com is a 10 year old project and underneath the covers was a wide mixture of
-                different
-                ASP.NET methodologies and techniques used over the years.
-            </p>
-        </div>
-        <div class="col-sm-4">
-            <a class="pull-left " target="_blank " href="http://guitarcenter.com/ ">
-                <img class="media-object img-rounded " src="./img/gc.png ">
-            </a>
-        </div>
-    </div>
-    <div class="row ">
-        <div class="col ">
-            <h4>Volunteer Work</h4>
-            <div class="media work ">
-                <a class="pull-left " target="_blank " href="http://www.bushnellpark.org/ ">
-                    <img class="media-object img-rounded " src="./img/bpf.png ">
-                </a>
-                <div class="media-body ">
-                    <h3 class="media-heading ">Wordpress for Non-Profit - bushnellpark.org</h3>
-                    <p>
-                        <a href="http://www.bushnellpark.org/ ">bushnellpark.org</a> is a Wordpress
-                        installation I
-                        perform page design and maintenance services for.
-                    </p>
-                    <span class="technologies "><strong>Technologies:</strong> Php, Wordpress</span>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row ">
-        <div class="col-sm-12 ">
-            <h4>Older Projects</h4>
-
-        </div>
-    </div>
-
-    <div class="row framed ">
-        <div class="col-sm-4 ">
-            <div style="height: 100px; ">
-                <img src="./img/virtualaltnet.png " />
-            </div>
-        </div>
-        <div class="col-sm-4 ">
-            <img src="./img/palmclassicapparel.png " />
-        </div>
-        <div class="col-sm-4 ">
-            <img src="./img/americanacres.png " />
-        </div>
-    </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2019 - John Farrell</p>
-    </footer>
 
     <script type="text/x-template" id="experience-component">
 
