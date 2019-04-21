@@ -1,3 +1,7 @@
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+})
+
 var app = new Vue({
     el: '#app',
     data: {
@@ -32,17 +36,7 @@ var app = new Vue({
                 link: 'https://terraformingmars.cards/',
                 timeline: '2018-Present'
             },
-            {
-                role: 'Full-Stack Development',
-                title: 'Movid HEP',
-                technology: ['ASP.NET', 'AngularJS', 'RavenDb'],
-                imageUrl: './img/movid-hep.png',
-                timeline: '2/2012 - 1/2014',
-                description: `<a href="http://app.movidhep.com/ ">Movidhep</a> helps physiotherapists prescribe their
-                customers high definition video home exercise plans. As the sole developer behind Movid I
-                worked on everything from UI design to the nosql
-                back end.`
-            }
+
         ],
         pastExperiences: [{
             role: 'Contract Developer',
@@ -65,6 +59,31 @@ var app = new Vue({
                 This project had the coolest software launch I've ever had. Signs, banners and everything. <a href="/images/hypelaunch-large.jpg " target="_blank ">Picture of the launch.</a>
             </p> `
         }],
+        businesses: [{
+                role: 'Full-Stack Development',
+                title: 'Movid HEP',
+                technology: ['ASP.NET', 'AngularJS', 'RavenDb'],
+                imageUrl: './img/movid-hep.png',
+                timeline: '2/2012 - 1/2014',
+                description: `<a href="http://app.movidhep.com/ ">Movidhep</a> helps physiotherapists prescribe their
+            customers high definition video home exercise plans. As the sole developer behind Movid I
+            worked on everything from UI design to the nosql
+            back end.`
+            },
+            {
+                role: 'Freelancer',
+                title: 'Palm Classic Apparel Retail E-commerce',
+                technology: ['ASP.NET', 'SQL Server'],
+                imageUrl: './img/palmclassicapparel.png',
+                timeline: '2009'
+            }, {
+                role: 'Freelancer',
+                title: 'America\'s Acres',
+                technology: ['ASP.NET', 'SQL Server'],
+                imageUrl: './img/americanacres.png',
+                timeline: '2009'
+            }
+        ],
         earlyFreelance: [{
             role: 'Freelancer',
             title: 'Palm Classic Apparel Retail E-commerce',

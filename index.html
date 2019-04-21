@@ -37,6 +37,19 @@
 
         gtag('config', 'UA-138304569-1');
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
 </head>
 
 <body>
@@ -65,10 +78,12 @@
     <div class="container-fluid gradient-bg ">
         <div class="container ">
             <div class="row justify-content-center ">
-                <div class="col-8 p-4">
+                <div class="col-8 p-4 hero">
                     <h1>👋 Hi, I'm John</h1>
                     <!-- <img src="./img/squared.jpg " class="rounded-circle" width="170px" /> -->
-                    <h2 class="mt-3">I <strong>🔨</strong> Websites, Teams, and Businesses </h2>
+                    <h2 class="mt-3">I <strong>🔨</strong>
+                        <a href="#products">Products</a>, <a href="#teams">Teams</a>, and <a
+                            href="#business">Businesses</a> </h2>
                 </div>
                 <!-- <div class="col-4 p-4">
 
@@ -105,43 +120,59 @@
         </div>
     </div>
 
-    <div class="row blue-bg " id="tech-icons">
-        <div class="container text-align-center py-4 ">
-            <i class="devicon-csharp-plain colored"></i>
-            <i class="devicon-dot-net-plain-wordmark colored"></i>
-            <i class="devicon-git-plain colored"></i>
-
-            <i class="devicon-github-plain colored"></i>
-            <i class="devicon-javascript-plain colored"></i>
-            <i class="devicon-angularjs-plain colored"></i>
-            <i class="devicon-vuejs-plain colored"></i>
-
-            <i class="devicon-postgresql-plain colored"></i>
-            <i class="devicon-redis-plain colored"></i>
-            <i class="devicon-slack-plain colored"></i>
-            <i class="devicon-typescript-plain colored"></i>
-            <i class="devicon-html5-plain colored"></i>
-            <i class="devicon-css3-plain colored"></i>
-            <i class="devicon-bootstrap-plain colored"></i>
-
-            <i class="devicon-confluence-plain colored"></i>
-            <i class="devicon-jquery-plain colored"></i>
-        </div>
-    </div>
-
     <div id="app" class="container ">
         <div class="row justify-content-center">
             <div class="col-8">
-                <p>I've been lucky to experience a diverse range of experiences driven by intrinsic curiosity and
-                    ambition
-                    to build stuff with
-                    web technology.</p>
 
-                <p>I love shipping, trying new things, and failing forward.</p>
+                <p class="mt-4">I <del>strike</del> <strong>❤️</strong> shipping code, building projects, and failing
+                    forward.</p>
 
-                <h3 class="mt-5">Building Web Software</h3>
+                <p>I love being innovative, but favor building on foundations of rock solid and proven solutions.
+                </p>
+
+                <p></p>To me, innovation isn't using the shiny new technology, but using the technology you understand
+                in new ways.
+                </p>
+
+                <p>My favorite places to work are friendly, nimble, and collaborative businesses. </p>
+
+                <p>I like to be in the thick of it, talking to users, discussing technical solutions, and making things
+                    happen.</p>
+
+                <p>Over the years I've learned a lot of neat technologies, but here is a selection of the ones I
+                    enjoy using day to day:</p>
+
+                <div class="row blue-bg " id="tech-icons">
+                    <div class="container text-align-center py-4 ">
+                        <i class="devicon-csharp-plain colored"></i>
+                        <i class="devicon-dot-net-plain-wordmark colored"></i>
+                        <i class="devicon-git-plain colored"></i>
+
+                        <i class="devicon-github-plain colored"></i>
+                        <i class="devicon-javascript-plain colored"></i>
+                        <i class="devicon-angularjs-plain colored"></i>
+                        <i class="devicon-vuejs-plain colored"></i>
+
+                        <i class="devicon-postgresql-plain colored"></i>
+                        <i class="devicon-redis-plain colored"></i>
+                        <i class="devicon-slack-plain colored"></i>
+                        <i class="devicon-typescript-plain colored"></i>
+                        <i class="devicon-html5-plain colored"></i>
+                        <i class="devicon-css3-plain colored"></i>
+                        <i class="devicon-bootstrap-plain colored"></i>
+
+                        <i class="devicon-confluence-plain colored"></i>
+                        <i class="devicon-jquery-plain colored"></i>
+                    </div>
+                </div>
+
+                <h2 class="mt-4">Building Products</h2>
+                <p class="mt-4">Since 1999 I've enjoyed a diverse range of professional experiences at
+                    small to medium size businesses.
+                </p>
+
                 <p>
-                    Recent full time, 9-5, W2 work.
+                    Here is a selection of some notable and recent (within five years) full time, 9-5, W2 work.
                 </p>
 
                 <div v-for="experience in recentExperiences">
@@ -167,20 +198,20 @@
                     <div class="row py-4 ">
                         <div class="col-12">
 
-                            <h3>Building Teams</h3>
-                            <p>I strongly believe in the <a
-                                    href="https://en.wikipedia.org/wiki/Servant_leadership">servant leadership</a> model
+                            <h2 id="teams">Building Teams</h2>
+                            <p>One of my the most rewarding professional experiences I've had is when I built, grew, and
+                                nurtured a team of ten people. </p>
+                            <p>I strongly believe in the <a href="https://en.wikipedia.org/wiki/Servant_leadership"
+                                    target="_blank">servant leadership</a>
+                                model
                                 of management
                                 and team building. </p>
-                            <p>Software is easy, humans are the hard part of development. A good
-                                leader exists to support and serve the people on his team.
-                            </p>
                             <p>
                                 At a lot of companies, to much of the software process is counting closed tickets or
-                                lines of code.
+                                lines of code. Not enough leaders take the time to ask, "Hey, how are <em>you</em>?".
                             </p>
-                            <p>
-                                Not enough leaders take the time to ask, "hey, how are you doing?".
+                            <p>Software is easy, humans are the hard part, and I enjoy the challenge and rewards that
+                                come with leadership roles.
                             </p>
 
                             <h5>Offsite Dinner in Thailand</h5>
@@ -191,34 +222,130 @@
                             </div>
 
                             <p>
-                                At BTE, LLC I hired and built a team of eight developers and project managers. The team
+                                At BTE, LLC I hired and built a team of eight developers and project managers. The
+                                team
                                 grew from a single person development to a team of eight contributing to various
                                 projects and initiatives.
                             </p>
 
-
+                            <!-- 
                             <strong>Product Launch</strong>
                             <div class="rounded"
                                 style="width: 100%; height: 250px; min-height: 120px; background: url('./img/hype-app-tall.jpg') no-repeat center center; background-size: cover;">
+                            </div> -->
+
+                            <h5>Movid HEP</h5>
+                            <div class="yellow-bg p-2 rounded">
+                                <div class="rounded"
+                                    style="width: 100%; height: 250px; min-height: 120px; background: url('./img/movid-conference.jpg') no-repeat center center; background-size: cover;">
+
+                                </div>
                             </div>
-
-
-
-                            <strong>Conference Display</strong>
-                            <div class="rounded"
-                                style="width: 100%; height: 250px; min-height: 120px; background: url('./img/movid-conference.jpg') no-repeat center center; background-size: cover;">
-
-                            </div>
-
-
+                            <p>
+                                Movid HEP went from a simple idea in a notebook to a winning startup Startup Weekend
+                                Hartford 2012 and finally
+                                to a revenue generating business. From the start I lead and helped guide the team
+                                from
+                                strategy to execution.
+                            </p>
                         </div>
                     </div>
                 </div>
 
+                <blockquote>
+                    <p>
+                        As a small business owner with limited technical knowledge finding a software developer who
+                        can
+                        understand your business needs and turn them into usable functioning software is very
+                        difficult. John has done an <strong>extraordinary job of sitting down with me,
+                            analyzing my problems, and using outside the box thinking to come up with creative
+                            solutions to
+                            solve my problems</strong>. I have lots of ideas but I don’t have lots of time, working
+                        with John
+                        has
+                        enabled me to write a brief description
+                        of what I want and then he spends the time to figure out what the problem is and how to
+                        solve
+                        it. Many other developers stray down the wrong path and waste your money because they don’t
+                        fully understand your needs.
+                    </p>
+
+                    <p>
+                        If John is not 100% sure of the direction he is headed he will setup a meeting to discuss
+                        and
+                        gain full clarity before proceeding forward. The main application that John has created for
+                        my
+                        business has completely streamlined my operation. I couldn't imagine
+                        not having it at this point. It has been a pleasure working with John and I look forward to
+                        working with him for years to come.
+                    </p>
+
+                    <footer class="blockquote-footer text-right">Ryan Andrew - CEO</footer>
+                </blockquote>
+
+                <h2 id="business" class="mt-4">
+                    Building Businesses
+                </h2>
+                <p>
+
+                </p>
+                <p>
+                    My career started helping an e-commerce business grow from celebrating two days of consecutive
+                    orders
+                    to a having a suite of e-commerce websites
+                    and running out of space to store their products. 🙌
+                </p>
+                <p>
+                    When I transitioned to C# Full-Stack development from Web Design and PHP, my first contract was
+                    developing
+                    an e-commerce application from scratch that helped a small retail outlet <strong>10x their
+                        sales</strong> in a year.
+                </p>
+                <p>
+                    Besides working for other people I've had some small scale business success with:
+                </p>
+
+                <ul>
+                    <li>Developing a prototype lead scraping software and selling the source code to a buyer.</li>
+                    <li>Starting my own SaaS company and doing from prototype to reoccurring revenue.</li>
+                    <li>Buying a event calendar PHP script business, redesigning the marketing page, and selling the
+                        product .</li>
+                    <li>Creating an affiliate website and earning commissions off sales.</li>
+
+                </ul>
+
+
+                <div v-for="experience in businesses">
+                    <experience-component v-bind:experience="experience"></experience-component>
+                </div>
+
+
+                <h2 class="mt-5">Building Side Projects</h2>
+                <p>
+                    Throughout the years I've always experimented and learned whenever I could.
+                </p>
+
+                <p>
+                    ⚗️ My tinkering is driven by an intrinsic curiosity and an ambition
+                    to <strong>build</strong> software and websites.
+                </p>
 
                 <div v-for="experience in myProjects">
                     <experience-component v-bind:experience="experience"></experience-component>
                 </div>
+
+                <blockquote>
+                    I've worked with John on a number of complex web dev projects over the last few years. John is a pro
+                    and <strong>someone I can count on</strong>, whether it is to advise on best approach, or dive deep
+                    to resolve some
+                    obscure bug. John can jump in and ramp up quickly, which is critical in the work that we do. He is
+                    an <strong>excellent communicator</strong> and has always made himself accessible to us regardless
+                    of geographic
+                    location.
+                    <footer class="blockquote-footer text-right">Ryan Andrew - President and CTO</footer>
+
+                </blockquote>
+
                 <h3>Older Experience</h3>
                 <div v-for="experience in pastExperiences">
                     <experience-component v-bind:experience="experience"></experience-component>
@@ -352,14 +479,12 @@
 
     </div>
 
-
-
     <script type="text/x-template" id="experience-component">
 
         <div class="row my-4">
             <div class="col-4 ">
-                <h5>{{experience.role}}</h5>
-                <p>{{experience.title}}<br />
+                <h5>{{experience.title}}</h5>
+                <p>{{experience.role}}<br />
                     {{experience.timeline}}</p>
             </div>
             <div class="col-4 ">
