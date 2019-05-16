@@ -95,6 +95,10 @@ h2 {
     font-weight: bold;
 }
 
+h4 {
+    margin-top: 1.8rem !important;
+}
+
 h5 {
     color: #F56358;
     font-weight: bold;
@@ -112,4 +116,17 @@ h4 {
 
 #testimonials blockquote {
     margin-bottom: 3em !important;
+}
+
+/* This lives outside of element so it can work without JS */
+details-dialog {
+    position: fixed;
+    margin: 10vh auto;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    max-height: 80vh;
+    max-width: 90vw;
+    width: 448px;
 }

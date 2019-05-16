@@ -6,37 +6,53 @@ var app = new Vue({
     el: '#app',
     data: {
         recentExperiences: [{
+                productName: 'Power Inbox Web Portal',
+                productType: 'Operational Web Portal',
                 role: 'Senior Developer',
-                title: 'Power Inbox',
+                company: 'Power Inbox',
                 technology: ['ASP.NET', 'Service Bus', 'Redis'],
                 imageUrl: './img/pi.jpg',
                 timeline: '6/2017-Present'
             },
             {
+                productName: 'StN (Soup to Nuts)',
+                productType: 'Operational Web Portal',
                 role: 'Director of Technology',
-                title: 'Best Time Entertainment',
-                technology: ['ASP.NET', 'Angular JS', 'Dev Ops'],
+                company: 'Best Time Entertainment',
+                technology: ['ASP.NET', 'AngularJs', 'Dev Ops'],
                 imageUrl: './img/bte.png',
                 timeline: '2/2013 - 01/2017'
             },
+            {
 
-        ],
-        myProjects: [{
                 role: 'Full-Stack Development',
-                title: 'One Bag Travel',
+                productName: 'OneBag.Travel',
+                url: 'https://onebag.travel/',
+                role: 'Full-Stack, Founder',
+                productType: 'Affiliate Website',
+                company: 'One Bag Travel',
                 technology: ['ASP.NET Core', 'Azure Functions', 'Cosmos Db'],
                 imageUrl: './img/onebagthumb.JPG',
                 timeline: '2017-Present'
             },
             {
                 role: 'Full-Stack Development',
-                title: 'Terraforming Mars Cards',
+                productName: 'Terraforming Mars Cards',
+                productType: 'Informational Website',
+                url: 'https://terraformingmars.cards/',
                 technology: ['Angular', 'Bootstrap', 'Typescript'],
                 imageUrl: './img/tmcthumb.png',
                 link: 'https://terraformingmars.cards/',
                 timeline: '2018-Present'
             },
-
+            {
+                role: 'Full-Stack Development',
+                productName: 'HCRT',
+                productType: 'iPad Mobile Sales Tool',
+                technology: ['AngularJS', 'D3', 'Responsive CSS'],
+                imageUrl: './img/hcrt.png',
+                timeline: '2016'
+            }
         ],
         pastExperiences: [{
             role: 'Contract Developer',
@@ -60,7 +76,9 @@ var app = new Vue({
             </p> `
         }],
         businesses: [{
-                role: 'Full-Stack Development',
+                productName: 'Movid HEP',
+                productType: 'SaaS Product',
+                role: 'Full-Stack Development, Founder',
                 title: 'Movid HEP',
                 technology: ['ASP.NET', 'AngularJS', 'RavenDb'],
                 imageUrl: './img/movid-hep.png',
@@ -71,14 +89,17 @@ var app = new Vue({
             back end.`
             },
             {
-                role: 'Freelancer',
-                title: 'Palm Classic Apparel Retail E-commerce',
-                technology: ['ASP.NET', 'SQL Server'],
+                role: 'Full-Stack Developer - Freelance',
+                productName: 'Palm Classic Apparel',
+                productType: 'E-commerce',
+
+                technology: ['ASP.NET MVC', 'SQL Server'],
                 imageUrl: './img/palmclassicapparel.png',
                 timeline: '2009'
             }, {
-                role: 'Freelancer',
-                title: 'America\'s Acres',
+                role: 'Full-Stack Developer - Freelance',
+                productName: 'America\'s Acres',
+                productType: 'E-commerce',
                 technology: ['ASP.NET', 'SQL Server'],
                 imageUrl: './img/americanacres.png',
                 timeline: '2009'
