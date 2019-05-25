@@ -7,16 +7,16 @@ var app = new Vue({
     data: {
         recentExperiences: [{
                 productName: 'Power Inbox Web Portal',
-                productType: 'Operational Web Portal',
+                productType: 'Customer Web Portal',
                 role: 'Senior Developer',
                 company: 'Power Inbox',
-                technology: ['ASP.NET', 'Service Bus', 'Redis'],
+                technology: ['ASP.NET', 'Service Bus', 'Redis', 'AngularJs'],
                 imageUrl: './img/pi.jpg',
                 timeline: '6/2017-Present'
             },
             {
                 productName: 'StN (Soup to Nuts)',
-                productType: 'Operational Web Portal',
+                productType: 'Intranet Web Portal',
                 role: 'Director of Technology',
                 company: 'Best Time Entertainment',
                 technology: ['ASP.NET', 'AngularJs', 'Dev Ops'],
@@ -52,6 +52,19 @@ var app = new Vue({
                 technology: ['AngularJS', 'D3', 'Responsive CSS'],
                 imageUrl: './img/hcrt.png',
                 timeline: '2016'
+            },
+            {
+                productName: 'Movid HEP',
+                productType: 'SaaS Product',
+                role: 'Full-Stack Development, Founder',
+                title: 'Movid HEP',
+                technology: ['NoSQL', 'AngularJS', 'RavenDb'],
+                imageUrl: './img/movid-hep.png',
+                timeline: '2012-2014',
+                description: `<a href="http://app.movidhep.com/ ">Movidhep</a> helps physiotherapists prescribe their
+            customers high definition video home exercise plans. As the sole developer behind Movid I
+            worked on everything from UI design to the nosql
+            back end.`
             }
         ],
         pastExperiences: [{
@@ -76,35 +89,21 @@ var app = new Vue({
             </p> `
         }],
         businesses: [{
-                productName: 'Movid HEP',
-                productType: 'SaaS Product',
-                role: 'Full-Stack Development, Founder',
-                title: 'Movid HEP',
-                technology: ['ASP.NET', 'AngularJS', 'RavenDb'],
-                imageUrl: './img/movid-hep.png',
-                timeline: '2/2012 - 1/2014',
-                description: `<a href="http://app.movidhep.com/ ">Movidhep</a> helps physiotherapists prescribe their
-            customers high definition video home exercise plans. As the sole developer behind Movid I
-            worked on everything from UI design to the nosql
-            back end.`
-            },
-            {
-                role: 'Full-Stack Developer - Freelance',
-                productName: 'Palm Classic Apparel',
-                productType: 'E-commerce',
+            role: 'Full-Stack Developer - Freelance',
+            productName: 'Palm Classic Apparel',
+            productType: 'E-commerce',
 
-                technology: ['ASP.NET MVC', 'SQL Server'],
-                imageUrl: './img/palmclassicapparel.png',
-                timeline: '2009'
-            }, {
-                role: 'Full-Stack Developer - Freelance',
-                productName: 'America\'s Acres',
-                productType: 'E-commerce',
-                technology: ['ASP.NET', 'SQL Server'],
-                imageUrl: './img/americanacres.png',
-                timeline: '2009'
-            }
-        ],
+            technology: ['ASP.NET MVC', 'SQL Server'],
+            imageUrl: './img/palmclassicapparel.png',
+            timeline: '2009'
+        }, {
+            role: 'Full-Stack Developer - Freelance',
+            productName: 'America\'s Acres',
+            productType: 'E-commerce',
+            technology: ['ASP.NET', 'SQL Server'],
+            imageUrl: './img/americanacres.png',
+            timeline: '2009'
+        }],
         earlyFreelance: [{
             role: 'Freelancer',
             title: 'Palm Classic Apparel Retail E-commerce',
@@ -117,8 +116,7 @@ var app = new Vue({
             technology: ['ASP.NET', 'SQL Server'],
             imageUrl: './img/americanacres.png',
             timeline: '2009'
-        }],
-        message: 'Hello Vue!'
+        }]
     },
     components: {
         'experience-component': {

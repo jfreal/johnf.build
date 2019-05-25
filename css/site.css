@@ -49,9 +49,12 @@ blockquote {
     background-color: #fff;
     border-radius: 5px;
     padding: 1em;
-
-
 }
+
+blockquote strong {
+    color: #F56358
+}
+
 
 .hero h2 {
     font-weight: normal;
@@ -63,9 +66,6 @@ blockquote {
     text-decoration: underline;
 }
 
-blockquote strong {
-    color: #F56358
-}
 
 #tech-icons i {
     font-size: 2rem;
@@ -118,15 +118,6 @@ h4 {
     margin-bottom: 3em !important;
 }
 
-/* This lives outside of element so it can work without JS */
-details-dialog {
-    position: fixed;
-    margin: 10vh auto;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999;
-    max-height: 80vh;
-    max-width: 90vw;
-    width: 448px;
+.blockquote-footer {
+    font-size: 100%
 }
