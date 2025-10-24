@@ -23,49 +23,10 @@ var app = new Vue({
                 imageUrl: './img/bte.png',
                 timeline: '2/2013 - 01/2017'
             },
-            {
-
-                role: 'Full-Stack Development',
-                productName: 'OneBag.Travel',
-                url: 'https://onebag.travel/',
-                role: 'Full-Stack, Founder',
-                productType: 'Affiliate Website',
-                company: 'One Bag Travel',
-                technology: ['ASP.NET Core', 'Azure Functions', 'Cosmos Db'],
-                imageUrl: './img/onebagthumb.JPG',
-                timeline: '2017-Present'
-            },
-            {
-                role: 'Full-Stack Development',
-                productName: 'Terraforming Mars Cards',
-                productType: 'Informational Website',
-                url: 'https://terraformingmars.cards/',
-                technology: ['Angular', 'Bootstrap', 'Typescript'],
-                imageUrl: './img/tmcthumb.png',
-                link: 'https://terraformingmars.cards/',
-                timeline: '2018-Present'
-            },
-            {
-                role: 'Full-Stack Development',
-                productName: 'HCRT',
-                productType: 'iPad Mobile Sales Tool',
-                technology: ['AngularJS', 'D3', 'Responsive CSS'],
-                imageUrl: './img/hcrt.png',
-                timeline: '2016'
-            },
-            {
-                productName: 'Movid HEP',
-                productType: 'SaaS Product',
-                role: 'Full-Stack Development, Founder',
-                title: 'Movid HEP',
-                technology: ['NoSQL', 'AngularJS', 'RavenDb'],
-                imageUrl: './img/movid-hep.png',
-                timeline: '2012-2014',
-                description: `<a href="http://app.movidhep.com/ ">Movidhep</a> helps physiotherapists prescribe their
-            customers high definition video home exercise plans. As the sole developer behind Movid I
-            worked on everything from UI design to the nosql
-            back end.`
-            }
+           ,
+            ,
+          ,
+            
         ],
         pastExperiences: [{
             role: 'Contract Developer',
@@ -89,6 +50,14 @@ var app = new Vue({
             </p> `
         }],
         businesses: [{
+            role: 'E-commerce Developer',
+            productName: 'Ordo Upcyclum',
+            productType: 'E-commerce - Upcycled Warhammer 40k Art',
+            url: 'https://ordoupcyclum.com',
+            technology: ['E-commerce Platform', 'Product Photography', 'UX Design'],
+            imageUrl: './img/ordo.png',
+            timeline: '2024'
+        }, {
             role: 'Full-Stack Developer - Freelance',
             productName: 'Palm Classic Apparel',
             productType: 'E-commerce',
