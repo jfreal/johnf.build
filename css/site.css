@@ -365,6 +365,10 @@ a:hover, a:focus-visible {
     color: var(--coral);
     margin-block: 0.5em 1.5em;
 }
+.aside--block {
+    display: block;
+    margin: 0 0 1rem;
+}
 
 /* ----- Sections ----- */
 section {
@@ -400,6 +404,7 @@ section {
 }
 .polaroid--tilt-left { transform: rotate(-2deg); }
 .polaroid--tilt-right { transform: rotate(2.2deg); }
+.polaroid--wide { max-width: 38rem; }
 .polaroid:hover { transform: rotate(0) scale(1.015); }
 
 .polaroid-img {
@@ -408,6 +413,15 @@ section {
     background-size: cover;
     background-position: center;
     background-color: var(--cream-2);
+}
+.polaroid-img--wide { aspect-ratio: 16 / 10; }
+
+/* ----- Button row ----- */
+.button-row {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .polaroid figcaption {
