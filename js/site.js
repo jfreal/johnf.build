@@ -1,6 +1,7 @@
-// johnf.build — tiny vanilla helpers. No framework.
+// johnf.build. Tiny vanilla helpers. No framework.
 
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // Reveal sections on scroll
 const reveal = (entries, observer) => {
