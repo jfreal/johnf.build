@@ -1,538 +1,522 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>John Farrell - Builder</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>John Farrell · Builder, Engineering Manager</title>
+    <meta name="description"
+        content="John Farrell builds products, leads engineering teams, and ships software. 20+ years of full-stack development, 5+ years of people management." />
+
+    <meta property="og:title" content="John Farrell · Builder, Engineering Manager" />
+    <meta property="og:description"
+        content="Builds products. Leads teams. Ships software." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://johnf.build/" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#218da6" />
+    <meta name="theme-color" content="#fffff0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+
     <link rel="stylesheet" href="./css/site.css" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
-    <!-- production version, optimized for size and speed -->
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <link rel="stylesheet"
-        href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138304569-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-138304569-1');
-    </script>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-
 </head>
 
 <body>
-    <div class="container-fluid blue-bg">
-        <div class="container">
-            <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4">
-                <h5 class="my-0 mr-md-auto font-weight-normal"></h5>
-                <nav class="my-2 my-md-0 mr-md-3">
-                    <a class="mr-2"
-                        href="https://docs.google.com/document/d/1NiDBChZTSgB9teuwSsNvNYUxaxxpj9R1in_JFsCvGuo/edit?usp=sharing"
-                        target="_blank">
-                        <i class="far fa-file"></i> Resume
-                    </a>
-                    <a class="mr-2" href="https://www.linkedin.com/in/johnefarrell/" target="_blank">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                    <a href="https://github.com/jfreal" target="_blank">
-                        <i class="fab fa-github"></i> Github
-                    </a>
-                </nav>
-            </div>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="wrap header-inner">
+            <a class="mark" href="./index.html" aria-label="Home">
+                <span class="mark-ink">jf</span>
+                <span class="mark-dot" aria-hidden="true"></span>
+            </a>
+            <nav class="primary-nav" aria-label="Primary">
+                <a href="https://docs.google.com/document/d/1NiDBChZTSgB9teuwSsNvNYUxaxxpj9R1in_JFsCvGuo/edit?usp=sharing"
+                    target="_blank" rel="noopener">Résumé</a>
+                <a href="https://www.linkedin.com/in/johnefarrell/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/jfreal" target="_blank" rel="noopener">GitHub</a>
+            </nav>
         </div>
-    </div>
+    </header>
 
+    <main id="main">
 
-    <div class="container-fluid gradient-bg ">
-        <div class="container ">
-            <div class="row justify-content-center ">
-                <div class="col-8 p-4 hero">
-                    <h1>👋 Hi, I'm John</h1>
-                    <!-- <img src="./img/squared.jpg " class="rounded-circle" width="170px" /> -->
-                    <h2 class="mt-3">I <strong>🔨</strong>
-                        <a href="#products">Products</a>, <a href="#teams">Teams</a>, and <a
-                            href="#business">Businesses</a> </h2>
-                </div>
-                <!-- <div class="col-4 p-4">
+        <section class="hero">
+            <div class="wrap hero-inner">
+                <p class="eyebrow">Hi, I'm John <span class="wave" aria-hidden="true">👋</span></p>
+                <h1>
+                    I <span class="hand">build</span> products,
+                    <br />
+                    <span class="hand hand--coral">lead</span> teams,
+                    <br />
+                    and ship with <span class="hand">AI</span>.
+                </h1>
+                <p class="lede">
+                    Agentic developer. Fully AI-fluent. Twenty-plus years
+                    writing code, half a decade leading the humans who
+                    write it. Now I get to do both with a team of agents,
+                    and honestly, it rules.
+                </p>
 
-                    <h2>I Build:</h2>
-                    <ul>
-                        <li>Web Software</li>
-                        <li>Teams</li>
-                        <li>Businesses</li>
-                    </ul>
-                    <p>
-                        johnefarrell@gmail.com<br />
-                        8607782522
+                <div class="looking-for">
+                    <p class="looking-for-label">What I'm looking for</p>
+                    <p class="looking-for-body">
+                        An <strong>agentic operations</strong> role where I
+                        help a team actually succeed with generative AI.
+                        Setting up harnesses, tightening feedback loops,
+                        and pulling the whole org up the curve without
+                        losing the plot.
                     </p>
                 </div>
-                <div class="col-4 p-4 ">
-                    <h3>Full Stack Developer</h3>
 
-                    <table id="experience ">
-                        <tr>
-                            <td>20</td>
-                            <td>Years of Web Development</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Years of Full Stack ASP.NET</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Years of Leadership</td>
-                        </tr>
-                    </table>
-                </div> -->
+                <svg class="hero-squiggle" viewBox="0 0 320 14" aria-hidden="true">
+                    <path d="M2 8 Q 20 -2, 40 8 T 80 8 T 120 8 T 160 8 T 200 8 T 240 8 T 280 8 T 318 8"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div id="app" class="container ">
-        <div class="row justify-content-center">
-            <div class="col-8">
+        <section class="stats">
+            <div class="wrap stats-grid">
+                <div class="stat">
+                    <p class="stat-num">~100<span class="stat-unit">/mo</span></p>
+                    <p class="stat-label">commits on side projects</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-num">20+<span class="stat-unit">yrs</span></p>
+                    <p class="stat-label">shipping software</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-num">5+<span class="stat-unit">yrs</span></p>
+                    <p class="stat-label">leading engineers</p>
+                </div>
+                <div class="stat stat--hand">
+                    <p class="stat-num stat-num--hand">all in</p>
+                    <p class="stat-label">on agentic dev</p>
+                </div>
+            </div>
+        </section>
 
-                <p class="mt-4">I use my in-depth technical and organizational knowledge to help build products,
-                    businesses,
-                    and
-                    engineering
-                    teams.</p>
+        <section class="about" id="about">
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>How I work now</h2>
+                    <p>
+                        I run agents like a small team. On a hot side
+                        project I'll push close to a hundred commits in a
+                        month: researched, planned, written, reviewed,
+                        shipped, with me in the loop the whole way. Claude
+                        Code, sub-agents, MCP servers, evals. Daily
+                        drivers, all of it.
+                    </p>
+                    <p>
+                        The interesting part isn't the prompts. (Sorry,
+                        prompt engineers.) It's the
+                        <strong>operations</strong> around them. Where to
+                        put a harness. How to design feedback so the agent
+                        actually learns from the codebase. When to spin
+                        off parallel work. When to slow down and demand a
+                        human review.
+                    </p>
+                    <p>
+                        Underneath all of it I'm the same person who likes
+                        being in the thick of it: talking to users,
+                        debating tradeoffs, pushing things out the door. I
+                        believe in
+                        <a href="https://en.wikipedia.org/wiki/Servant_leadership" target="_blank" rel="noopener">servant
+                            leadership</a>. Software is easy. Humans are
+                        the genuinely hard part, and the genuinely fun
+                        part.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        Twenty years of taste, scaled up by tools that
+                        finally keep up.
+                    </p>
+                </aside>
+            </div>
+            <div class="wrap">
+                <div class="aside aside--block">EQ &gt; IQ. Agents &gt; alone.</div>
+            </div>
+        </section>
 
-                <p>I <strong>❤️</strong> shipping code, working with others, and failing
-                    forward.</p>
+        <section class="teams" id="teams">
+            <div class="wrap">
+                <h2>Teams I've led</h2>
+                <p class="section-lede">
+                    The most rewarding thing I've done professionally was
+                    building, growing, and nurturing a ten-person engineering
+                    org. I'd do it again tomorrow.
+                </p>
 
-                <h4>How I Like to Work</h4>
-                <p>My favorite places to work are friendly, nimble, and collaborative businesses. </p>
-
-                <p>I like to be in the thick of it, talking to users, debating technical solutions, and making things
-                    happen.</p>
-
-                <p>EQ > IQ</p>
-
-                <h4>Technology I Enjoy</h4>
-                <p>I started my career with using Classic ASP, and then PHP and MySQL, and eventually moved to using C#
-                    and .NET.</p>
-                <p>Over the years, I've CSS, HTML and JavaScript have always been part of my life and I'm comfortable
-                    with any front-end work that needs
-                    to be done.</p>
-                <p>Throughout my career I've learned a lot of technologies, but here is a selection of the technology I
-                    currently
-                    enjoy using day to day:</p>
-
-                <div class="row blue-bg " id="tech-icons">
-                    <div class="container text-align-center py-4 ">
-                        <i class="devicon-csharp-plain colored"></i>
-                        <i class="devicon-dot-net-plain-wordmark colored"></i>
-                        <i class="devicon-git-plain colored"></i>
-
-                        <i class="devicon-github-plain colored"></i>
-                        <i class="devicon-javascript-plain colored"></i>
-                        <i class="devicon-angularjs-plain colored"></i>
-                        <i class="devicon-vuejs-plain colored"></i>
-
-                        <i class="devicon-postgresql-plain colored"></i>
-                        <i class="devicon-redis-plain colored"></i>
-                        <i class="devicon-slack-plain colored"></i>
-                        <i class="devicon-typescript-plain colored"></i>
-                        <i class="devicon-html5-plain colored"></i>
-                        <i class="devicon-css3-plain colored"></i>
-                        <i class="devicon-bootstrap-plain colored"></i>
-
-                        <i class="devicon-confluence-plain colored"></i>
-                        <i class="devicon-jquery-plain colored"></i>
-                    </div>
+                <div class="polaroids">
+                    <figure class="polaroid polaroid--tilt-left">
+                        <div class="polaroid-img"
+                            style="background-image:url('./img/thailand-dinner.jpg');"
+                            role="img" aria-label="Team dinner in Thailand"></div>
+                        <figcaption>Offsite dinner, Thailand</figcaption>
+                    </figure>
+                    <figure class="polaroid polaroid--tilt-right">
+                        <div class="polaroid-img"
+                            style="background-image:url('./img/movid-conference.jpg');"
+                            role="img" aria-label="Movid HEP at a conference"></div>
+                        <figcaption>Movid HEP, out in the wild</figcaption>
+                    </figure>
                 </div>
 
-                <h4>Fun Facts About Me</h2>
-                    <ul>
-                        <li>
-                            I started <a href="https://www.youtube.com/watch?v=HDjvZdCqm-4" target="_blank">🕺salsa
-                                dancing 💃</a> to support a friend and it became a lifelong hobby.
-                        </li>
-                        <li>After smoking for 15 years I quit and ran a marathon two years later.</li>
-                        <li>I play bass in a 60s/70s cover band (and one random REM song) called
-                            <a href="https://stevieandthestingrays.com/" target="_blank">Stevie
-                                and the Sting Rays</a>.</li>
-                    </ul>
+                <p>
+                    At BTE I hired and grew a team of ten developers and PMs
+                    from a one-person shop. Movid HEP went from a notebook
+                    sketch to a Startup Weekend Hartford 2012 win to a
+                    revenue-generating business.
+                </p>
+            </div>
+        </section>
 
-                    <h2 class="mt-5" id="products">Building Products</h2>
-                    <p class="mt-4">I've been building products since 1999.
-                    </p>
+        <section class="products" id="products">
+            <div class="wrap">
+                <h2>Products I've built</h2>
+                <p class="section-lede">
+                    Shipping software since 1999. A few I'm proud of.
+                </p>
 
-                    <p>
-                        Here is a selection of some notable and recent products I've build.
-                    </p>
+                <div class="product-grid">
 
-                    <div v-for="experience in recentExperiences">
-                        <experience-component v-bind:experience="experience"></experience-component>
-                    </div>
-
-                    <div class="container">
-
-                        <div class="row py-4 ">
-                            <div class="col-12">
-
-                                <h2 class="mt-5" id="teams">Building Teams</h2>
-                                <p>The most rewarding professional experiences I've had is when I built, grew, and
-                                    nurtured a ten person engineering organization. </p>
-                                <p>I strongly believe in the <a href="https://en.wikipedia.org/wiki/Servant_leadership"
-                                        target="_blank">servant leadership</a>
-                                    model
-                                    of management
-                                    and team building. </p>
-                                <p>
-                                    At a lot of companies, too much of the software process is counting closed tickets
-                                    or
-                                    lines of code. Not enough leaders take the time to ask, "Hey, how are
-                                    <em>you</em>?".
+                    <article class="product-card">
+                        <a class="product-link" href="https://pheidi.training" target="_blank" rel="noopener">
+                            <div class="product-thumb"
+                                style="background-image:url('./img/pheidi.png');"
+                                role="img" aria-label="Pheidi training plan screenshot"></div>
+                            <div class="product-body">
+                                <h3>Pheidi</h3>
+                                <p class="product-tag">Running training plans · Side project · 2025</p>
+                                <p class="product-desc">
+                                    Personalized running plans for 5K to
+                                    marathon that reschedule when life
+                                    happens. Built on polarized training and
+                                    real sports science. Free.
                                 </p>
-                                <p>Software is easy, humans are the hard part, and I enjoy the challenge and rewards
-                                    that
-                                    come with leadership roles.
+                                <span class="product-cta">pheidi.training ↗</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="product-card">
+                        <a class="product-link" href="https://ktcalc.com" target="_blank" rel="noopener">
+                            <div class="product-thumb"
+                                style="background-image:url('./img/ktcalc.png'); background-position: center top;"
+                                role="img" aria-label="KT24 Calculator screenshot"></div>
+                            <div class="product-body">
+                                <h3>KT24 Calculator</h3>
+                                <p class="product-tag">Tabletop game tool · Side project</p>
+                                <p class="product-desc">
+                                    A damage and probability calculator
+                                    for Kill Team 2024. Compare attacker
+                                    and defender matchups side by side. I
+                                    took it over because I needed Vespid
+                                    weapon math. Now I just keep it
+                                    current.
                                 </p>
+                                <span class="product-cta">ktcalc.com ↗</span>
+                            </div>
+                        </a>
+                    </article>
 
-                                <h5>Offsite Dinner in Thailand</h5>
-                                <div class="yellow-bg p-2 rounded">
-                                    <div class="rounded  "
-                                        style="width: 100%; height: 250px; min-height: 120px; background: url('./img/thailand-dinner.jpg') no-repeat center center; background-size: cover;">
-                                    </div>
-                                </div>
-
-                                <p>
-                                    One of my favorite memories is meeting with members of a engineering team I built in
-                                    Thailand for a dinner.
-                                    At BTE, LLC I hired and built a team of ten developers and project managers.
-                                    The team grew from a single person development to a team of team contributing to
-                                    various
-                                    projects and initiatives.
+                    <article class="product-card">
+                        <a class="product-link" href="https://onebag.travel" target="_blank" rel="noopener">
+                            <div class="product-thumb"
+                                style="background-image:url('./img/onebagthumb.JPG');"
+                                role="img" aria-label="Onebag.Travel screenshot"></div>
+                            <div class="product-body">
+                                <h3>Onebag.Travel</h3>
+                                <p class="product-tag">Travel community · Side project</p>
+                                <p class="product-desc">
+                                    A community and resource hub for one-bag
+                                    travelers. Built and run by me.
                                 </p>
+                                <span class="product-cta">onebag.travel ↗</span>
+                            </div>
+                        </a>
+                    </article>
 
-                                <!-- 
-                            <strong>Product Launch</strong>
-                            <div class="rounded"
-                                style="width: 100%; height: 250px; min-height: 120px; background: url('./img/hype-app-tall.jpg') no-repeat center center; background-size: cover;">
-                            </div> -->
+                    <article class="product-card">
+                        <a class="product-link" href="https://terraformingmars.cards" target="_blank" rel="noopener">
+                            <div class="product-thumb"
+                                style="background-image:url('./img/tmcthumb.png');"
+                                role="img" aria-label="TerraformingMars.Cards screenshot"></div>
+                            <div class="product-body">
+                                <h3>TerraformingMars.Cards</h3>
+                                <p class="product-tag">Game reference · Side project</p>
+                                <p class="product-desc">
+                                    A fast, searchable card reference for
+                                    the Terraforming Mars board game. Built
+                                    for the player who can't remember which
+                                    project tag does what. Type-ahead
+                                    search, tag filters, full card text.
+                                </p>
+                                <span class="product-cta">terraformingmars.cards ↗</span>
+                            </div>
+                        </a>
+                    </article>
 
-                                <h5>Movid HEP</h5>
-                                <div class="yellow-bg p-2 rounded">
-                                    <div class="rounded"
-                                        style="width: 100%; height: 250px; min-height: 120px; background: url('./img/movid-conference.jpg') no-repeat center center; background-size: cover;">
+                    <article class="product-card">
+                        <a class="product-link" href="./ordo-upcyclum.html">
+                            <div class="product-thumb"
+                                style="background-image:url('./img/ordo.png');"
+                                role="img" aria-label="Ordo Upcyclum store"></div>
+                            <div class="product-body">
+                                <h3>Ordo Upcyclum</h3>
+                                <p class="product-tag">E-commerce · 2024</p>
+                                <p class="product-desc">
+                                    An e-commerce store for upcycled
+                                    Warhammer 40k art. Built for a
+                                    hobbyist who hates waste.
+                                </p>
+                                <span class="product-cta">Case study →</span>
+                            </div>
+                        </a>
+                    </article>
 
-                                    </div>
-                                </div>
-                                <p>
-                                    Movid HEP went from a simple idea in a notebook to a winning startup Startup Weekend
-                                    Hartford 2012 and finally
-                                    to a revenue generating business. From the start I lead and helped guide the team
-                                    from
-                                    strategy to execution.
+                    <article class="product-card">
+                        <a class="product-link" href="https://colchesterctbudget.netlify.app/" target="_blank" rel="noopener">
+                            <div class="product-thumb"
+                                style="background-image:url('./img/colchester-budget.png'); background-position: center top;"
+                                role="img" aria-label="Colchester CT budget analysis"></div>
+                            <div class="product-body">
+                                <h3>Colchester Budget Trends</h3>
+                                <p class="product-tag">Civic data · AI-assisted analysis · 2026</p>
+                                <p class="product-desc">
+                                    Eighteen years of Colchester, CT
+                                    operating budgets. Extracted, charted,
+                                    and stress-tested against inflation
+                                    and peer towns. Drafted with Claude,
+                                    spot-checked against the source PDFs
+                                    (yes, really).
+                                </p>
+                                <span class="product-cta">colchesterctbudget.netlify.app ↗</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="product-card product-card--static">
+                        <div class="product-link product-link--static">
+                            <div class="product-thumb"
+                                style="background-image:url('./img/pi.jpg');"
+                                role="img" aria-label="Power Inbox portal"></div>
+                            <div class="product-body">
+                                <h3>Power Inbox Portal</h3>
+                                <p class="product-tag">Customer web portal · Sr. Developer</p>
+                                <p class="product-desc">
+                                    Customer self-service for a high-volume
+                                    email platform. Lets users manage
+                                    domains, senders, and deliverability
+                                    without filing a ticket. ASP.NET on top
+                                    of Service Bus and Redis.
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </article>
 
+                    <article class="product-card product-card--static">
+                        <div class="product-link product-link--static">
+                            <div class="product-thumb"
+                                style="background-image:url('./img/bte.png');"
+                                role="img" aria-label="Soup to Nuts intranet"></div>
+                            <div class="product-body">
+                                <h3>Soup to Nuts (StN)</h3>
+                                <p class="product-tag">Intranet platform · Director of Technology</p>
+                                <p class="product-desc">
+                                    Operational platform for BTE that ran
+                                    sales, inventory, and fulfillment in
+                                    one place. I wrote the first line and
+                                    the last. Revenue grew 100&times; over
+                                    its lifetime.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
 
-                    <h2 id="business" class="mt-5">
-                        Building Businesses
-                    </h2>
-                    <p>
-                        My career has always revolved around growing businesses. I've been an early stage employee
-                        several times, have started my own companies, and helped businesses get off the ground as a
-                        freelance client.
-                    </p>
-                    <p>
-                        The first web development job I had was helping an e-commerce business grow from celebrating two
-                        days of consecutive
-                        orders
-                        to a having a suite of e-commerce websites
-                        and running out of space in their warehouse. 🙌
-                    </p>
-                    <p>
-                        When I transitioned to the C# and .NET ecosystem from PHP, my first contract was
-                        developing
-                        an e-commerce application from scratch that generated more sales than the physical store.
-                    </p>
-                    <p>
-                        At BTE, LLC, the operational software I wrote helped revenue increase by over
-                        <strong>100x</strong> since I wrote the first
-                        line of code.
-                    </p>
+                    <article class="product-card product-card--static">
+                        <div class="product-link product-link--static">
+                            <div class="product-thumb"
+                                style="background-image:url('./img/movid.png');"
+                                role="img" aria-label="Movid HEP"></div>
+                            <div class="product-body">
+                                <h3>Movid HEP</h3>
+                                <p class="product-tag">Health-tech startup · Co-founder &amp; tech lead</p>
+                                <p class="product-desc">
+                                    A health-tech startup I co-founded with
+                                    a physical therapist who hated paper
+                                    home-exercise programs. Notebook sketch
+                                    to Startup Weekend Hartford 2012
+                                    winner to a real, revenue-generating
+                                    business.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
 
-                    <p>I've also had some small success starting and founding my own companies. I have...</p>
-                    <ul>
-                        <li>Developed lead scraping application and selling the full source code to one of
-                            my alpha users.</li>
-                        <li>Started my own SaaS company and drove the business from prototype to full product with
-                            customers and reoccurring revenue.
+                </div>
+            </div>
+        </section>
+
+        <section class="tech" id="tech">
+            <div class="wrap">
+                <h2>Tech I reach for</h2>
+                <p class="section-lede">
+                    I've used a lot of things over the years. These are
+                    today's daily drivers.
+                </p>
+                <ul class="tech-list">
+                    <li>C#</li>
+                    <li>.NET</li>
+                    <li>TypeScript</li>
+                    <li>JavaScript</li>
+                    <li>Vue</li>
+                    <li>Blazor</li>
+                    <li>PostgreSQL</li>
+                    <li>Redis</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>Git</li>
+                </ul>
+                <p class="aside">
+                    Started on Classic ASP, then PHP/MySQL, eventually C# and
+                    .NET. HTML, CSS, and JavaScript have been along for the
+                    whole ride.
+                </p>
+            </div>
+        </section>
+
+        <section class="fun" id="fun">
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>A few things about me</h2>
+                    <ul class="fun-list">
+                        <li>
+                            I started
+                            <a href="https://www.youtube.com/watch?v=HDjvZdCqm-4" target="_blank" rel="noopener">salsa
+                                dancing</a>
+                            to support a friend. It became a lifelong hobby.
                         </li>
-                        <li>Buying a PHP script business, redesigning the marketing page, and increasing sales.</li>
-                        <li>Creating an affiliate website and earning commissions off of affiliate links.</li>
+                        <li>
+                            After smoking for 15 years I quit, then ran a marathon
+                            two years later.
+                        </li>
+                        <li>
+                            I play bass in a 60s/70s cover band (and one random
+                            REM song) called
+                            <a href="https://stevieandthestingrays.com/" target="_blank" rel="noopener">Stevie and the
+                                Sting Rays</a>.
+                        </li>
                     </ul>
-
-
-                    <div v-for="experience in businesses">
-                        <experience-component v-bind:experience="experience"></experience-component>
-                    </div>
-
-
-                    <!-- <h2 class="mt-5">Building Side Projects</h2>
-                    <p>
-                        Throughout the years I've always experimented and learned whenever I could.
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        Software is easy. People are the interesting part.
                     </p>
+                </aside>
+            </div>
+        </section>
 
-                    <p>
-                        ⚗️ My tinkering is driven by an intrinsic curiosity and an ambition
-                        to <strong>build</strong> software and websites.
-                    </p> -->
+        <section class="testimonials" id="testimonials">
+            <div class="wrap">
+                <h2>Nice things people have said</h2>
 
-                    <!-- <div v-for="experience in myProjects">
-                    <experience-component v-bind:experience="experience"></experience-component>
-                </div> -->
-                    <!-- 
+                <figure class="quote">
                     <blockquote>
-                        "I've worked with John on a number of complex web dev projects over the last few years. John is
-                        a
-                        pro
-                        and <strong>someone I can count on</strong>, whether it is to advise on best approach, or dive
-                        deep
-                        to resolve some
-                        obscure bug. John can jump in and ramp up quickly, which is critical in the work that we do. He
-                        is
-                        an <strong>excellent communicator</strong> and has always made himself accessible to us
-                        regardless
-                        of geographic
-                        location."
-                        <footer class="blockquote-footer text-right">Ryan Andrew - President and CTO</footer>
+                        <p>
+                            I've worked with John on a number of complex web dev
+                            projects. He's a pro and someone I can count on,
+                            whether to advise on best approach or dive deep to
+                            resolve some obscure bug. An
+                            <strong>excellent communicator</strong> who's always
+                            made himself accessible to us regardless of
+                            geographic location.
+                        </p>
+                    </blockquote>
+                    <figcaption>David Buonomo, President &amp; CTO, Blue Atlas Interactive</figcaption>
+                </figure>
 
-                    </blockquote> -->
-                    <!-- 
-                    <h3>Older Experience</h3>
-                    <div v-for="experience in pastExperiences">
-                        <experience-component v-bind:experience="experience"></experience-component>
-                    </div> -->
+                <figure class="quote">
+                    <blockquote>
+                        <p>
+                            When I first met John I was surprised by his
+                            friendliness, kindness, and tolerance. He's an
+                            experienced manager and a talented developer.
+                            <strong>His management style makes the whole team
+                                love him.</strong>
+                            Any team will benefit from working with John.
+                        </p>
+                    </blockquote>
+                    <figcaption>Denis Gvozd, Co-founder, Dev Team Inc</figcaption>
+                </figure>
 
+                <figure class="quote">
+                    <blockquote>
+                        <p>
+                            John has done an <strong>extraordinary job of
+                                sitting down with me, analyzing my problems, and
+                                using outside-the-box thinking</strong> to come
+                            up with creative solutions. Other developers stray
+                            down the wrong path and waste your money because
+                            they don't fully understand your needs.
+                        </p>
+                    </blockquote>
+                    <figcaption>Ryan Andrew, CEO</figcaption>
+                </figure>
 
+                <figure class="quote">
+                    <blockquote>
+                        <p>
+                            John is a talented IT professional who
+                            <strong>consistently receives positive
+                                feedback</strong> on his work and has been
+                            requested to return to client sites as additional
+                            needs arise.
+                        </p>
+                    </blockquote>
+                    <figcaption>Lisa Drew, Senior Technical Recruiter</figcaption>
+                </figure>
 
-
-
-                    <h2 class="mt-5">Testimonials</h3>
-                        <p>Nice things people have said about working with me.</p>
-                        <blockquote>
-                            <p>I've worked with John on a number of complex web dev projects over the last few years.
-                                John is a pro and someone I can count on, whether it is to advise on best approach, or
-                                dive deep to resolve some obscure bug. John can jump in and ramp up quickly, which is
-                                critical in the work that we do. He is an excellent communicator and has always made
-                                himself accessible to us regardless of geographic location.</p>
-                            <footer class="blockquote-footer text-right">David Buonomo - President and CTO at Blue Atlas
-                                Interactive</footer>
-                        </blockquote>
-                        <blockquote>
-                            When I first met John I was so surprised by his friendliness, kindness and tolerance.
-                            John is an experienced manager and a talented developer. As a developer he likes challenging
-                            tasks and he is always into learning new technologies. At the same time John knows exactly
-                            when it’s the right time to implement new things. John can deal with big teams efficiently.
-                            His management style makes whole team love him.
-                            Any team will benefit from working with John. He is a wonderful person!
-                            <footer class="blockquote-footer text-right">Denis Gvozd - Co-founder at Dev Team Inc
-                            </footer>
-                        </blockquote>
-                        <blockquote>
-                            <p>Sometime you come across an individual who really makes you question your own
-                                abilities. John is such a person. He produces <strong>excellent quality code</strong>
-                                using
-                                the
-                                right technology and truly understands the depths of the
-                                technology that he is utilizing. He's up to date on the latest ideas and trends and yet
-                                <strong>implements
-                                    them wisely</strong> and not because it's the latest trend. I look forward to
-                                working
-                                with
-                                him again in the future.</p>
-                            <footer class="blockquote-footer text-right">Mark Adams - Senior .Net Developer and
-                                Application
-                                Architect at JBS Software</footer>
-                        </blockquote>
-
-                        <blockquote>
-                            <p>John is an excellent programmer with an in-depth grasp of the entire ASP.Net MVC
-                                framework as
-                                well as the Entity Framework. It was a pleasure to work with him on the project we were
-                                on.
-                                I
-                                know
-                                that in the intervening time he has kept his
-                                knowledge up to date and I would have <strong>no problem recommending him</strong> for a
-                                position.</p>
-                            <footer class="blockquote-footer text-right">David Melinosky - Business Systems Architect at
-                                CNC Software</footer>
-                        </blockquote>
-
-                        <blockquote>
-                            <p>
-                                I have known John Farrell professionally for a number of years and have placed him at
-                                multiple
-                                clients in the greater Hartford area as a .NET Developer. He is a talented IT
-                                professional
-                                who
-                                <strong>consistently receives positive feedback</strong> on his work and has been
-                                <strong>requested to return to client sites</strong> as additional needs arise.
-                            </p>
-
-                            <p>
-                                John’s skill set is in high demand at the moment and his <strong>easygoing and engaging
-                                    personality</strong>
-                                makes him one of my most marketable candidates. We continue to receive <strong>great
-                                    feedback
-                                    on
-                                    his
-                                    work, reliability and ability to fit in with the team</strong>.
-                            </p>
-                            <footer class="blockquote-footer text-right">Lisa Drew - Senior Technical Recruiter</footer>
-                        </blockquote>
-
-                        <blockquote>
-                            <p>
-                                As a small business owner with limited technical knowledge finding a software developer
-                                who
-                                can
-                                understand your business needs and turn them into usable functioning software is very
-                                difficult. John has done an <strong>extraordinary job of sitting down with me,
-                                    analyzing my problems, and using outside the box thinking to come up with creative
-                                    solutions to
-                                    solve my problems</strong>. I have lots of ideas but I don’t have lots of time,
-                                working
-                                with John
-                                has
-                                enabled me to write a brief description
-                                of what I want and then he spends the time to figure out what the problem is and how to
-                                solve
-                                it. Many other developers stray down the wrong path and waste your money because they
-                                don’t
-                                fully understand your needs.
-                            </p>
-
-                            <p>
-                                If John is not 100% sure of the direction he is headed he will setup a meeting to
-                                discuss
-                                and
-                                gain full clarity before proceeding forward. The main application that John has created
-                                for
-                                my
-                                business has completely streamlined my operation. I couldn't imagine
-                                not having it at this point. It has been a pleasure working with John and I look forward
-                                to
-                                working with him for years to come.
-                            </p>
-
-                            <footer class="blockquote-footer text-right">Ryan Andrew - CEO</footer>
-                        </blockquote>
-
-                        <blockquote>
-                            <p>As a colleague of John at the UConn Health Center I can honestly say he is one of the
-                                brightest
-                                programmers I have ever had the pleasure to work with. His abilities in the .Net world,
-                                and
-                                in
-                                all other aspects of programing, is remarkable.
-                                I would proudly recommend John for any endeavor he wished to embark upon.
-                            </p>
-                            <footer class="blockquote-footer text-right">Jack Lotko - Senior Developer</footer>
-                        </blockquote>
-
-                        <blockquote>
-                            <p>
-                                John and I were co-workers at PageFad. John was hired as a Junior Level Developer but
-                                quickly
-                                proved himself to be more knowledgeable than that. He was well versed in C#, ASP.NET,
-                                CSS,
-                                JavaScript and Ajax. Now, although he was hired to do mostly Web Development
-                                his skills also shined in SQL Server 2005. He worked well in both Database
-                                administration
-                                and
-                                design.
-                            </p>
-
-                            <p>
-                                I would have to say his knowledge of Web Development is his greatest attribute. However,
-                                that
-                                is not to take away from the fact that <strong>he is very easy to work with</strong>. I
-                                would
-                                definitely
-                                work
-                                with him again if had the chance.
-                            </p>
-                            <footer class="blockquote-footer text-right">Jeff Gadoury - Software Developer</footer>
-                        </blockquote>
-
+                <figure class="quote">
+                    <blockquote>
+                        <p>
+                            Sometimes you come across an individual who really
+                            makes you question your own abilities. John is such
+                            a person. He produces <strong>excellent quality
+                                code</strong> using the right technology and
+                            truly understands the depths of what he's using.
+                        </p>
+                    </blockquote>
+                    <figcaption>Mark Adams, Sr. .NET Developer &amp; Application Architect, JBS Software</figcaption>
+                </figure>
             </div>
+        </section>
 
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-inner">
+            <p class="signature">John</p>
+            <p class="footer-meta">
+                <span id="year"></span> · Colchester, CT · Hand-built, no framework.
+            </p>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-8">
-                <footer>
-                    <p>&copy; 2019 - John Farrell</p>
-                </footer>
-            </div>
-        </div>
+    </footer>
 
-
-    </div>
-
-    <script type="text/x-template" id="experience-component">
-
-        <div class="row my-4">
-            <div class="col-5 ">
-                <h5>{{experience.productName}}</h5>
-                <a v-if="experience.url" v-bind:href="experience.url" target="_blank">{{experience.url}}</a>
-                <p>{{experience.productType}}<br />
-                {{experience.role}} <br />
-                 {{experience.timeline}}</p>
-            </div>
-            <div class="col-3 ">
-                <strong>Tech</strong><br />
-                
-                <span v-for="tech in experience.technology">{{tech}}<br /></span>
-                
-            </div>
-
-            <div class="col-4 ">
-                <img class="img-thumbnail" :src="experience.imageUrl" />
-            </div>
-        </div>
-    </script>
-    <script src="index.js"></script>
+    <script src="./js/site.js" defer></script>
 </body>
 
 </html>
