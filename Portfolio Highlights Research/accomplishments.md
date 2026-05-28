@@ -104,16 +104,16 @@ strong, authentic social proof of people-leadership.
 > "I'm so impressed with how we grew as a team... You asked the hard questions and helped
 > us move forward and keep things in perspective when we faced challenges. I'm thankful to
 > have had you as a teammate and leader for our incredible engineers." — Rebecca, Resilia
-
+>
 > "Thank you for being a great manager and advocate. You showed what it means to be a
 > compassionate leader." — Amanda, Resilia
-
+>
 > "It was a fantastic experience to see you in action as a leader with the team, the other
 > engineers, and the whole company." — Jared, Resilia
-
+>
 > "You were the best manager anyone could have coming back from maternity leave... Thank
 > you for showing me that parents can still have other identities!" — Taihua, Resilia
-
+>
 > "Thank you for showing up — as a leader, as a teammate, and as a person. We were lucky
 > to have you." — Dawn, Resilia
 
@@ -160,7 +160,7 @@ incentive stock options as a valued, retained engineer.
 
 > "John is an excellent full stack software engineer all around... He's got some good UI
 > and JavaScript skills which are often difficult to find." — Performance review, PowerInbox (2018)
-
+>
 > "His walkthrough/explanation videos show he's really thinking about how people will
 > interact with a feature and the end result that's achieved." — Performance review, PowerInbox (2018)
 
@@ -218,24 +218,24 @@ shipping errors by over 10%.**
 > abilities. John is such a person. He produces excellent quality code using the right
 > technology and truly understands the depths of the technology that he is utilizing."
 > — **Mark Adams**, Senior .NET Developer & Application Architect
-
+>
 > "John is an excellent programmer with an in-depth grasp of the entire ASP.NET MVC
 > framework as well as Entity Framework. It was a pleasure to work with him."
 > — **David Melinosky**, Business Systems Developer, CNC Software
-
+>
 > "He is a talented IT professional who consistently receives positive feedback on his
 > work and has been requested to return to client sites as additional needs arise... one
 > of my most marketable candidates." — **Lisa Drew**, Senior Technical Recruiter
-
+>
 > "John has done an extraordinary job of sitting down with me, analyzing my problems, and
 > using outside-the-box thinking to solve them... The main application he created has
 > completely streamlined my operation. I couldn't imagine not having it."
 > — **Ryan Andrew**, Small Business Owner & Client
-
+>
 > "One of the brightest programmers I have ever had the pleasure to work with. His
 > abilities in the .NET world, and in all other aspects of programming, are remarkable."
 > — **Jack Lotko**, Application Developer, UConn Health Center
-
+>
 > "Hired as a junior developer but quickly proved himself to be much more knowledgeable...
 > his knowledge of web development is his greatest attribute. I would definitely work with
 > him again." — **Jeff Gadoury**, Software Developer (PageFad)
