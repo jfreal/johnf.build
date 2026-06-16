@@ -197,13 +197,13 @@ a:hover, a:focus-visible {
 }
 
 /* Hero: copy on the left, taped-up selfie on the right */
-.hero-inner {
+.hero--with-portrait .hero-inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: clamp(1.5rem, 4vw, 3.5rem);
     align-items: start;
 }
-.hero-copy { min-width: 0; }
+.hero--with-portrait .hero-copy { min-width: 0; }
 
 .hero-portrait {
     margin: 0.5rem 0 0;
@@ -246,8 +246,8 @@ a:hover, a:focus-visible {
 }
 
 @media (max-width: 46rem) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-portrait {
+    .hero--with-portrait .hero-inner { grid-template-columns: 1fr; }
+    .hero--with-portrait .hero-portrait {
         order: -1;
         justify-self: center;
         transform: rotate(-2deg);
@@ -703,7 +703,8 @@ section {
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .wave { animation: none; }
-    .polaroid, .product-card { transition: none; }
+    .polaroid, .product-card, .hero-portrait { transition: none; }
+    .hero-portrait, .hero-portrait:hover { transform: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
 }
 
