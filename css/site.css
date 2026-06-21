@@ -149,9 +149,10 @@ a:hover, a:focus-visible {
 .site-header {
     border-bottom: 1px dashed var(--paper-line);
     background-color: rgba(255, 255, 240, 0.88);
-    /* flat-top hexagon honeycomb: no vertical edges, so it reads as a beehive, not a grid */
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='20.78' viewBox='0 0 36 20.78'><g fill='none' stroke='%23218da6' stroke-opacity='0.2' stroke-width='1.4'><path d='M6 10.39L12 0L24 0L30 10.39L24 20.78L12 20.78Z'/><path d='M12 0L6 10.39L0 10.39'/><path d='M24 0L30 10.39L36 10.39'/><path d='M12 20.78L6 10.39L0 10.39'/><path d='M24 20.78L30 10.39L36 10.39'/></g></svg>");
-    background-size: 36px 20.78px;
+    /* flat-top hexagon honeycomb: no vertical edges, so it reads as a beehive, not a grid.
+       Kept very faint (low opacity, large cells) so it never competes with the nav text. */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='20.78' viewBox='0 0 36 20.78'><g fill='none' stroke='%23218da6' stroke-opacity='0.08' stroke-width='1.1'><path d='M6 10.39L12 0L24 0L30 10.39L24 20.78L12 20.78Z'/><path d='M12 0L6 10.39L0 10.39'/><path d='M24 0L30 10.39L36 10.39'/><path d='M12 20.78L6 10.39L0 10.39'/><path d='M24 20.78L30 10.39L36 10.39'/></g></svg>");
+    background-size: 44px 25.4px;
     backdrop-filter: blur(6px);
     position: sticky;
     top: 0;
