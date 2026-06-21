@@ -100,6 +100,9 @@ h2 {
     margin-bottom: 0.75em;
     position: relative;
     display: inline-block;
+    /* own stacking context so the z-index:-1 underline can't escape to <html>
+       and get painted behind the body background once a section's reveal settles */
+    isolation: isolate;
 }
 
 /* hand-drawn underline behind h2 */
