@@ -46,7 +46,7 @@
   "components": [
     {
       "name": "Text-link CTA",
-      "kind": "button",
+      "kind": "link",
       "refersTo": "cta-link",
       "description": "The only call to action the site uses. A teal text link with a directional arrow; no filled buttons exist.",
       "html": "<a class=\"ds-cta\" href=\"#\">Visit the store ↗</a>",

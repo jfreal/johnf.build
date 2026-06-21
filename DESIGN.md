@@ -118,6 +118,7 @@ soft graphite for body text. Saturation is rationed; the page stays calm so the
 handwriting and photos pop.
 
 ### Primary
+
 - **Workshop Teal** (`#218da6`) and **Deep Workshop Teal** (`#166073`): the
   considered, technical voice. Deep teal carries every link, the script eyebrow,
   the big serif stat numbers, the `jf` mark, the CTA arrows, and the signature.
@@ -125,6 +126,7 @@ handwriting and photos pop.
   hairline). Teal is the color of the person who builds things on purpose.
 
 ### Secondary
+
 - **Marker Coral** (`#f56358`): the wink. Used for flourishes only — the star
   badge, washi tape, the hand-drawn h2 underline, large Caveat asides, the
   `lead` accent in the h1. Rare and warm; it is never the workhorse.
@@ -133,10 +135,12 @@ handwriting and photos pop.
   to this so it clears WCAG AA. See **The Two-Coral Rule**.
 
 ### Tertiary
+
 - **Faded Peach** (`#feb2ad`): the lightest touch. The growing underline behind
   every link, and the oversized quotation mark on testimonials.
 
 ### Neutral
+
 - **Legal-Pad Cream** (`#fffff0`): the page. The desk everything rests on.
 - **Manila Cream** (`#fdf6dc`): the footer and the placeholder behind loading
   images; a half-step warmer than the page.
@@ -150,6 +154,7 @@ handwriting and photos pop.
   the side of margin notes.
 
 ### Named Rules
+
 **The One-Desk Rule.** The page background is always Legal-Pad Cream. Card Stock
 White is reserved for objects resting on the desk. Never flip them: no white page
 sections, no cream cards.
@@ -170,6 +175,7 @@ optical serif for thinking, a neutral humanist sans for talking, and a casual
 script for the margins. The contrast is the system; the three never trade jobs.
 
 ### Hierarchy
+
 - **Display** (Fraunces 700, `clamp(2.4rem, 5.5vw, 4.5rem)`, line-height 1.15,
   letter-spacing −0.02em): the h1 only. Set in three short lines with key
   verbs/nouns (`build`, `lead`, `ship`, `AI`) swapped into Caveat accents.
@@ -183,6 +189,7 @@ script for the margins. The contrast is the system; the three never trade jobs.
   photo captions, the footer signature, the "all in" stat. Marginalia only.
 
 ### Named Rules
+
 **The Three-Hands Rule.** Fraunces thinks, Inter talks, Caveat winks. Each font
 has exactly one job. Caveat never sets body copy; Inter never sets a headline;
 Fraunces never scrawls a margin note.
@@ -202,6 +209,7 @@ one piece of intentional glass is the sticky header (translucent cream +
 `backdrop-filter: blur`), which carries the nav-bar honeycomb texture.
 
 ### Shadow Vocabulary
+
 - **Card rest** (`box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px -12px rgba(42,35,38,0.18)`): product cards and quote cards at rest.
 - **Card hover** (`box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 16px 32px -12px rgba(42,35,38,0.22)`): the same cards lifted on hover, paired with `translateY(-3px)`.
 - **Callout** (`box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 14px 30px -18px rgba(42,35,38,0.25)`): the "What I'm looking for" index card; the deepest ambient drop, because it is the conversion.
@@ -209,6 +217,7 @@ one piece of intentional glass is the sticky header (translucent cream +
 - **Portrait** (`box-shadow: 0 1px 1px rgba(0,0,0,0.05), 0 10px 26px rgba(42,35,38,0.16)`): the taped-up hero selfie.
 
 ### Named Rules
+
 **The Lifted-Paper Rule.** A new surface earns a two-layer soft shadow and a 1–2°
 tilt that straightens on hover. Depth is always "a physical object on a desk,"
 never a flat Material elevation. Keep tilt under ~2.5°; past that it reads gimmicky.
@@ -220,6 +229,7 @@ imperfect on purpose. Containers are taped frames and index cards, not rigid UI
 boxes. Transitions are short (0.15–0.3s) and ease out.
 
 ### Buttons
+
 - **Shape:** there are none. The site ships zero filled buttons.
 - **CTA links:** text only, Deep Workshop Teal (`#166073`), Inter 600, with a
   directional arrow — `↗` for external, `→` for internal/forward, `←` for back.
@@ -228,12 +238,14 @@ boxes. Transitions are short (0.15–0.3s) and ease out.
   a 2px dashed teal outline, offset 3px.
 
 ### Chips (tech list)
+
 - **Style:** Card Stock White pill (`border-radius: 999px`), 1px Ruled-Line
   border, Inter 500 at 0.9rem, Pencil Ink text.
 - **State:** alternating ±1° tilt via `nth-child`; border shifts to Workshop Teal
   on hover. Filter/selected variants are not used.
 
 ### Cards / Containers
+
 - **Corner Style:** 14px (`--radius`) on product and quote cards.
 - **Background:** Card Stock White on the cream page.
 - **Shadow Strategy:** Card rest → Card hover (see Elevation).
@@ -242,23 +254,27 @@ boxes. Transitions are short (0.15–0.3s) and ease out.
 - **Internal Padding:** `1.1rem 1.2rem 1.3rem` on the card body.
 
 ### Navigation
+
 - **Style:** sticky translucent-cream header with `backdrop-filter: blur(6px)`
   and a faint teal honeycomb hex texture; 1px dashed Ruled-Line bottom border.
 - **Links:** Inter 500, 0.95rem, the shared peach growing underline on hover.
 - **Mark:** a rotated Caveat `jf` with a coral dot, top-left.
 
 ### Quote (testimonial)
+
 - **Style:** Card Stock White card, 14px corners, an oversized Faded-Peach
   Fraunces quotation mark bleeding off the top-left, Fraunces 500 blockquote,
   italic Soft-Graphite attribution. Alternating ±0.3° tilt.
 
 ### "What I'm Looking For" Callout (signature)
+
 The conversion surface. A Card Stock White index card tilted −0.4°, a full 1.5px
 Marker-Coral border at 40% opacity, the deepest ambient shadow, and a coral
 circular **★** badge pinned to the top-left corner. A Caveat label over Pencil-Ink
 body. This is the one element allowed to shout, quietly.
 
 ### Polaroid
+
 A Card Stock White frame (`padding: 0.9rem 0.9rem 1.4rem`) around a 4:3 image,
 tilted ±2°, with a Caveat caption beneath. Straightens and scales 1.015 on hover.
 A `--wide` variant widens the frame for single hero shots.
@@ -266,6 +282,7 @@ A `--wide` variant widens the frame for single hero shots.
 ## 6. Do's and Don'ts
 
 ### Do:
+
 - **Do** keep the page on Legal-Pad Cream (`#fffff0`) and float Card Stock White
   (`#ffffff`) objects on it. (The One-Desk Rule.)
 - **Do** give every new surface a two-layer soft shadow and a 1–2° tilt that
@@ -284,6 +301,7 @@ A `--wide` variant widens the frame for single hero shots.
   must collapse to instant.
 
 ### Don't:
+
 - **Don't** build the **generic AI landing page**: warm cream bg + tiny tracked
   uppercase eyebrows over every section + identical icon-heading-text cards +
   gradient text. This is the explicit anti-reference.

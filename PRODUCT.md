@@ -68,7 +68,7 @@ Three-word version: candid, snarky, optimistic.
 ## Accessibility & Inclusion
 
 Target **WCAG 2.1 AA**. Body text ≥4.5:1, large text ≥3:1 (watch `--ink-soft`
-#5a4f53 and muted captions on cream: verify, don't assume). Keep the skip-link,
+`#5a4f53` and muted captions on cream: verify, don't assume). Keep the skip-link,
 visible `:focus-visible` states, and full keyboard reachability. Honor
 `prefers-reduced-motion` for the scroll-reveal and any future motion, and make
 sure content is readable without the JS-added `is-visible` class. Never rely on
