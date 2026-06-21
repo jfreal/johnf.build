@@ -210,11 +210,12 @@ one piece of intentional glass is the sticky header (translucent cream +
 
 ### Shadow Vocabulary
 
-- **Card rest** (`box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px -12px rgba(42,35,38,0.18)`): product cards and quote cards at rest.
+- **Card rest** (`box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px -12px rgba(42,35,38,0.18)`): product cards at rest.
 - **Card hover** (`box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 16px 32px -12px rgba(42,35,38,0.22)`): the same cards lifted on hover, paired with `translateY(-3px)`.
 - **Callout** (`box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 14px 30px -18px rgba(42,35,38,0.25)`): the "What I'm looking for" index card; the deepest ambient drop, because it is the conversion.
 - **Polaroid** (`box-shadow: 0 1px 1px rgba(0,0,0,0.04), 0 6px 18px rgba(42,35,38,0.12)`): framed team photos.
 - **Portrait** (`box-shadow: 0 1px 1px rgba(0,0,0,0.05), 0 10px 26px rgba(42,35,38,0.16)`): the taped-up hero selfie.
+- **Quote** (`box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 12px 30px -16px rgba(42,35,38,0.18)`): testimonial cards; a hair softer than Card rest.
 
 ### Named Rules
 
@@ -264,7 +265,8 @@ boxes. Transitions are short (0.15–0.3s) and ease out.
 
 - **Style:** Card Stock White card, 14px corners, an oversized Faded-Peach
   Fraunces quotation mark bleeding off the top-left, Fraunces 500 blockquote,
-  italic Soft-Graphite attribution. Alternating ±0.3° tilt.
+  italic Soft-Graphite attribution. Alternating ±0.3° tilt. Uses the Quote
+  shadow (see Elevation).
 
 ### "What I'm Looking For" Callout (signature)
 
