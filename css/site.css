@@ -14,6 +14,7 @@
     --teal: #218da6;
     --teal-deep: #166073;
     --coral: #f56358;
+    --coral-deep: #c0392b; /* coral at body-text sizes; clears WCAG AA (5.4:1 on white/cream) */
     --peach: #feb2ad;
     --ink: #2a2326;
     --ink-soft: #5a4f53;
@@ -45,13 +46,6 @@ body {
     line-height: 1.65;
     color: var(--ink);
     background: var(--cream);
-    background-image:
-        radial-gradient(circle at 12% 8%, rgba(254, 178, 173, 0.18), transparent 38%),
-        radial-gradient(circle at 88% 22%, rgba(33, 141, 166, 0.10), transparent 42%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cpath fill='%23218da6' fill-opacity='0.03' fill-rule='evenodd' d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat, no-repeat, repeat;
-    background-size: auto, auto, 46px 80px;
-    background-attachment: fixed, fixed, fixed;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
@@ -91,6 +85,7 @@ h1, h2, h3, h4 {
     line-height: 1.15;
     margin: 0 0 0.5em;
     letter-spacing: -0.01em;
+    text-wrap: balance;
 }
 
 h1 {
@@ -105,6 +100,9 @@ h2 {
     margin-bottom: 0.75em;
     position: relative;
     display: inline-block;
+    /* own stacking context so the z-index:-1 underline can't escape to <html>
+       and get painted behind the body background once a section's reveal settles */
+    isolation: isolate;
 }
 
 /* hand-drawn underline behind h2 */
@@ -126,7 +124,7 @@ h3 {
     font-size: clamp(1.2rem, 1.6vw, 1.45rem);
 }
 
-p { margin: 0 0 var(--rhythm); max-width: var(--measure); }
+p { margin: 0 0 var(--rhythm); max-width: var(--measure); text-wrap: pretty; }
 
 strong { color: var(--ink); }
 em { color: var(--teal-deep); font-style: italic; }
@@ -150,7 +148,11 @@ a:hover, a:focus-visible {
 /* ----- Site header ----- */
 .site-header {
     border-bottom: 1px dashed var(--paper-line);
-    background: rgba(255, 255, 240, 0.85);
+    background-color: rgba(255, 255, 240, 0.88);
+    /* flat-top hexagon honeycomb: no vertical edges, so it reads as a beehive, not a grid.
+       Kept very faint (low opacity, large cells) so it never competes with the nav text. */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='20.78' viewBox='0 0 36 20.78'><g fill='none' stroke='%23218da6' stroke-opacity='0.08' stroke-width='1.1'><path d='M6 10.39L12 0L24 0L30 10.39L24 20.78L12 20.78Z'/><path d='M12 0L6 10.39L0 10.39'/><path d='M24 0L30 10.39L36 10.39'/><path d='M12 20.78L6 10.39L0 10.39'/><path d='M24 20.78L30 10.39L36 10.39'/></g></svg>");
+    background-size: 44px 25.4px;
     backdrop-filter: blur(6px);
     position: sticky;
     top: 0;
@@ -313,11 +315,11 @@ a:hover, a:focus-visible {
     position: relative;
     margin: 2rem 0 0;
     max-width: 38rem;
-    padding: 1.25rem 1.5rem 1.4rem 1.75rem;
+    padding: 1.4rem 1.6rem;
     background: #fff;
     border-radius: var(--radius);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 14px 30px -18px rgba(42, 35, 38, 0.25);
-    border-left: 4px solid var(--coral);
+    border: 1.5px solid rgba(245, 99, 88, 0.4);
     transform: rotate(-0.4deg);
 }
 .looking-for::before {
@@ -411,7 +413,7 @@ a:hover, a:focus-visible {
 .two-col-main p { max-width: 38rem; }
 
 .margin-note {
-    border-left: 3px solid var(--coral);
+    border-left: 1px dashed var(--paper-line);
     padding: 0.5rem 0 0.5rem 1rem;
     margin-top: 4rem;
 }
@@ -557,7 +559,7 @@ section {
 
 .product-tag {
     font-size: 0.85rem;
-    color: var(--coral);
+    color: var(--coral-deep);
     font-weight: 500;
     margin: 0;
     letter-spacing: 0.01em;
