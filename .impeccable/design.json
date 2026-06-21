@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-21",
+  "title": "Design System: johnf.build",
+  "extensions": {
+    "colorMeta": {
+      "cream": { "role": "neutral", "displayName": "Legal-Pad Cream", "canonical": "#fffff0", "tonalRamp": ["#a8a878", "#c2c290", "#d8d8ad", "#ececcb", "#f5f5dc", "#fafae6", "#fffff0", "#fffffa"] },
+      "cream-2": { "role": "neutral", "displayName": "Manila Cream", "canonical": "#fdf6dc", "tonalRamp": ["#8a7f57", "#a89a6e", "#c5b78a", "#ddd0a8", "#ede2c4", "#f6eed0", "#fdf6dc", "#fffbef"] },
+      "surface": { "role": "neutral", "displayName": "Card Stock White", "canonical": "#ffffff", "tonalRamp": ["#3a3a3a", "#5c5c5c", "#808080", "#a3a3a3", "#c7c7c7", "#e0e0e0", "#f2f2f2", "#ffffff"] },
+      "teal": { "role": "primary", "displayName": "Workshop Teal", "canonical": "#218da6", "tonalRamp": ["#0a2c34", "#0f4350", "#155e70", "#1a7589", "#218da6", "#46a6bd", "#7cc3d4", "#bce3ec"] },
+      "teal-deep": { "role": "primary", "displayName": "Deep Workshop Teal", "canonical": "#166073", "tonalRamp": ["#08222a", "#0c3540", "#104c5b", "#166073", "#2f7e90", "#5aa0b0", "#93c4d0", "#cfe6ec"] },
+      "coral": { "role": "secondary", "displayName": "Marker Coral", "canonical": "#f56358", "tonalRamp": ["#3f120e", "#5e1a15", "#86251d", "#ad3127", "#d64535", "#f56358", "#f8918a", "#fbc4c0"] },
+      "coral-deep": { "role": "secondary", "displayName": "Deep Marker Coral", "canonical": "#c0392b", "tonalRamp": ["#3a110c", "#581a13", "#79241b", "#9b2e23", "#c0392b", "#d65c50", "#e89187", "#f4c3bd"] },
+      "peach": { "role": "tertiary", "displayName": "Faded Peach", "canonical": "#feb2ad", "tonalRamp": ["#7a3c38", "#9c4f4a", "#bf645e", "#e07c75", "#fe9a93", "#feb2ad", "#fecdc9", "#ffe6e4"] },
+      "ink": { "role": "neutral", "displayName": "Pencil Ink", "canonical": "#2a2326", "tonalRamp": ["#1a1517", "#2a2326", "#3d3438", "#52474c", "#6b5d63", "#8a7c82", "#b3a8ac", "#ddd6d9"] },
+      "ink-soft": { "role": "neutral", "displayName": "Soft Graphite", "canonical": "#5a4f53", "tonalRamp": ["#241f21", "#352e30", "#473e41", "#5a4f53", "#766a6e", "#968b8f", "#bcb3b6", "#e3dee0"] },
+      "paper-line": { "role": "neutral", "displayName": "Ruled Line", "canonical": "#e6d9b8", "tonalRamp": ["#6b6044", "#897c59", "#a89a70", "#c6b78c", "#e6d9b8", "#eee3c9", "#f4ecda", "#faf5ea"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The h1 only. Three short lines with Caveat accents on key verbs." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2s, each with a hand-drawn coral underline." },
+      "title": { "displayName": "Title", "purpose": "Card and product h3s." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy, capped at a 62ch measure." },
+      "label": { "displayName": "Label", "purpose": "Tech chips, meta, captions." },
+      "accent": { "displayName": "Accent (Caveat)", "purpose": "Eyebrows, margin notes, captions, signature. Marginalia only, never body." }
+    },
+    "shadows": [
+      { "name": "card-rest", "value": "0 1px 2px rgba(0,0,0,0.04), 0 8px 24px -12px rgba(42,35,38,0.18)", "purpose": "Product and quote cards at rest." },
+      { "name": "card-hover", "value": "0 2px 4px rgba(0,0,0,0.06), 0 16px 32px -12px rgba(42,35,38,0.22)", "purpose": "Cards lifted on hover, paired with translateY(-3px)." },
+      { "name": "callout", "value": "0 1px 2px rgba(0,0,0,0.04), 0 14px 30px -18px rgba(42,35,38,0.25)", "purpose": "The 'What I'm looking for' conversion index card." },
+      { "name": "polaroid", "value": "0 1px 1px rgba(0,0,0,0.04), 0 6px 18px rgba(42,35,38,0.12)", "purpose": "Framed team photos." },
+      { "name": "portrait", "value": "0 1px 1px rgba(0,0,0,0.05), 0 10px 26px rgba(42,35,38,0.16)", "purpose": "The taped-up hero selfie." },
+      { "name": "quote", "value": "0 1px 2px rgba(0,0,0,0.03), 0 12px 30px -16px rgba(42,35,38,0.18)", "purpose": "Testimonial cards." }
+    ],
+    "motion": [
+      { "name": "hover-snap", "value": "transform 0.3s ease", "purpose": "Objects straighten and scale on hover (polaroids, portrait)." },
+      { "name": "card-lift", "value": "transform 0.18s ease, box-shadow 0.18s ease", "purpose": "Product card lift on hover." },
+      { "name": "underline-grow", "value": "background-size 0.18s ease, color 0.18s ease", "purpose": "Link underline grows from sliver to full." },
+      { "name": "reveal", "value": "opacity 0.6s ease, transform 0.6s ease", "purpose": "Sections fade up once on scroll (IntersectionObserver); collapses to instant under prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "hero-stack", "value": "46rem", "purpose": "Hero portrait drops above the copy; single-column hero." },
+      { "name": "two-col", "value": "800px", "purpose": "Two-column-with-margin-note layout engages." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Text-link CTA",
+      "kind": "button",
+      "refersTo": "cta-link",
+      "description": "The only call to action the site uses. A teal text link with a directional arrow; no filled buttons exist.",
+      "html": "<a class=\"ds-cta\" href=\"#\">Visit the store ↗</a>",
+      "css": ".ds-cta { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.95rem; color: #166073; text-decoration: none; background-image: linear-gradient(120deg, #feb2ad, #feb2ad); background-repeat: no-repeat; background-size: 100% 0.18em; background-position: 0 92%; padding: 0 0.06em; transition: background-size 0.18s ease, color 0.18s ease; } .ds-cta:hover { background-size: 100% 80%; color: #2a2326; } .ds-cta:focus-visible { outline: 2px dashed #218da6; outline-offset: 3px; }"
+    },
+    {
+      "name": "Product Card",
+      "kind": "card",
+      "refersTo": "product-card",
+      "description": "White card on cream, soft shadow, an inset teal hairline (not a side stripe), lifts on hover.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-thumb\"></div><div class=\"ds-card-body\"><h3 class=\"ds-card-title\">Pheidi</h3><p class=\"ds-card-tag\">Running training plans · 2025</p><p class=\"ds-card-desc\">Personalized running plans that reschedule when life happens.</p><span class=\"ds-cta\">pheidi.training ↗</span></div></article>",
+      "css": ".ds-card { position: relative; background: #ffffff; border-radius: 14px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px -12px rgba(42,35,38,0.18); transition: transform 0.18s ease, box-shadow 0.18s ease; } .ds-card::before { content: \"\"; position: absolute; inset: 0; border-radius: 14px; border: 1px solid rgba(33,141,166,0.12); pointer-events: none; } .ds-card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 16px 32px -12px rgba(42,35,38,0.22); } .ds-card-thumb { aspect-ratio: 16/10; background: #fdf6dc; } .ds-card-body { padding: 1.1rem 1.2rem 1.3rem; display: flex; flex-direction: column; gap: 0.4rem; } .ds-card-title { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 1.4rem; color: #2a2326; margin: 0; } .ds-card-tag { font-family: Inter, sans-serif; font-weight: 500; font-size: 0.85rem; color: #c0392b; margin: 0; } .ds-card-desc { font-family: Inter, sans-serif; font-size: 0.95rem; line-height: 1.5; color: #5a4f53; margin: 0.3rem 0 0; }"
+    },
+    {
+      "name": "Tech Chip",
+      "kind": "chip",
+      "refersTo": "tech-chip",
+      "description": "White pill with a ruled-line border and a slight tilt; border goes teal on hover.",
+      "html": "<ul class=\"ds-chips\"><li>C#</li><li>TypeScript</li><li>PostgreSQL</li></ul>",
+      "css": ".ds-chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 0.75rem; } .ds-chips li { background: #ffffff; border: 1px solid #e6d9b8; padding: 0.4rem 0.85rem; border-radius: 999px; font-family: Inter, sans-serif; font-size: 0.9rem; font-weight: 500; color: #2a2326; transition: transform 0.15s ease, border-color 0.15s ease; } .ds-chips li:nth-child(3n) { transform: rotate(-1deg); } .ds-chips li:nth-child(3n+1) { transform: rotate(0.8deg); } .ds-chips li:hover { border-color: #218da6; }"
+    },
+    {
+      "name": "“What I'm Looking For” Callout",
+      "kind": "custom",
+      "refersTo": "looking-for-callout",
+      "description": "The signature conversion surface: a tilted white index card with a full coral border and a pinned star badge.",
+      "html": "<div class=\"ds-callout\"><p class=\"ds-callout-label\">What I'm looking for</p><p class=\"ds-callout-body\">An <strong>agentic operations</strong> role where I help a team actually succeed with generative AI.</p></div>",
+      "css": ".ds-callout { position: relative; max-width: 38rem; padding: 1.4rem 1.6rem; background: #ffffff; border-radius: 14px; border: 1.5px solid rgba(245,99,88,0.4); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 14px 30px -18px rgba(42,35,38,0.25); transform: rotate(-0.4deg); } .ds-callout::before { content: \"★\"; position: absolute; top: -0.6rem; left: -0.6rem; width: 1.8rem; height: 1.8rem; background: #f56358; color: #fff; border-radius: 50%; display: grid; place-items: center; font-size: 0.95rem; transform: rotate(-8deg); } .ds-callout-label { font-family: Caveat, cursive; font-size: 1.4rem; color: #166073; margin: 0 0 0.2rem; line-height: 1; } .ds-callout-body { font-family: Inter, sans-serif; font-size: 1rem; line-height: 1.5; color: #2a2326; margin: 0; }"
+    },
+    {
+      "name": "Primary Nav",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Sticky translucent-cream header with a blur and a faint teal honeycomb texture; links carry the shared peach underline.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-mark\" href=\"#\"><span class=\"ds-mark-ink\">jf</span><span class=\"ds-mark-dot\"></span></a><nav class=\"ds-nav-links\"><a href=\"#\">Résumé</a><a href=\"#\">LinkedIn</a><a href=\"#\">GitHub</a></nav></header>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.5rem; border-bottom: 1px dashed #e6d9b8; background-color: rgba(255,255,240,0.88); background-image: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'><path d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23218da6' stroke-opacity='0.18' stroke-width='2'/><path d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%23218da6' stroke-opacity='0.18' stroke-width='2'/></svg>\"); background-size: 34px 60px; backdrop-filter: blur(6px); } .ds-mark { display: inline-flex; align-items: center; gap: 0.15rem; font-family: Caveat, cursive; font-size: 2rem; color: #2a2326; text-decoration: none; } .ds-mark-ink { transform: rotate(-4deg); } .ds-mark-dot { width: 0.45rem; height: 0.45rem; background: #f56358; border-radius: 50%; transform: translateY(0.6rem); } .ds-nav-links { display: flex; gap: 1.5rem; } .ds-nav-links a { font-family: Inter, sans-serif; font-weight: 500; font-size: 0.95rem; color: #166073; text-decoration: none; background: linear-gradient(120deg, #feb2ad, #feb2ad) no-repeat; background-size: 100% 0.18em; background-position: 0 92%; transition: background-size 0.18s ease, color 0.18s ease; } .ds-nav-links a:hover { background-size: 100% 80%; color: #2a2326; }"
+    },
+    {
+      "name": "Quote Card",
+      "kind": "card",
+      "refersTo": null,
+      "description": "Testimonial card with an oversized peach quotation mark and a Fraunces blockquote.",
+      "html": "<figure class=\"ds-quote\"><blockquote><p>An <strong>excellent communicator</strong> who's always made himself accessible regardless of location.</p></blockquote><figcaption>David Buonomo, President &amp; CTO</figcaption></figure>",
+      "css": ".ds-quote { position: relative; max-width: 52rem; margin: 0; background: #ffffff; border-radius: 14px; padding: 1.5rem 2rem; box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 12px 30px -16px rgba(42,35,38,0.18); transform: rotate(-0.3deg); } .ds-quote::before { content: \"“\"; position: absolute; top: -0.2em; left: 0.4em; font-family: Fraunces, Georgia, serif; font-size: 5.5rem; line-height: 1; color: #feb2ad; } .ds-quote blockquote { margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 500; font-size: 1.2rem; line-height: 1.5; color: #2a2326; } .ds-quote blockquote strong { color: #166073; } .ds-quote figcaption { margin-top: 1rem; font-family: Inter, sans-serif; font-size: 0.9rem; font-style: italic; color: #5a4f53; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Builder's Scrapbook",
+    "overview": "A personal site that looks assembled by hand on a desk, not generated in a browser. Everything sits on a single sheet of Legal-Pad Cream (#fffff0). White objects (cards, polaroids, a taped-up portrait, an index-card callout) rest on top, each casting a soft real shadow and tilted a degree or two off-square. Fraunces headings, Inter body, Caveat marker asides, dashed notebook-rule dividers. Candid and warm: a smart builder's workbench, photographed from above. It explicitly rejects the generic AI landing page; warmth comes from handwriting, tape, and photographs, never a default gradient. No filled buttons, no eyebrow kickers, no em dashes.",
+    "keyCharacteristics": [
+      "Cream desk, white objects, marker handwriting.",
+      "Three fonts, three jobs: Fraunces thinks, Inter talks, Caveat winks.",
+      "Soft two-layer shadows plus a 1–2° tilt that straightens on hover.",
+      "Hand-drawn coral underlines, washi tape, polaroid frames.",
+      "Dashed notebook-paper dividers between everything.",
+      "Text-link CTAs with directional arrows. Zero filled buttons.",
+      "No eyebrow kickers, no gradient text, no em dashes."
+    ],
+    "rules": [
+      { "name": "The One-Desk Rule", "body": "The page background is always Legal-Pad Cream. Card Stock White is reserved for objects resting on the desk. Never flip them: no white page sections, no cream cards.", "section": "colors" },
+      { "name": "The Two-Coral Rule", "body": "Marker Coral #f56358 is for flourishes and Caveat text at ~18px and up. The moment coral becomes body-size text on white or cream, it must deepen to #c0392b; bright coral fails AA below large-text size. Its rarity is the point either way.", "section": "colors" },
+      { "name": "The Three-Hands Rule", "body": "Fraunces thinks, Inter talks, Caveat winks. Each font has exactly one job. Caveat never sets body copy; Inter never sets a headline; Fraunces never scrawls a margin note.", "section": "typography" },
+      { "name": "The Marker-Underline Rule", "body": "Every h2 wears a hand-drawn coral squiggle behind it (an inline SVG ::after, ~0.55 opacity), never a straight 1px rule. The imperfection is deliberate.", "section": "typography" },
+      { "name": "The Lifted-Paper Rule", "body": "A new surface earns a two-layer soft shadow and a 1–2° tilt that straightens on hover. Depth is always 'a physical object on a desk,' never a flat Material elevation. Keep tilt under ~2.5°; past that it reads gimmicky.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the page on Legal-Pad Cream (#fffff0) and float Card Stock White (#ffffff) objects on it.",
+      "Do give every new surface a two-layer soft shadow and a 1–2° tilt that straightens on hover.",
+      "Do underline each h2 with the hand-drawn coral SVG squiggle, never a straight rule.",
+      "Do keep fonts in their lanes: Fraunces headings, Inter body, Caveat marginalia.",
+      "Do separate sections and margin notes with a 1px dashed Ruled-Line (#e6d9b8).",
+      "Do deepen coral to #c0392b for any coral text under ~18px.",
+      "Do write captions and alt text in John's voice.",
+      "Do honor prefers-reduced-motion: reveal-on-scroll and hover transforms collapse to instant."
+    ],
+    "donts": [
+      "Don't build the generic AI landing page: warm cream bg + tracked uppercase eyebrows + identical icon cards + gradient text.",
+      "Don't use em dashes anywhere, in copy or as a layout device.",
+      "Don't use border-left/right greater than 1px as a colored accent stripe.",
+      "Don't use gradient text (background-clip: text).",
+      "Don't put Marker Coral #f56358 on white or cream at body size; it fails AA.",
+      "Don't add a filled button. CTAs are text links with arrows.",
+      "Don't reach for glassmorphism beyond the sticky header.",
+      "Don't straighten everything to a rigid grid, and don't over-rotate past ~2.5 degrees."
+    ]
+  }
+}
