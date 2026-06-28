@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9972NYVNYD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+        gtag('js', new Date());
+
+        gtag('config', 'G-9972NYVNYD');
+    </script>
+    <title>Kill Team Night Reminder · What the Alert Does · John Farrell</title>
+    <meta name="description"
+        content="What the automated Kill Team Night reminder does: a Discord post every other Sunday for the upcoming game night at Lotus Games. The bot only posts; it can't read messages, DM, or track members." />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#218da6" />
+    <meta name="theme-color" content="#fffff0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="./css/site.css" />
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="wrap header-inner">
+            <a class="mark" href="./index.html" aria-label="Home">
+                <span class="mark-ink">jf</span>
+                <span class="mark-dot" aria-hidden="true"></span>
+            </a>
+            <nav class="primary-nav" aria-label="Primary">
+                <a href="./index.html">← Portfolio</a>
+                <a href="https://www.linkedin.com/in/johnefarrell/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/jfreal" target="_blank" rel="noopener">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+
+        <section class="hero">
+            <div class="wrap hero-inner">
+                <p class="eyebrow">The Kill Team Night reminder</p>
+                <h1>
+                    A bot that <span class="hand hand--coral">remembers</span> so you don't.
+                </h1>
+                <p class="lede">
+                    It posts one reminder to Discord before each game night at Lotus Games.
+                    That's the whole job. It can't read messages, DM anyone, or track members.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>What it does</h2>
+                    <p>
+                        Every other <strong>Sunday around 6 PM</strong>, it posts a short
+                        message reminding everyone that <strong>Kill Team Night</strong> is
+                        that coming Wednesday at <strong>Lotus Games</strong>. The date in the
+                        post is figured out automatically, so it's always the right Wednesday.
+                    </p>
+                    <p>
+                        It runs on a two-week cycle to match the game nights. On the off
+                        Sundays it stays quiet. (It is a very low-effort bot, and proud of it.)
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        One post. Sunday before game night. Then it goes back to sleep.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <h2>What the post looks like</h2>
+                <figure class="quote">
+                    <blockquote>
+                        <p>
+                            🪷 <strong>Kill Team Night</strong> is ON this
+                            <strong>Wednesday, July 1</strong>!
+                            New players and seasoned vets alike, tables are open and we want you there.
+                            👍 this post so we can get a headcount.
+                        </p>
+                    </blockquote>
+                    <figcaption>Posted automatically · every other Sunday</figcaption>
+                </figure>
+                <p>
+                    Same shape every time, just with the next date filled in.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>It posts to two Discords</h2>
+                    <ul class="fun-list">
+                        <li>The <strong>Lotus Games store Discord</strong>, so regulars see it.</li>
+                        <li>A <strong>separate group Discord</strong>, so our crew sees it too.</li>
+                        <li>Each gets its own wording, both at the same time.</li>
+                    </ul>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        Two channels, one heads-up, zero forgetting.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>What it does NOT do</h2>
+                    <ul class="fun-list">
+                        <li>It can't read your messages. A webhook only posts, it never listens.</li>
+                        <li>It can't DM anyone or @ everyone unless you ask it to.</li>
+                        <li>It doesn't collect data, track members, or join voice. None of that.</li>
+                        <li>It only touches the one channel you point it at. That's it.</li>
+                    </ul>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        A webhook is a one-way mail slot. Stuff goes in, nothing comes out.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>How to add it to your channel</h2>
+                    <ul class="fun-list">
+                        <li>Pick the channel you want the reminder in.</li>
+                        <li>Channel settings → Integrations → Webhooks → New Webhook.</li>
+                        <li>Name it something obvious like "Kill Team Reminder."</li>
+                        <li>Copy the webhook URL and send it to me.</li>
+                    </ul>
+                    <p>
+                        That URL is the only thing I need, and you can revoke it any time by
+                        deleting the webhook. The moment you do, the bot goes silent in your
+                        channel. You're always in control.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        Delete the webhook and it's gone. No account, no permissions, no trace.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <div class="button-row">
+                    <a href="./index.html" class="product-cta">← Back to portfolio</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-inner">
+            <p class="signature">John</p>
+            <p class="footer-meta">
+                <span id="year"></span> · Colchester, CT · Hand-built, no framework.
+            </p>
+        </div>
+    </footer>
+
+    <script src="./js/site.js" defer></script>
+</body>
+
+</html>
