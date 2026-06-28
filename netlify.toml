@@ -1,11 +1,13 @@
-# Static site at repo root + scheduled function for Discord reminders.
+# Static site at repo root + a zero-dependency scheduled function.
+# No build step: nothing to install, nothing to compile.
 [build]
   publish = "."
 
 [functions]
   directory = "netlify/functions"
-  node_bundler = "esbuild"
 
-# The cron schedule is declared in-code via the schedule() helper in
-# netlify/functions/kill-team-reminder.mjs — no [functions.*.schedule]
-# block needed here. Netlify reads the schedule at deploy time.
+# Cron for the Discord reminder. Fires every Sunday at BOTH 22:00 and 23:00
+# UTC; the function gates on the local Eastern hour (6 PM) so exactly one
+# invocation posts, year-round, across DST. See the function for details.
+[functions."kill-team-reminder"]
+  schedule = "0 22,23 * * 0"

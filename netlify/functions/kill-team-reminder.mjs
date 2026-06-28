@@ -1,15 +1,17 @@
-import { schedule } from "@netlify/functions";
-
 /* ───────────────────────────── CONFIG ─────────────────────────────
  * Edit these. Webhook URLs live in Netlify env vars (Site settings →
  * Environment variables), NOT in this file — they're secrets.
  *
- *   DISCORD_WEBHOOK_STORE  → the store's (Lotus Games) Discord
- *   DISCORD_WEBHOOK_GROUP  → the separate / group Discord
+ *   DISCORD_WEBHOOK_STORE  → the store's (Lotus Games) Discord   [required]
+ *   DISCORD_WEBHOOK_GROUP  → the separate / group Discord         [required]
  *
  * Optional display-name overrides (what the post shows as the author):
  *   DISCORD_USERNAME_STORE
  *   DISCORD_USERNAME_GROUP
+ *
+ * This is a zero-dependency function. The cron schedule is declared in
+ * netlify.toml ([functions."kill-team-reminder"].schedule), so there's no
+ * @netlify/functions import and no build/install step.
  */
 const EVENT_NAME = "Kill Team Night";
 
@@ -29,16 +31,17 @@ const EVENT_WEEKDAY = 3; // Wednesday
 const TZ = "America/New_York";
 
 /* ──────────────────────────── SCHEDULE ────────────────────────────
- * Cron: "0 22 * * 0" → every Sunday 22:00 UTC.
- *   = 6:00 PM EDT (Mar–Nov) / 5:00 PM EST (Nov–Mar).
- * Fixed-UTC cron can't track DST. To keep winter at 6 PM instead of 5,
- * change to "0 23 * * 0" when EST is in effect (you lose 7 PM in summer).
+ * Declared in netlify.toml as: schedule = "0 22,23 * * 0"
+ * That fires every Sunday at BOTH 22:00 and 23:00 UTC. We then gate on the
+ * local Eastern hour being 18 (6 PM), so exactly one of the two invocations
+ * does the work whether it's EDT (22:00 UTC = 6 PM) or EST (23:00 UTC = 6 PM).
+ * This keeps it at 6 PM ET year-round despite DST.
  * Cron timing is best-effort, not exact-to-second.
  */
-const CRON = "0 22 * * 0";
+const SEND_HOUR_ET = 18; // 6 PM
 
 /* ───────────────────────── BIWEEKLY PARITY ────────────────────────
- * The cron fires EVERY Sunday. We only do the work on alternating
+ * The schedule fires EVERY Sunday. We only do the work on alternating
  * Sundays and return early on the off weeks.
  *
  * ANCHOR = the FIRST Sunday we want a reminder to go out (00:00 UTC).
@@ -50,11 +53,11 @@ const CRON = "0 22 * * 0";
  * Current value: 2026-06-28 — the Sunday before the upcoming
  * Wednesday 2026-07-01 Kill Team Night.
  *
- * Parity check (fires Sunday 22:00 UTC, ANCHOR = Jun 28 00:00 UTC):
- *   Sun 2026-06-28 → floor((22h)/1wk)        = 0  even → RUN   (event Wed Jul 1)
- *   Sun 2026-07-05 → floor((7d22h)/1wk)       = 1  odd  → SKIP
- *   Sun 2026-07-12 → floor((14d22h)/1wk)      = 2  even → RUN   (event Wed Jul 15)
- *   Sun 2026-07-19 → floor((21d22h)/1wk)      = 3  odd  → SKIP
+ * Parity check (work runs at 6 PM ET Sunday, ANCHOR = Jun 28 00:00 UTC):
+ *   Sun 2026-06-28 → floor(~22h / 1wk)   = 0  even → RUN   (event Wed Jul 1)
+ *   Sun 2026-07-05 → floor(~7d22h / 1wk)  = 1  odd  → SKIP
+ *   Sun 2026-07-12 → floor(~14d22h / 1wk) = 2  even → RUN   (event Wed Jul 15)
+ *   Sun 2026-07-19 → floor(~21d22h / 1wk) = 3  odd  → SKIP
  *
  * To skip tomorrow and start the cycle on Jul 12 instead, set ANCHOR to
  * Date.UTC(2026, 6, 12).
@@ -62,6 +65,7 @@ const CRON = "0 22 * * 0";
 const ANCHOR = Date.UTC(2026, 5, 28); // months are 0-based: 5 = June
 
 const WEEK_MS = 6.048e8; // 7 * 24 * 60 * 60 * 1000
+const POST_TIMEOUT_MS = 10000;
 
 /** Day-of-week (0=Sun..6=Sat) for `date` in timezone `tz`. */
 function weekdayInTz(date, tz) {
@@ -70,6 +74,17 @@ function weekdayInTz(date, tz) {
     weekday: "short",
   }).format(date);
   return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(name);
+}
+
+/** Hour 0–23 for `date` in timezone `tz`. */
+function hourInTz(date, tz) {
+  return Number(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: tz,
+      hour: "2-digit",
+      hourCycle: "h23",
+    }).format(date),
+  );
 }
 
 /** "Wednesday, July 1" for the next `EVENT_WEEKDAY` on/after `from`, in TZ. */
@@ -96,7 +111,7 @@ function storeMessage(now) {
   );
 }
 
-// Group Discord — crew tone.
+// Group Discord — crew tone. Names the venue + town (different community).
 function groupMessage(now) {
   const when = upcomingEventLabel(now);
   return (
@@ -107,43 +122,59 @@ function groupMessage(now) {
 }
 
 const TARGETS = [
-  { url: process.env.DISCORD_WEBHOOK_STORE, username: process.env.DISCORD_USERNAME_STORE, label: "store", build: storeMessage },
-  { url: process.env.DISCORD_WEBHOOK_GROUP, username: process.env.DISCORD_USERNAME_GROUP, label: "group", build: groupMessage },
+  { env: "DISCORD_WEBHOOK_STORE", username: process.env.DISCORD_USERNAME_STORE, label: "store", build: storeMessage },
+  { env: "DISCORD_WEBHOOK_GROUP", username: process.env.DISCORD_USERNAME_GROUP, label: "group", build: groupMessage },
 ];
 
 async function postToDiscord(target, content) {
-  if (!target.url) {
-    console.warn(`[kill-team-reminder] no webhook set for "${target.label}", skipping`);
-    return;
-  }
+  const url = process.env[target.env];
   const body = { content };
   if (target.username) body.username = target.username;
 
-  const res = await fetch(target.url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(`${target.label} webhook failed: ${res.status} ${text}`);
+  // Don't let a stuck webhook hang the whole run (Promise.allSettled waits for all).
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), POST_TIMEOUT_MS);
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+      signal: controller.signal,
+    });
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(`${target.label} webhook failed: ${res.status} ${text}`);
+    }
+    console.log(`[kill-team-reminder] posted to "${target.label}"`);
+  } finally {
+    clearTimeout(timeoutId);
   }
-  console.log(`[kill-team-reminder] posted to "${target.label}"`);
 }
 
-const reminder = schedule(CRON, async () => {
+export const handler = async () => {
   const now = new Date();
-  const weeksSince = Math.floor((now.getTime() - ANCHOR) / WEEK_MS);
+
+  // One of the two Sunday firings (22:00/23:00 UTC) lands at 6 PM ET; ignore the other.
+  if (hourInTz(now, TZ) !== SEND_HOUR_ET) {
+    return { statusCode: 200 };
+  }
 
   // Off week — do nothing.
+  const weeksSince = Math.floor((now.getTime() - ANCHOR) / WEEK_MS);
   if (weeksSince % 2 !== 0) {
     console.log(`[kill-team-reminder] off week (weeksSince=${weeksSince}), skipping`);
     return { statusCode: 200 };
   }
 
-  // Post to all configured webhooks; each gets its own message, and one
-  // failure shouldn't block the other.
+  // Both webhooks are required. Fail loudly on a misconfigured deploy rather
+  // than silently posting to one (or none) and reporting success.
+  const missing = TARGETS.filter((t) => !process.env[t.env]).map((t) => t.env);
+  if (missing.length) {
+    console.error(`[kill-team-reminder] missing required env: ${missing.join(", ")}`);
+    return { statusCode: 500 };
+  }
+
+  // Each target gets its own message; one failure shouldn't block the other.
   const results = await Promise.allSettled(
     TARGETS.map((t) => postToDiscord(t, t.build(now))),
   );
@@ -151,8 +182,6 @@ const reminder = schedule(CRON, async () => {
   const failed = results.filter((r) => r.status === "rejected");
   for (const f of failed) console.error(`[kill-team-reminder] ${f.reason}`);
 
-  // Still 200 so Netlify doesn't hammer retries; failures are logged above.
-  return { statusCode: 200 };
-});
-
-export const handler = reminder;
+  // 500 if any send failed (visible in logs / retried), else 200.
+  return { statusCode: failed.length ? 500 : 200 };
+};
