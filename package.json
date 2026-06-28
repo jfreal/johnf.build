@@ -1,0 +1,10 @@
+{
+  "name": "johnf-build",
+  "version": "1.0.0",
+  "private": true,
+  "description": "johnf.build static site + Netlify scheduled functions",
+  "type": "module",
+  "dependencies": {
+    "@netlify/functions": "^2.8.2"
+  }
+}
