@@ -50,19 +50,19 @@ const SEND_HOUR_ET = 18; // 6 PM
  * ⇩⇩ CHANGE THIS to shift the whole biweekly cycle. ⇩⇩
  * Set it to the Sunday (00:00 UTC) of the first reminder you want.
  *
- * Current value: 2026-06-28 — the Sunday before the upcoming
- * Wednesday 2026-07-01 Kill Team Night.
+ * Current value: 2026-07-05 — the Sunday before the upcoming
+ * Wednesday 2026-07-08 Kill Team Night.
  *
- * Parity check (work runs at 6 PM ET Sunday, ANCHOR = Jun 28 00:00 UTC):
- *   Sun 2026-06-28 → floor(~22h / 1wk)   = 0  even → RUN   (event Wed Jul 1)
- *   Sun 2026-07-05 → floor(~7d22h / 1wk)  = 1  odd  → SKIP
- *   Sun 2026-07-12 → floor(~14d22h / 1wk) = 2  even → RUN   (event Wed Jul 15)
- *   Sun 2026-07-19 → floor(~21d22h / 1wk) = 3  odd  → SKIP
+ * Parity check (work runs at 6 PM ET Sunday, ANCHOR = Jul 5 00:00 UTC):
+ *   Sun 2026-07-05 → floor(~22h / 1wk)   = 0  even → RUN   (event Wed Jul 8)
+ *   Sun 2026-07-12 → floor(~7d22h / 1wk)  = 1  odd  → SKIP
+ *   Sun 2026-07-19 → floor(~14d22h / 1wk) = 2  even → RUN   (event Wed Jul 22)
+ *   Sun 2026-07-26 → floor(~21d22h / 1wk) = 3  odd  → SKIP
  *
- * To skip tomorrow and start the cycle on Jul 12 instead, set ANCHOR to
+ * To push the cycle out a week (events Jul 15 / 29 …) set ANCHOR to
  * Date.UTC(2026, 6, 12).
  */
-const ANCHOR = Date.UTC(2026, 5, 28); // months are 0-based: 5 = June
+const ANCHOR = Date.UTC(2026, 6, 5); // months are 0-based: 6 = July
 
 const WEEK_MS = 6.048e8; // 7 * 24 * 60 * 60 * 1000
 const POST_TIMEOUT_MS = 10000;
