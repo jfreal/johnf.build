@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9972NYVNYD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+        gtag('js', new Date());
+
+        gtag('config', 'G-9972NYVNYD');
+    </script>
+    <title>The 90/90/90 Theory · John Farrell</title>
+    <meta name="description"
+        content="AI makes every handoff faster and a little worse. Stack enough handoffs and 90% compounds down to a pale shadow. Here's the math, and the one move that beats it." />
+
+    <meta property="og:title" content="The 90/90/90 Theory" />
+    <meta property="og:description"
+        content="Ninety percent of ninety percent of ninety percent is not, it turns out, ninety percent." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://johnf.build/ninety-ninety-ninety-theory.html" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#218da6" />
+    <meta name="theme-color" content="#fffff0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="./css/site.css" />
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="wrap header-inner">
+            <a class="mark" href="./index.html" aria-label="Home">
+                <span class="mark-ink">jf</span>
+                <span class="mark-dot" aria-hidden="true"></span>
+            </a>
+            <nav class="primary-nav" aria-label="Primary">
+                <a href="./index.html">← Portfolio</a>
+                <a href="https://www.linkedin.com/in/johnefarrell/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/jfreal" target="_blank" rel="noopener">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+
+        <section class="hero">
+            <div class="wrap hero-inner">
+                <p class="eyebrow">A theory I won't shut up about</p>
+                <h1>
+                    The <span class="hand">90</span>/<span class="hand hand--coral">90</span>/<span class="hand">90</span> theory
+                </h1>
+                <p class="lede">
+                    Every AI handoff is faster and a hair worse. Stack a few
+                    and "a hair worse" turns into "oof, what happened." The fix
+                    is almost insultingly simple: try. Like, try-trying. Here's
+                    the chain, the math, and why that beats everybody.
+                </p>
+                <svg class="hero-squiggle" viewBox="0 0 320 14" aria-hidden="true">
+                    <path d="M2 8 Q 20 -2, 40 8 T 80 8 T 120 8 T 160 8 T 200 8 T 240 8 T 280 8 T 318 8"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+            </div>
+        </section>
+
+        <section class="theory-chain">
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>The chain</h2>
+                    <p>
+                        Some business person wants a new feature. She pops open
+                        Claude: hey, what should I build for this user? Out
+                        comes a brief. It's maybe 90% of what a sharp human
+                        would've written, and it took five minutes instead of
+                        a week. Honestly? Great. But it's 90%.
+                    </p>
+                    <p>
+                        A product person grabs that brief and asks Claude to
+                        turn it into a spec. Same move, same 90%, done before
+                        lunch. Except now it's 90% of a thing that was already
+                        90%. You see where this is going.
+                    </p>
+                    <p>
+                        Then a dev takes the spec and asks for the code. 90%
+                        again. Then someone writes tests off the code, docs off
+                        the tests, release notes off the docs. Every step fast.
+                        Every step a perfectly respectable 90%.
+                    </p>
+                    <p>
+                        Nobody screwed up. Everybody shipped by Tuesday. And
+                        the thing that falls out the far end is a sad little
+                        ghost of what you wanted.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        Fast-and-90% at every step feels like fast-and-90%
+                        overall. Nope.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <section class="theory-math">
+            <div class="wrap">
+                <h2>The math</h2>
+                <p class="section-lede">
+                    0.9 isn't the villain here. Compounding is. Ninety percent
+                    of ninety percent of ninety percent of a finished thing is
+                    way less than ninety percent.
+                </p>
+
+                <p class="theory-eq">
+                    0.9 <span class="eq-op">&times;</span> 0.9
+                    <span class="eq-op">&times;</span> 0.9
+                    <span class="eq-op">&times;</span> 0.9
+                    <span class="eq-op">=</span>
+                    <strong>0.656</strong>
+                </p>
+                <p>
+                    Four handoffs and a third of it's just gone. Nobody was
+                    sloppy. It's math. 90% times 90% times 90% times 90% is
+                    66%, and numbers don't care about your feelings.
+                </p>
+
+                <div class="theory-calc">
+                    <div class="calc-controls">
+                        <label for="quality">
+                            Quality kept per handoff
+                            <output id="qualityOut">90%</output>
+                        </label>
+                        <input type="range" id="quality" min="70" max="99" value="90"
+                            aria-describedby="qualityOut" />
+
+                        <label for="steps">
+                            Number of handoffs
+                            <output id="stepsOut">4</output>
+                        </label>
+                        <input type="range" id="steps" min="1" max="8" value="4"
+                            aria-describedby="stepsOut" />
+                    </div>
+
+                    <div class="calc-result">
+                        <p class="calc-result-num" id="finalOut">66%</p>
+                        <p class="calc-result-label">of the original still standing at the end of the chain</p>
+                    </div>
+
+                    <div class="calc-bars" id="bars" aria-hidden="true"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="theory-flip">
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>The flip side</h2>
+                    <p>
+                        Good news is hiding in the exact same math. Bump each
+                        handoff from 90% to 95% and the floor stops falling out
+                        from under you. Get each one to 99% and you basically
+                        hold the line the whole way down.
+                    </p>
+                    <p>
+                        The gap between a 90% team and a 99% team isn't nine
+                        points. Over four handoffs it's 66% versus 96%. Same
+                        steps, same speed, totally different thing at the end.
+                        That gap? That's the whole game.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        Nine points per step. Thirty points at the finish
+                        line.
+                    </p>
+                </aside>
+            </div>
+            <div class="wrap">
+                <div class="calc-compare">
+                    <h3>Same four handoffs, three different teams</h3>
+                    <div class="compare-row" id="compareRow"></div>
+                    <p class="calc-compare-note">Move the sliders above and this moves with them.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="theory-takeaway">
+            <div class="wrap">
+                <h2>Okay, so what do you actually do</h2>
+                <p>
+                    When anybody can ship 90% in five minutes, 90% isn't the
+                    edge. It's the floor. Table stakes. The way to stand out is
+                    boring and kind of a pain: get closer to 100 at every
+                    single step.
+                </p>
+                <p>
+                    Read the output. Fix the 10% the model whiffed. Hand the
+                    next person something that's actually right, not just
+                    something that's fast. Do that at every link and you stop
+                    fighting the math. You start compounding the other way.
+                </p>
+                <p>
+                    And here's the good part. The same tools that make 90%
+                    cheap make checking the last 10% cheap too, if you bother
+                    to look. Most folks won't. That's not a bummer. That's the
+                    opening.
+                </p>
+
+                <div class="aside aside--block">Everyone races to 90%. Win by closing the last ten.</div>
+
+                <p class="theory-wink">
+                    Full disclosure: this post is probably only 90% itself. I
+                    did try to drag it to 92. You be the judge.
+                </p>
+
+                <div class="button-row">
+                    <a href="./index.html" class="product-cta">← Back to portfolio</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-inner">
+            <p class="signature">John</p>
+            <p class="footer-meta">
+                <span id="year"></span> · Colchester, CT · Hand-built, no framework.
+            </p>
+        </div>
+    </footer>
+
+    <script src="./js/site.js" defer></script>
+</body>
+
+</html>
