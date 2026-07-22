@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9972NYVNYD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+        gtag('js', new Date());
+
+        gtag('config', 'G-9972NYVNYD');
+    </script>
+    <title>Half My Build Time Is Proving It Works · John Farrell</title>
+    <meta name="description"
+        content="AI writes better code than I do, and 100x more of it. So the job stopped being writing and became trusting. Spend half your time on verification. Here's what that actually looks like." />
+
+    <meta property="og:title" content="Half My Build Time Is Proving It Works" />
+    <meta property="og:description"
+        content="The model writes more code than I can read. Verification is the only lever that scales with the pile. Monte Carlo tests, convention guards, and robots that read the error logs while I sleep." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://johnf.build/prove-it-works.html" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#218da6" />
+    <meta name="theme-color" content="#fffff0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="./css/site.css" />
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="wrap header-inner">
+            <a class="mark" href="./index.html" aria-label="Home">
+                <span class="mark-ink">jf</span>
+                <span class="mark-dot" aria-hidden="true"></span>
+            </a>
+            <nav class="primary-nav" aria-label="Primary">
+                <a href="./index.html">← Portfolio</a>
+                <a href="https://www.linkedin.com/in/johnefarrell/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/jfreal" target="_blank" rel="noopener">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+
+        <section class="hero">
+            <div class="wrap hero-inner">
+                <p class="eyebrow">A thing I believe about building with AI</p>
+                <h1>
+                    I let the robot write it.<br />
+                    Then I make it <span class="hand">prove</span><br />
+                    it actually <span class="hand hand--coral">works</span>.
+                </h1>
+                <p class="lede">
+                    The code coming out of Claude is better than anything I'd
+                    write by hand, and it reviews better too. (Sorry to my own
+                    ego.) The catch: it shows up 100x faster than I can read it.
+                    So the job quietly changed. It's not writing anymore. It's
+                    trusting. And trust is something you build, on purpose, with
+                    at least half your time.
+                </p>
+                <svg class="hero-squiggle" viewBox="0 0 320 14" aria-hidden="true">
+                    <path d="M2 8 Q 20 -2, 40 8 T 80 8 T 120 8 T 160 8 T 200 8 T 240 8 T 280 8 T 318 8"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="wrap stats-grid">
+                <div class="stat">
+                    <p class="stat-num">760</p>
+                    <p class="stat-label">automated checks guarding one app</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-num">100k</p>
+                    <p class="stat-label">dice rolls inside a single test</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-num">2<span class="stat-unit">screens</span></p>
+                    <p class="stat-label">every end-to-end run checks</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-num--hand">nightly</p>
+                    <p class="stat-label">a robot opens bug-fix PRs while I sleep</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="theory-math">
+            <div class="wrap">
+                <h2>The test that rolls the dice 100,000 times</h2>
+                <p class="section-lede">
+                    ktcalc is a combat calculator for a tabletop game. The whole
+                    app answers one question: if I take this shot, what happens?
+                    And the honest answer is never a number. It's odds.
+                </p>
+                <p>
+                    That breaks the normal way you'd test it. "The function
+                    returned 4" tells you nothing when the right answer was
+                    "4, about 38% of the time." A tidy little unit test can walk
+                    down one happy path, go green, and the actual probabilities
+                    underneath can be quietly, confidently wrong. Green tests,
+                    wrong app. The worst kind of wrong.
+                </p>
+                <p>
+                    So one test doesn't check a path. It rolls the dice a
+                    hundred thousand times. Seeded, so it's the same hundred
+                    thousand rolls on every run, no flakes. Then it checks that
+                    the simulated reality lands within 2% of the math the
+                    calculator is claiming. If the engine ever drifts off the
+                    truth, that test lights up before anybody plays a game on
+                    bad numbers.
+                </p>
+
+                <p class="theory-eq">
+                    100,000 rolls <span class="eq-op">vs.</span> the claimed odds
+                    <span class="eq-op">→</span> <strong>within 2%</strong>
+                </p>
+
+                <p>
+                    Now sit with how that test would've gotten written a few
+                    years ago. A seeded random generator, a hundred thousand
+                    trials, the statistics to know what tolerance is even fair.
+                    That's a real afternoon for someone who knows how. I'm not
+                    sure I'm that someone. I'd have to go read up on it, and then
+                    I probably still wouldn't bother. Too much yak-shaving for a
+                    side project.
+                </p>
+                <p>
+                    With AI it's a sentence. "Write me a Monte Carlo test that
+                    validates the dice engine within 2%." Done, correct, seeded,
+                    before I finish my coffee. The verification that used to be
+                    too expensive to justify is now the cheap part. That changes
+                    what you're allowed to check.
+                </p>
+                <p>
+                    That's not a unit test. That's proving the thing is true.
+                    And once you've felt the difference, "did it return a value"
+                    stops feeling like testing at all.
+                </p>
+            </div>
+        </section>
+
+        <section class="theory-chain">
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>Unit tests are the floor, not the ceiling</h2>
+                    <p>
+                        Unit tests are table stakes. Fine. Necessary. But the
+                        checks that actually keep me safe are weirder than "call
+                        function, assert output," and they're where the real
+                        verification lives.
+                    </p>
+                    <p>
+                        <strong>Rules you enforce as code.</strong> Pheidi has a
+                        test whose entire job is to read the rest of the source
+                        and fail the build if anyone writes
+                        <code>DateTime.Now</code>. Sounds petty. It kills an
+                        entire family of timezone bugs before they can exist. The
+                        convention isn't a wiki page nobody reads. It's a test
+                        that can't be argued with.
+                    </p>
+                    <p>
+                        <strong>Security as a test, not a hope.</strong> Auspex
+                        Fatalis spins up a throwaway Postgres in memory, runs all
+                        37 database migrations, and then fires 39 checks proving
+                        one user literally cannot read another user's data. "The
+                        permissions are probably fine" is now a thing the machine
+                        confirms, every run, instead of a thing I pray about at
+                        2am.
+                    </p>
+                    <p>
+                        And here's the part that should embarrass an entire
+                        industry, me included: this is a brand new side project,
+                        and it has better test coverage than production systems
+                        I've babysat for ten years. A weekend app, more trustworthy
+                        than software that runs real money. That's not a flex about
+                        Auspex Fatalis. It's how cheap this got.
+                    </p>
+                    <p>
+                        <strong>The whole app, on two screens.</strong> Pheidi's
+                        end-to-end suite drives the real app like a user would,
+                        then does it again in a phone-sized viewport. Desktop and
+                        mobile, same proof, no "oops, looked great on my
+                        monitor."
+                    </p>
+                    <p>
+                        <strong>Proof you can actually look at.</strong> Because
+                        those tests drive the real app, they record it: a
+                        screenshot at every step, plus a little video, posted
+                        straight into the pull request. A green check tells me the
+                        code ran. The screenshot tells me the button is where it's
+                        supposed to be and the page didn't render as three sad
+                        boxes. A test can pass and still look broken. A picture in
+                        the PR can't hide it. I open the PR, glance at the shots,
+                        and I can see if anything broke before I merge a thing.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        Best tests don't check a function. They check a promise
+                        you made the user.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <section class="theory-flip">
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>Build the watchdog once. It works forever.</h2>
+                    <p>
+                        Here's the part I'd have called sci-fi two years ago, and
+                        it's just running in prod now. Verification doesn't have
+                        to stop when you ship. You can build a thing that keeps
+                        checking while you sleep, and it costs almost nothing to
+                        stand up.
+                    </p>
+                    <p>
+                        A job wakes up, reads the last 24 hours of real
+                        production errors, and dedupes them so I don't get
+                        spammed about the same hiccup twice. Then it does the part
+                        that still makes me grin: for anything new, it doesn't
+                        file a ticket for future-me. It writes the fix and opens a
+                        pull request. Right when the bug happens. I wake up to a
+                        proposed patch, not a bug report.
+                    </p>
+                    <p>
+                        So my error logs are clean. Not because nothing ever
+                        breaks. Things break constantly. They're clean because the
+                        bugs get caught and fixed while I sleep, and I review the
+                        PR over coffee instead of getting paged at 3am. Same when
+                        a test goes red in CI: an agent reads the failure, finds
+                        the root cause, and hands me a diagnosis instead of a red
+                        X and a shrug.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        You build it once. It pays you back every night, for
+                        free, forever.
+                    </p>
+                </aside>
+            </div>
+            <div class="wrap">
+                <div class="aside aside--block">
+                    Best engineer on the team works the night shift, never sleeps,
+                    and pushes the fix before I wake up.
+                </div>
+            </div>
+        </section>
+
+        <section class="theory-takeaway">
+            <div class="wrap">
+                <h2>Why half your time. Not a tenth.</h2>
+                <p>
+                    Because the math flipped. When I wrote all the code, I read
+                    all the code, so writing was the bottleneck. Now the model
+                    hands me more in an afternoon than I could carefully read in
+                    a week. Reading every line myself isn't a plan. It's a
+                    fantasy.
+                </p>
+                <p>
+                    Verification is the one lever that scales with the size of
+                    the pile. A convention guard checks a rule across a thousand
+                    files as easily as ten. A hundred-thousand-roll test doesn't
+                    care that I generated the engine in five minutes. The
+                    checking machine keeps up with the writing machine, and I get
+                    to stay the person who decides what "correct" even means.
+                </p>
+                <p>
+                    Building features is the fun half. The easy half, honestly.
+                    Skip the other half and you don't have a fast team. You have
+                    a fast pile of code nobody can trust, which is slower than
+                    slow. Every feature you didn't verify is a bug you'll
+                    re-debug later, at ten times the price.
+                </p>
+
+                <div class="aside aside--block">Everybody can generate. Win by being the one who can trust it.</div>
+
+                <p class="theory-wink">
+                    Yes, writing tests used to be the chore you skipped. Now the
+                    same tools that write the app write the tests too, if you
+                    bother to ask. Most people won't bother. That's the opening.
+                </p>
+
+                <div class="button-row">
+                    <a href="./index.html" class="product-cta">← Back to portfolio</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-inner">
+            <p class="signature">John</p>
+            <p class="footer-meta">
+                <span id="year"></span> · Colchester, CT · Hand-built, no framework.
+            </p>
+        </div>
+    </footer>
+
+    <script src="./js/site.js" defer></script>
+</body>
+
+</html>
