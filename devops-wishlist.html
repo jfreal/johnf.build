@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9972NYVNYD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+        gtag('js', new Date());
+
+        gtag('config', 'G-9972NYVNYD');
+    </script>
+    <title>The DevOps Wishlist Is the Default Now · John Farrell</title>
+    <meta name="description"
+        content="Every team keeps a list of infra they'll build when things calm down. Things never calm down. Then the price of building it fell through the floor. What that changes, and where it goes next." />
+
+    <meta property="og:title" content="The DevOps Wishlist Is the Default Now" />
+    <meta property="og:description"
+        content="Preview environments, real end-to-end tests, migrations tested both directions. The list nobody ever got to now takes an afternoon. Here's what my side projects run, and seven places I'd push it next." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://johnf.build/devops-wishlist.html" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#218da6" />
+    <meta name="theme-color" content="#fffff0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="./css/site.css" />
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="wrap header-inner">
+            <a class="mark" href="./index.html" aria-label="Home">
+                <span class="mark-ink">jf</span>
+                <span class="mark-dot" aria-hidden="true"></span>
+            </a>
+            <nav class="primary-nav" aria-label="Primary">
+                <a href="./index.html">← Portfolio</a>
+                <a href="https://www.linkedin.com/in/johnefarrell/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/jfreal" target="_blank" rel="noopener">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+
+        <section class="hero">
+            <div class="wrap hero-inner">
+                <p class="eyebrow">A thing that snuck up on me</p>
+                <h1>
+                    That DevOps <span class="hand">wishlist</span><br />
+                    you never got to?<br />
+                    It's the <span class="hand hand--coral">default</span> now.
+                </h1>
+                <p class="lede">
+                    Every team I've been on kept a doc of infrastructure we'd
+                    build "when things calm down." Preview environments. Real
+                    end-to-end tests. Migrations checked both directions.
+                    Things calmed down exactly never. Then the price of
+                    building all of it fell through the floor, and now my
+                    weekend projects run the setup I couldn't get funded for
+                    products with actual revenue.
+                </p>
+                <svg class="hero-squiggle" viewBox="0 0 320 14" aria-hidden="true">
+                    <path d="M2 8 Q 20 -2, 40 8 T 80 8 T 120 8 T 160 8 T 200 8 T 240 8 T 280 8 T 318 8"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+            </div>
+        </section>
+
+        <section class="theory-math">
+            <div class="wrap">
+                <h2>The list every team has</h2>
+                <p class="section-lede">
+                    You know this list. It lives in a Confluence page called
+                    something like "Platform Improvements (Draft)." Here's the
+                    version I carried around for a decade.
+                </p>
+
+                <ul class="wishlist">
+                    <li><span class="wish-mark" aria-hidden="true">✓</span><span class="wish-text">A fresh copy of the app for every pull request</span></li>
+                    <li><span class="wish-mark" aria-hidden="true">✓</span><span class="wish-text">End-to-end tests on every commit, phone and desktop</span></li>
+                    <li><span class="wish-mark" aria-hidden="true">✓</span><span class="wish-text">Database migrations replayed from zero before they touch prod</span></li>
+                    <li><span class="wish-mark" aria-hidden="true">✓</span><span class="wish-text">Seeded test data that looks real without being anyone's real data</span></li>
+                    <li><span class="wish-mark" aria-hidden="true">✓</span><span class="wish-text">Team conventions enforced by the build, not by a wiki nobody reads</span></li>
+                    <li><span class="wish-mark" aria-hidden="true">✓</span><span class="wish-text">Permissions proven, not assumed</span></li>
+                    <li><span class="wish-mark" aria-hidden="true">✓</span><span class="wish-text">Screenshots of the actual UI attached to every review</span></li>
+                    <li><span class="wish-mark" aria-hidden="true">✓</span><span class="wish-text">Error triage that beats the customer to the ticket</span></li>
+                    <li><span class="wish-mark" aria-hidden="true">✓</span><span class="wish-text">Dependency upgrades landing weekly instead of never</span></li>
+                    <li class="is-open"><span class="wish-mark" aria-hidden="true">☐</span><span class="wish-text">A staging environment that actually matches production <em
+                                class="wish-status">(still open)</em></span></li>
+                </ul>
+
+                <p class="wish-note">Nine of ten. Some things are eternal.</p>
+
+                <p>
+                    Every one of those checkmarks is real, and most of them are
+                    running on side projects. Not a platform team. Not a
+                    quarter of roadmap. A guy at a kitchen table with a running
+                    app and a tabletop dice calculator.
+                </p>
+            </div>
+        </section>
+
+        <section class="theory-chain">
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>Why it never happened</h2>
+                    <p>
+                        It wasn't laziness and it wasn't ignorance. Everybody
+                        on those teams knew exactly what good looked like. We
+                        could describe the pipeline in detail. We just couldn't
+                        pay for it.
+                    </p>
+                    <p>
+                        Each line on that list was a week of the one person who
+                        actually understood the YAML, and that person was the
+                        same person the roadmap needed for the feature that had
+                        a date attached. So preview environments lost to the
+                        feature. Every quarter. Honestly? They should have. No
+                        sane manager slips a customer commitment to go build
+                        flaky-test quarantine.
+                    </p>
+                    <p>
+                        And the list didn't hold still. It picked up new items
+                        faster than it ever lost old ones. Ten years later
+                        you've got a beautiful document, fully formatted, with
+                        a table of contents, describing a system that has never
+                        existed.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        Nobody skipped the infra because they didn't want it.
+                        It just never won a fight.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <section class="theory-math">
+            <div class="wrap">
+                <h2>What changed is the price</h2>
+                <p class="section-lede">
+                    Let's be clear about what didn't happen. The infrastructure
+                    did not get simpler. Kubernetes did not get kind. CI
+                    configuration is still cursed. What collapsed is the cost of
+                    producing it.
+                </p>
+
+                <p class="theory-eq">
+                    a week of the one person who knew Terraform
+                    <span class="eq-op">→</span>
+                    <strong>an afternoon and a code review</strong>
+                </p>
+
+                <p>
+                    That single change reorders the whole priority list. Work
+                    that was too expensive to justify is now cheaper than the
+                    meeting where you'd argue about it. A few things I have
+                    running right now that I would never have built by hand:
+                </p>
+                <p>
+                    <strong>A Monte Carlo test for a dice engine.</strong>
+                    ktcalc rolls a seeded hundred thousand dice inside one test
+                    and checks the simulation lands within 2% of the odds the
+                    calculator claims. Writing that used to mean going and
+                    learning enough statistics to pick a fair tolerance. I did
+                    not learn statistics. I asked for a sentence.
+                </p>
+                <p>
+                    <strong>A throwaway database on every run.</strong> One
+                    project spins up a disposable Postgres, replays all 37
+                    migrations from empty, and then fires 39 checks proving one
+                    user cannot read another user's rows. Migration confidence
+                    and tenant isolation, both, on a project with zero budget.
+                </p>
+                <p>
+                    <strong>Conventions that argue back.</strong> Pheidi has a
+                    test whose only job is to read the rest of the source and
+                    fail the build if anybody writes <code>DateTime.Now</code>.
+                    That's a whole family of timezone bugs, dead, permanently,
+                    for about twenty minutes of work.
+                </p>
+                <p>
+                    <strong>Proof you can look at.</strong> The end-to-end suite
+                    drives the real app on a desktop viewport and a phone one,
+                    records a screenshot at every step plus a video, and posts
+                    them into the pull request. I glance at the pictures before
+                    I merge. A test can pass while the page renders as three sad
+                    boxes. A screenshot can't hide that.
+                </p>
+                <p>
+                    <strong>Fussy details I'd normally punt.</strong> This very
+                    site has a scheduled function that pings a Discord server
+                    about game night. It fires twice and gates on the local
+                    Eastern hour so it posts exactly once, correctly, across
+                    daylight saving. That is precisely the sort of thing you
+                    shrug at and let break twice a year.
+                </p>
+                <p>
+                    None of that is exotic. That's the point. It's the boring
+                    stuff off the wishlist, finally affordable.
+                </p>
+            </div>
+        </section>
+
+        <section class="theory-flip">
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>The bill still comes, just later</h2>
+                    <p>
+                        Cheap to build is not the same as free to own. Two ways
+                        this goes wrong, and I've done both.
+                    </p>
+                    <p>
+                        <strong>Infra you didn't design is infra you can't
+                        debug.</strong> When the pipeline you generated in an
+                        afternoon breaks at 6pm on a Friday, you are reading it
+                        for the first time. The fix is not to write less of it.
+                        It's to make the agent explain the thing it just built,
+                        in your repo's own words, and to keep the pieces small
+                        enough that you can hold one in your head.
+                    </p>
+                    <p>
+                        <strong>Noise is the same as nothing.</strong> Forty
+                        checks that are always a little yellow teach the team to
+                        stop looking, and a dashboard everybody has learned to
+                        ignore is worse than no dashboard, because it feels like
+                        coverage. So the rule I keep: every automated thing has
+                        to say something you would actually act on. If it can't,
+                        delete it.
+                    </p>
+                    <p>
+                        Good news is the same news as before. Pruning got cheap
+                        too. The thing that used to take a week to build now
+                        takes an hour to rip out and replace, which means you're
+                        finally allowed to be picky about it.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        A check nobody reads isn't safety. It's decoration.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <section class="theory-chain">
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>Where I'd push this next</h2>
+                    <p>
+                        Everything above is just the old wishlist, finally
+                        affordable. The interesting part is what you build once
+                        you stop treating infrastructure as a thing you ration.
+                        Here's where I'd take it.
+                    </p>
+                    <p>
+                        <strong>1. Infra that notices its own gaps.</strong>
+                        Right now a human decides that a module needs tests.
+                        That's a scheduled job: walk the codebase, find the
+                        route with no end-to-end coverage, the table with no
+                        isolation check, the job with no alert, and open the
+                        pull request that fills the hole. Coverage stops being a
+                        number on a report and starts being a queue of specific
+                        proposed diffs.
+                    </p>
+                    <p>
+                        <strong>2. Review the running app, not the diff.</strong>
+                        Every pull request gets a live copy, and an agent drives
+                        it like a user, then writes up what it saw in plain
+                        English. "Signup works, the plan page renders, the date
+                        picker on mobile is now under the keyboard." I'd rather
+                        read that than 600 lines of diff. Especially when I
+                        didn't write the 600 lines.
+                    </p>
+                    <p>
+                        <strong>3. Every incident becomes a permanent
+                        check.</strong> The postmortem action item that nobody
+                        does is "add a test for this." Make that the automatic
+                        part: the outage ends when a check exists that would
+                        have caught it. Same with review comments. Any note you
+                        find yourself writing twice should graduate into a rule
+                        the build enforces, like that <code>DateTime.Now</code>
+                        guard. Your repo grows a memory instead of relying on
+                        whoever's been there longest.
+                    </p>
+                    <p>
+                        <strong>4. Give the night shift the runbook.</strong> I
+                        already have a job that reads production errors and
+                        opens fix pull requests while I sleep. The next step is
+                        the operational half: flip the flag, roll back the bad
+                        deploy, scale the thing up, with a human approval gate
+                        in front of anything that touches money or data. Not
+                        "self-healing" in the magic-brochure sense. More like a
+                        capable on-call who wakes you only when it matters.
+                    </p>
+                    <p>
+                        <strong>5. Debug from evidence, not vibes.</strong> Hand
+                        the agent the same things a good engineer would open:
+                        logs, traces, deploy history, feature flag state, the
+                        last ten commits. MCP makes that plumbing boring. An
+                        agent guessing at a stack trace is a party trick. An
+                        agent that can check which deploy the error started
+                        after is a colleague.
+                    </p>
+                    <p>
+                        <strong>6. The migrations nobody ever schedules.</strong>
+                        Framework upgrades, deprecation sweeps, the library
+                        that's three majors behind. These never get done because
+                        they're enormous, boring, and nobody gets promoted for
+                        them. That's the perfect standing overnight job: one
+                        upgrade at a time, tests and screenshots attached as
+                        proof, ready to merge or throw away in the morning.
+                    </p>
+                    <p>
+                        <strong>7. Budgets as gates, everywhere.</strong> Color
+                        contrast, bundle size, p95 latency, query counts per
+                        request, cloud spend per environment. Any team could
+                        have written these checks ten years ago. Nobody had a
+                        spare week per check. Now each one is an hour, so the
+                        real question is which ones you want, not which ones you
+                        can afford.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        Stop rationing infra and the question flips: not what
+                        can we afford, but what's worth owning.
+                    </p>
+                </aside>
+            </div>
+            <div class="wrap">
+                <div class="aside aside--block">
+                    New repo, day one, everything on the wishlist already
+                    running. That's the bar now.
+                </div>
+            </div>
+        </section>
+
+        <section class="theory-takeaway">
+            <div class="wrap">
+                <h2>What this does to the job</h2>
+                <p>
+                    If a platform team's value was building the paved road,
+                    that value just got a lot cheaper to reproduce. The scarce
+                    thing is deciding what belongs on the road, reading what
+                    the agents built, and killing the pieces that generate
+                    noise instead of signal. Curation, not construction.
+                </p>
+                <p>
+                    That's a better job, not a smaller one. Twenty years of
+                    watching pipelines rot teaches you which checks people
+                    actually respect and which ones they route around by
+                    Thursday. That taste used to be worth very little, because
+                    you never had the hours to act on it. Now it's the only
+                    input that matters, because the hours are handled.
+                </p>
+                <p>
+                    So go reopen the doc. The one with the table of contents.
+                    Most of it is a Tuesday now.
+                </p>
+
+                <div class="aside aside--block">The wishlist was never the hard part. Choosing was.</div>
+
+                <p class="theory-wink">
+                    Related reading, since I clearly can't stop: everyone ships
+                    <a href="./ninety-ninety-ninety-theory.html">90%</a>, and I
+                    spend <a href="./prove-it-works.html">half my build time
+                    proving it works</a>.
+                </p>
+
+                <div class="button-row">
+                    <a href="./index.html" class="product-cta">← Back to portfolio</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-inner">
+            <p class="signature">John</p>
+            <p class="footer-meta">
+                <span id="year"></span> · Colchester, CT · Hand-built, no framework.
+            </p>
+        </div>
+    </footer>
+
+    <script src="./js/site.js" defer></script>
+</body>
+
+</html>
