@@ -12,7 +12,7 @@
     "build": "eleventy",
     "start": "eleventy --serve --port 8765"
   },
-  "devDependencies": {
+  "dependencies": {
     "@11ty/eleventy": "^3.1.6"
   }
 }
