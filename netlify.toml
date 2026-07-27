@@ -1,7 +1,13 @@
-# Static site at repo root + a zero-dependency scheduled function.
-# No build step: nothing to install, nothing to compile.
+# Eleventy builds the pages from src/ into _site/. Static assets (css, js,
+# img, favicons) pass straight through from the repo root.
 [build]
-  publish = "."
+  command = "npm run build"
+  publish = "_site"
+
+# Pinned so the build doesn't ride on whatever Node the build image defaults
+# to. Eleventy 3 and its whole dependency tree require Node >= 18.
+[build.environment]
+  NODE_VERSION = "22"
 
 [functions]
   directory = "netlify/functions"

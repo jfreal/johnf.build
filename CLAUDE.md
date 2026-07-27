@@ -58,8 +58,19 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
 
 ## Build notes (not voice)
 
-- Static HTML, no framework, no build step.
-- Two pages: `index.html` and `ordo-upcyclum.html`.
+- Static HTML, built with Eleventy. No client-side framework: what ships is
+  still plain HTML, one stylesheet, and 70 lines of vanilla JS.
+- Pages live in `src/` as HTML with JSON front matter. The shared head, header,
+  nav, and footer come from `src/_includes/layouts/base.njk`.
+- Front matter per page: `title`, `description`, optional `ogTitle` /
+  `ogDescription` / `ogType` / `ogPath`, and `nav: "home"` on the index only.
+- Output keeps the flat `.html` URLs (`/prove-it-works.html`, not
+  `/prove-it-works/`) via the permalink rule in `src/src.json`. Don't change it;
+  the existing URLs are linked from outside.
+- **Adding an article:** new file in `src/`, then add it to
+  `src/_data/articles.json` so it appears in the index nav.
 - Styles in `css/site.css`. Tiny vanilla JS in `js/site.js` (year stamp, scroll reveal).
+  Those, plus `img/`, `assets/`, and the favicons, pass through from the repo root.
 - Fonts: Fraunces (serif), Inter (sans), Caveat (handwritten accents).
-- Preview locally with `python -m http.server 8765` or via `.claude/launch.json`.
+- `npm start` serves at :8765 with live reload (or use `.claude/launch.json`).
+  `npm run build` writes `_site/`, which is what Netlify publishes.
