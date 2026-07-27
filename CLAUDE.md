@@ -68,7 +68,12 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
   `/prove-it-works/`) via the permalink rule in `src/src.json`. Don't change it;
   the existing URLs are linked from outside.
 - **Adding an article:** new file in `src/`, then add it to
-  `src/_data/articles.json` so it appears in the index nav.
+  `src/_data/articles.json` so it joins the post menu.
+- The post menu (`.nav-writing`) is the fenced group of article links in the
+  header. It renders on every page, not just the index, so a post can reach its
+  siblings. The current post shows as `.nav-current` instead of a link. Only
+  real articles belong in `articles.json`; case studies and one-off pages
+  (Ordo, the Kill Team alert) stay out of it and just get the back link.
 - Styles in `css/site.css`. Tiny vanilla JS in `js/site.js` (year stamp, scroll reveal).
   Those, plus `img/`, `assets/`, and the favicons, pass through from the repo root.
 - Fonts: Fraunces (serif), Inter (sans), Caveat (handwritten accents).

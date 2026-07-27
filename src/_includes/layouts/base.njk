@@ -55,13 +55,20 @@
                 <span class="mark-dot" aria-hidden="true"></span>
             </a>
             <nav class="primary-nav" aria-label="Primary">
-{%- if nav == "home" %}
-{%- for article in articles %}
-                <a href="{{ article.url }}">{{ article.navLabel }}</a>
-{%- endfor %}
-                <a href="{{ site.resume }}" target="_blank" rel="noopener">Résumé</a>
-{%- else %}
+{%- if nav != "home" %}
                 <a href="/index.html">← Portfolio</a>
+{%- endif %}
+                <span class="nav-writing">
+{%- for article in articles %}
+{%- if article.url == page.url %}
+                    <span class="nav-current" aria-current="page">{{ article.navLabel }}</span>
+{%- else %}
+                    <a href="{{ article.url }}">{{ article.navLabel }}</a>
+{%- endif %}
+{%- endfor %}
+                </span>
+{%- if nav == "home" %}
+                <a href="{{ site.resume }}" target="_blank" rel="noopener">Résumé</a>
 {%- endif %}
                 <a href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
                 <a href="{{ site.github }}" target="_blank" rel="noopener">GitHub</a>
