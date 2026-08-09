@@ -3,6 +3,24 @@
 [build]
   command = "npm run build"
   publish = "_site"
+  # Skip the build when the push changed nothing the site is built from.
+  # Netlify runs `ignore` before building: exit 0 cancels the build (no
+  # production deploy, no credits), non-zero proceeds. Preview and branch
+  # deploys are free, so this only affects production.
+  #
+  # Deny-list, not allow-list: build unless EVERY changed path matches the
+  # never-published pattern. A new source folder deploys by default, so the
+  # failure mode is a wasted build rather than a silently missing deploy.
+  # Add to the pattern only what can never affect published output.
+  #
+  # Every guard defaults to building: no cached ref (first deploy), cached ==
+  # current (cache-clear / same-commit redeploy), git diff failure, empty diff.
+  #
+  # Nearly everything at the repo root IS a build input — eleventy.config.js
+  # passes css/, js/, img/, assets/, index.js, the favicons and the manifests
+  # straight through. Only the agent config, the research folder, and the
+  # top-level project markdown are denied.
+  ignore = 'if [ -z "$CACHED_COMMIT_REF" ] || [ "$CACHED_COMMIT_REF" = "$COMMIT_REF" ]; then exit 1; fi; CHANGED=$(git diff --name-only "$CACHED_COMMIT_REF" "$COMMIT_REF") || exit 1; [ -z "$CHANGED" ] && exit 1; printf "%s\n" "$CHANGED" | grep -qvE "^(\.claude/|\.impeccable/|\.coderabbit\.yaml$|\.gitignore$|_Portfolio|[^/]+\.md$)" && exit 1 || exit 0'
 
 # Pinned so the build doesn't ride on whatever Node the build image defaults
 # to. Eleventy 3 and its whole dependency tree require Node >= 18.
