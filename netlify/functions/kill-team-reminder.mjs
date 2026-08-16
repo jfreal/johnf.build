@@ -3,11 +3,11 @@
  * Environment variables), NOT in this file — they're secrets.
  *
  *   DISCORD_WEBHOOK_STORE  → the store's (Lotus Games) Discord   [required]
- *   DISCORD_WEBHOOK_GROUP  → the separate / group Discord         [required]
+ *   DISCORD_WEBHOOK_NEKT   → the nekt Discord                     [required]
  *
  * Optional display-name overrides (what the post shows as the author):
  *   DISCORD_USERNAME_STORE
- *   DISCORD_USERNAME_GROUP
+ *   DISCORD_USERNAME_NEKT
  *
  * This is a zero-dependency function. The cron schedule is declared in
  * netlify.toml ([functions."kill-team-reminder"].schedule), so there's no
@@ -111,8 +111,8 @@ function storeMessage(now) {
   );
 }
 
-// Group Discord — crew tone. Names the venue + town (different community).
-function groupMessage(now) {
+// nekt Discord — crew tone. Names the venue + town (different community).
+function nektMessage(now) {
   const when = upcomingEventLabel(now);
   return (
     `${LOTUS} **${EVENT_NAME}** this **${when}** at **Lotus Games** in Colchester, CT, let's go! 🎲\n` +
@@ -123,7 +123,7 @@ function groupMessage(now) {
 
 const TARGETS = [
   { env: "DISCORD_WEBHOOK_STORE", username: process.env.DISCORD_USERNAME_STORE, label: "store", build: storeMessage },
-  { env: "DISCORD_WEBHOOK_GROUP", username: process.env.DISCORD_USERNAME_GROUP, label: "group", build: groupMessage },
+  { env: "DISCORD_WEBHOOK_NEKT", username: process.env.DISCORD_USERNAME_NEKT, label: "nekt", build: nektMessage },
 ];
 
 async function postToDiscord(target, content) {
