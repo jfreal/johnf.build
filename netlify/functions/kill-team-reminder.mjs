@@ -9,6 +9,9 @@
  *   DISCORD_USERNAME_STORE
  *   DISCORD_USERNAME_GROUP
  *
+ * Testing:
+ *   FORCE_SEND=1  → skip the hour and off-week gates and post right now
+ *
  * This is a zero-dependency function. The cron schedule is declared in
  * netlify.toml ([functions."kill-team-reminder"].schedule), so there's no
  * @netlify/functions import and no build/install step.
@@ -66,6 +69,21 @@ const ANCHOR = Date.UTC(2026, 6, 5); // months are 0-based: 6 = July
 
 const WEEK_MS = 6.048e8; // 7 * 24 * 60 * 60 * 1000
 const POST_TIMEOUT_MS = 10000;
+
+/* ───────────────────── FORCE SEND (testing only) ──────────────────
+ * Without this, a manual run is unverifiable: the hour gate returns 200
+ * and posts nothing at any hour but 6 PM ET, which looks identical to a
+ * broken deploy. Set FORCE_SEND=1 to skip the hour and off-week gates so
+ * an invoke actually posts and shows up in the logs.
+ *
+ * ⚠ Unset it when you're done. Left on, the Sunday cron double-posts:
+ * both the 22:00 and 23:00 UTC firings get through instead of one. Every
+ * forced run warns about this in the logs so a stray value is findable.
+ *
+ * The env checks below still apply. FORCE_SEND skips the *timing* gates,
+ * not the config ones.
+ */
+const isForced = () => process.env.FORCE_SEND === "1";
 
 /** Day-of-week (0=Sun..6=Sat) for `date` in timezone `tz`. */
 function weekdayInTz(date, tz) {
@@ -154,16 +172,23 @@ async function postToDiscord(target, content) {
 export const handler = async () => {
   const now = new Date();
 
-  // One of the two Sunday firings (22:00/23:00 UTC) lands at 6 PM ET; ignore the other.
-  if (hourInTz(now, TZ) !== SEND_HOUR_ET) {
-    return { statusCode: 200 };
-  }
+  if (isForced()) {
+    console.warn(
+      "[kill-team-reminder] FORCE_SEND=1: skipping the hour and off-week gates. " +
+        "Unset it after testing or the Sunday cron will post twice.",
+    );
+  } else {
+    // One of the two Sunday firings (22:00/23:00 UTC) lands at 6 PM ET; ignore the other.
+    if (hourInTz(now, TZ) !== SEND_HOUR_ET) {
+      return { statusCode: 200 };
+    }
 
-  // Off week — do nothing.
-  const weeksSince = Math.floor((now.getTime() - ANCHOR) / WEEK_MS);
-  if (weeksSince % 2 !== 0) {
-    console.log(`[kill-team-reminder] off week (weeksSince=${weeksSince}), skipping`);
-    return { statusCode: 200 };
+    // Off week — do nothing.
+    const weeksSince = Math.floor((now.getTime() - ANCHOR) / WEEK_MS);
+    if (weeksSince % 2 !== 0) {
+      console.log(`[kill-team-reminder] off week (weeksSince=${weeksSince}), skipping`);
+      return { statusCode: 200 };
+    }
   }
 
   // Both webhooks are required. Fail loudly on a misconfigured deploy rather
