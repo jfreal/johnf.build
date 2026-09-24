@@ -1,0 +1,42 @@
+{#- One product card. Expects `product`, plus `productLive` from the data cascade.
+    Links to the product's own page if it has one, else to its site, else nowhere. -#}
+{%- set live = productLive[product.key] -%}
+{%- set shot = live.hero if live and live.hero else product.image -%}
+{%- set alt = product.screenery.heroAlt if live and live.hero else product.image.alt -%}
+{%- set zoom = product.screenery.heroZoom if live and live.hero else null -%}
+{%- if product.page -%}
+    {%- set href = "./" + product.page + ".html" -%}
+    {%- set cta = "Tour + changelog →" -%}
+    {%- set external = false -%}
+{%- elif product.href -%}
+    {%- set href = product.href -%}
+    {%- set cta = product.cta -%}
+    {%- set external = false -%}
+{%- elif product.url -%}
+    {%- set href = product.url -%}
+    {%- set cta = product.urlLabel + " ↗" -%}
+    {%- set external = true -%}
+{%- else -%}
+    {%- set href = null -%}
+{%- endif %}
+                    <article class="product-card{% if not href %} product-card--static{% endif %}">
+                        {% if href %}<a class="product-link" href="{{ href }}"{% if external %} target="_blank" rel="noopener"{% endif %}>{% else %}<div class="product-link product-link--static">{% endif %}
+                            <div class="product-thumb{% if zoom %} product-thumb--zoom{% endif %}"{% if zoom %} style="--zoom: {{ zoom }};"{% endif %}>
+                                <img src="{{ shot.src }}" alt="{{ alt }}"{% if shot.width %} width="{{ shot.width }}" height="{{ shot.height }}"{% endif %} loading="lazy" decoding="async" />
+                            </div>
+                            <div class="product-body">
+                                <h3>{{ product.name }}</h3>
+                                <p class="product-tag">{{ product.tag }}</p>
+                                <p class="product-desc">{{ product.desc }}</p>
+{%- if live and live.changelog.length %}
+                                <p class="product-update">
+                                    <span class="product-update-label">Latest{% if live.changelog[0].date %} · <time datetime="{{ live.changelog[0].date }}">{{ live.changelog[0].date | shortDate }}</time>{% endif %}</span>
+                                    {{ live.changelog[0].title }}
+                                </p>
+{%- endif %}
+{%- if href %}
+                                <span class="product-cta">{{ cta }}</span>
+{%- endif %}
+                            </div>
+                        {% if href %}</a>{% else %}</div>{% endif %}
+                    </article>
