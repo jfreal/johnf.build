@@ -20,15 +20,20 @@ export const handler = async () => {
     return { statusCode: 200 };
   }
 
+  let response;
   try {
-    const response = await fetch(hook, { method: "POST", body: "{}" });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    console.log("[daily-rebuild] Build triggered.");
-    return { statusCode: 200 };
+    response = await fetch(hook, { method: "POST", body: "{}" });
   } catch (error) {
-    // error.message only. Node can put the request URL in fetch errors, and
-    // the hook URL is a secret.
-    console.error(`[daily-rebuild] Could not trigger a build: ${error.message}`);
+    // Never log error.message: for a malformed URL, fetch puts the URL in it,
+    // and the hook URL is a secret. The error's name is enough to go on.
+    console.error(`[daily-rebuild] Could not trigger a build (${error.name}).`);
     return { statusCode: 500 };
   }
+
+  if (!response.ok) {
+    console.error(`[daily-rebuild] Build hook answered HTTP ${response.status}.`);
+    return { statusCode: 500 };
+  }
+  console.log("[daily-rebuild] Build triggered.");
+  return { statusCode: 200 };
 };

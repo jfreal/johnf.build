@@ -83,7 +83,10 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
   names an env var (`CHANGELOG_PHEIDI_URL` etc.) set in Netlify, never
   committed. A Screenery asset name that isn't on `@latest` fails the build on
   purpose. Content only refreshes on a deploy, so `netlify/functions/daily-rebuild.mjs`
-  hits a build hook (`NETLIFY_BUILD_HOOK_URL`) every morning.
+  hits a build hook (`NETLIFY_BUILD_HOOK_URL`) every morning. Scopes matter:
+  the `CHANGELOG_*` vars are read during the build (Builds scope), while
+  `NETLIFY_BUILD_HOOK_URL` is read by the function at run time, so it needs
+  the Functions scope. Without it the function quietly skips the rebuild.
 - Styles in `css/site.css`. Tiny vanilla JS in `js/site.js` (year stamp, scroll reveal).
   Those, plus `img/`, `assets/`, and the favicons, pass through from the repo root.
 - Fonts: Fraunces (serif), Inter (sans), Caveat (handwritten accents).
