@@ -1,12 +1,16 @@
 {#- One product card. Expects `product`, plus `productLive` from the data cascade.
-    Links to the product's own page if it has one, else to its site, else nowhere. -#}
+    The card opens the about page (`page`) or case study (`href`); its name is
+    that link, stretched over the whole card in CSS. The live site (`url`) is a
+    second, separate link that sits above the stretched one. A card with only
+    a `url` opens the live site. A card with neither is past work and links
+    nowhere. -#}
 {%- set live = productLive[product.key] -%}
 {%- set shot = live.hero if live and live.hero else product.image -%}
 {%- set alt = product.screenery.heroAlt if live and live.hero else product.image.alt -%}
 {%- set zoom = product.screenery.heroZoom if live and live.hero else null -%}
 {%- if product.page -%}
     {%- set href = "./" + product.page + ".html" -%}
-    {%- set cta = "Tour + changelog →" -%}
+    {%- set cta = "Tour + changelog →" if product.screenery or product.changelog else "About →" -%}
     {%- set external = false -%}
 {%- elif product.href -%}
     {%- set href = product.href -%}
@@ -18,25 +22,29 @@
     {%- set external = true -%}
 {%- else -%}
     {%- set href = null -%}
-{%- endif %}
+{%- endif -%}
+{%- set liveLink = product.url and not external %}
                     <article class="product-card{% if not href %} product-card--static{% endif %}">
-                        {% if href %}<a class="product-link" href="{{ href }}"{% if external %} target="_blank" rel="noopener"{% endif %}>{% else %}<div class="product-link product-link--static">{% endif %}
-                            <div class="product-thumb{% if zoom %} product-thumb--zoom{% endif %}"{% if zoom %} style="--zoom: {{ zoom }};"{% endif %}>
-                                <img src="{{ shot.src }}" alt="{{ alt }}"{% if shot.width %} width="{{ shot.width }}" height="{{ shot.height }}"{% endif %} loading="lazy" decoding="async" />
-                            </div>
-                            <div class="product-body">
-                                <h3>{{ product.name }}</h3>
-                                <p class="product-tag">{{ product.tag }}</p>
-                                <p class="product-desc">{{ product.desc }}</p>
+                        <div class="product-thumb{% if zoom %} product-thumb--zoom{% endif %}"{% if zoom %} style="--zoom: {{ zoom }};"{% endif %}>
+                            <img src="{{ shot.src }}" alt="{{ alt }}"{% if shot.width %} width="{{ shot.width }}" height="{{ shot.height }}"{% endif %} loading="lazy" decoding="async" />
+                        </div>
+                        <div class="product-body">
+                            <h3>{% if href %}<a class="product-link" href="{{ href }}"{% if external %} target="_blank" rel="noopener"{% endif %}>{{ product.name }}</a>{% else %}{{ product.name }}{% endif %}</h3>
+                            <p class="product-tag">{{ product.tag }}</p>
+                            <p class="product-desc">{{ product.desc }}</p>
 {%- if live and live.changelog.length %}
-                                <p class="product-update">
-                                    <span class="product-update-label">Latest{% if live.changelog[0].date %} · <time datetime="{{ live.changelog[0].date }}">{{ live.changelog[0].date | shortDate }}</time>{% endif %}</span>
-                                    {{ live.changelog[0].title }}
-                                </p>
+                            <p class="product-update">
+                                <span class="product-update-label">Latest{% if live.changelog[0].date %} · <time datetime="{{ live.changelog[0].date }}">{{ live.changelog[0].date | shortDate }}</time>{% endif %}</span>
+                                {{ live.changelog[0].title }}
+                            </p>
 {%- endif %}
 {%- if href %}
-                                <span class="product-cta">{{ cta }}</span>
+                            <p class="product-ctas">
+                                <span class="product-cta" aria-hidden="true">{{ cta }}</span>
+{%- if liveLink %}
+                                <a class="product-live" href="{{ product.url }}" target="_blank" rel="noopener">{{ product.urlLabel }} ↗</a>
 {%- endif %}
-                            </div>
-                        {% if href %}</a>{% else %}</div>{% endif %}
+                            </p>
+{%- endif %}
+                        </div>
                     </article>

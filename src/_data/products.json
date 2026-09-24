@@ -65,6 +65,11 @@
         "desc": "A package registry for product screenshots. CI pushes them on every build, and each one gets a URL that updates itself on release. The live screenshots on this page come from it.",
         "url": "https://app.screenery.dev",
         "urlLabel": "app.screenery.dev",
+        "page": "screenery",
+        "about": [
+            "CI pushes screenshots on every build, and each one gets a public URL like cdn.screenery.dev/org/project/asset@latest.png. Paste it into a README or a docs page once. When you ship a release, the image behind it changes.",
+            "On GitHub Actions there's no secret to store: the push step trades the runner's OIDC token for a five-minute credential. Setup can run through an MCP server, so your agent can wire up a repo from one sentence. Every screenshot in the tours on this site comes from it."
+        ],
         "image": { "src": "./img/screenery.jpg", "alt": "The Screenery homepage: \"Screenshots that stay fresh.\"" }
     },
     {
@@ -104,6 +109,11 @@
         "desc": "Connecticut town budgets, traced to the primary sources. It started as eighteen years of Colchester budgets and now covers all 169 CT towns. Drafted with Claude, spot-checked against the source PDFs (yes, really).",
         "url": "https://woodennutmeg.com",
         "urlLabel": "woodennutmeg.com",
+        "page": "wooden-nutmeg",
+        "about": [
+            "A town budget is public, but it arrives as a few hundred pages of line items. Wooden Nutmeg takes what a Connecticut town publishes and puts it on charts a resident can read in a few minutes.",
+            "Colchester is the deep dive: every adopted budget book from FY 2007-08 to FY 2024-25, 132 charts, and about 3,100 documents catalogued. Every number traces to a primary source. When a finding flips under a different deflator or set of peer towns, the alternative sits right next to it."
+        ],
         "image": { "src": "./img/woodennutmeg.jpg", "alt": "The Wooden Nutmeg homepage with the Colchester deep-dive: 18 budget books, 132 charts, 3,100 documents." }
     },
     {
@@ -113,6 +123,11 @@
         "desc": "A nap planner for parents of babies up to two years old. Give it age, wake windows, and bedtime, and it lays out the day. Suggestions are checked against published guidance, and everything stays on your device.",
         "url": "https://wake-windows.netlify.app",
         "urlLabel": "wake-windows.netlify.app",
+        "page": "wake-windows",
+        "about": [
+            "Tell it your baby's age, their wake windows, and bedtime, and it lays out the day: when to start settling for each nap and when bedtime lands. It covers babies up to 24 months.",
+            "Each suggestion is labeled with how strong the evidence behind it is, with the sources one tap away. Everything stays on your device. No account, nothing uploaded."
+        ],
         "image": { "src": "./img/wake-windows.jpg", "alt": "Wake Windows' today screen: a countdown to the next nap and the day's nap schedule." }
     },
     {
@@ -122,6 +137,11 @@
         "desc": "Your Discord events announce themselves. Pick a channel once and every scheduled event gets reminders, on time, in everyone's time zone. Setup runs through an MCP server, so your agent can do it (there's a small web console for the humans).",
         "url": "https://eventbell.app",
         "urlLabel": "eventbell.app",
+        "page": "eventbell",
+        "about": [
+            "Discord has scheduled events, but people tend to notice them after they've started. EventBell attaches reminders to a server's events and posts them through a channel webhook, on time, in everyone's time zone.",
+            "It only reads your events. It never creates or edits them. The main way to set it up is an MCP server, so you can just tell your agent what you want. A small web console covers the rest."
+        ],
         "image": { "src": "./img/eventbell.jpg", "alt": "The EventBell homepage: \"Your Discord events announce themselves.\"" }
     },
     {
@@ -131,6 +151,11 @@
         "desc": "A damage and probability calculator for Kill Team 2024. Compare attacker and defender matchups side by side. I took it over because I needed Vespid weapon math. Now I just keep it current.",
         "url": "https://ktcalc.com",
         "urlLabel": "ktcalc.com",
+        "page": "ktcalc",
+        "about": [
+            "A probability calculator for shooting and fighting in Kill Team 2024. Pick an attacker and a defender, and it shows the damage you can expect, side by side.",
+            "It started as a fork of jmegner's KT21 Calculator. I took it over because I needed the math for Vespid weapons, and now I keep it current as the rules change."
+        ],
         "image": { "src": "./img/ktcalc.png", "alt": "KT24 Calculator screenshot" }
     },
     {
@@ -140,6 +165,11 @@
         "desc": "A community and resource hub for one-bag travelers. Built and run by me.",
         "url": "https://onebag.travel",
         "urlLabel": "onebag.travel",
+        "page": "onebag",
+        "about": [
+            "A resource hub for people who travel with one bag: bag specs, airline carry-on limits, and packing lists.",
+            "The public site is static and built with Eleventy, so it's fast and cheap to run. The old ASP.NET app lives on as the admin tool for editing the data."
+        ],
         "image": { "src": "./img/onebagthumb.JPG", "alt": "Onebag.Travel screenshot" }
     },
     {
@@ -147,6 +177,8 @@
         "name": "Ordo Upcyclum",
         "tag": "E-commerce · 2024",
         "desc": "An e-commerce store for upcycled Warhammer 40k art. Built for a hobbyist who hates waste.",
+        "url": "https://ordoupcyclum.com",
+        "urlLabel": "ordoupcyclum.com",
         "href": "./ordo-upcyclum.html",
         "cta": "Case study →",
         "image": { "src": "./img/ordo.png", "alt": "Ordo Upcyclum store" }

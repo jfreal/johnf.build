@@ -68,6 +68,22 @@ const eleventyComputed = {
         </section>
 {%- endif %}
 
+{%- if not live.gallery.length and product.image %}
+        <section>
+            <div class="wrap">
+                <h2>A look around</h2>
+                <div class="shot-grid shot-grid--wide">
+                    <figure class="shot">
+                        <a class="shot-frame" href="{{ product.url }}" target="_blank" rel="noopener">
+                            <img src="{{ product.image.src }}" alt="{{ product.image.alt }}" loading="lazy" decoding="async" />
+                        </a>
+                        <figcaption>{{ product.urlLabel }}</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+{%- endif %}
+
 {%- if live.changelog.length %}
         <section>
             <div class="wrap">
