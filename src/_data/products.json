@@ -191,13 +191,6 @@
         "image": { "src": "./img/pi.jpg", "alt": "Power Inbox portal" }
     },
     {
-        "key": "stn",
-        "name": "Soup to Nuts (StN)",
-        "tag": "Intranet platform · Director of Technology",
-        "desc": "Operational platform for BTE that ran sales, inventory, and fulfillment in one place. I wrote the first line and the last. Revenue grew 100× over its lifetime.",
-        "image": { "src": "./img/bte.png", "alt": "Soup to Nuts intranet" }
-    },
-    {
         "key": "movid-hep",
         "name": "Movid HEP",
         "tag": "Health-tech startup · Co-founder & tech lead",
