@@ -10,7 +10,14 @@
 {%- set zoom = product.screenery.heroZoom if live and live.hero else null -%}
 {%- if product.page -%}
     {%- set href = "./" + product.page + ".html" -%}
-    {%- set cta = "Tour + changelog →" if product.screenery or product.changelog else "About →" -%}
+    {#- Label by what actually loaded, not what's configured: a feed whose env
+        var is unset renders no changelog, so the card mustn't promise one. -#}
+    {%- set hasTour = live and live.gallery.length -%}
+    {%- set hasLog = live and live.changelog.length -%}
+    {%- if hasTour and hasLog -%}{%- set cta = "Tour + changelog →" -%}
+    {%- elif hasTour -%}{%- set cta = "Tour →" -%}
+    {%- elif hasLog -%}{%- set cta = "About + changelog →" -%}
+    {%- else -%}{%- set cta = "About →" -%}{%- endif -%}
     {%- set external = false -%}
 {%- elif product.href -%}
     {%- set href = product.href -%}
