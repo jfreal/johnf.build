@@ -74,6 +74,19 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
   siblings. The current post shows as `.nav-current` instead of a link. Only
   real articles belong in `articles.json`; case studies and one-off pages
   (Ordo, the Kill Team alert) stay out of it and just get the back link.
+- **Product cards** come from `src/_data/products.json`, in display order.
+  Words live there; `src/_data/productLive.js` adds the live parts at build
+  time: Screenery screenshots (`lib/screenery.js`, public gallery API, card
+  shot = `screenery.hero`) and the Merge & Tell changelog (`lib/changelog.js`).
+  A product with a `page` slug also gets `/<slug>.html` from `src/product.html`
+  (gallery + recent updates). Changelog feed URLs are secrets: each product
+  names an env var (`CHANGELOG_PHEIDI_URL` etc.) set in Netlify, never
+  committed. A Screenery asset name that isn't on `@latest` fails the build on
+  purpose. Content only refreshes on a deploy, so `netlify/functions/daily-rebuild.mjs`
+  hits a build hook (`NETLIFY_BUILD_HOOK_URL`) every morning. Scopes matter:
+  the `CHANGELOG_*` vars are read during the build (Builds scope), while
+  `NETLIFY_BUILD_HOOK_URL` is read by the function at run time, so it needs
+  the Functions scope. Without it the function quietly skips the rebuild.
 - Styles in `css/site.css`. Tiny vanilla JS in `js/site.js` (year stamp, scroll reveal).
   Those, plus `img/`, `assets/`, and the favicons, pass through from the repo root.
 - Fonts: Fraunces (serif), Inter (sans), Caveat (handwritten accents).

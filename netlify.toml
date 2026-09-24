@@ -35,3 +35,8 @@
 # invocation posts, year-round, across DST. See the function for details.
 [functions."kill-team-reminder"]
   schedule = "0 22,23 * * 0"
+
+# Daily rebuild at 10:00 UTC (6 AM ET in summer, 5 AM in winter) so the
+# Merge & Tell changelogs on product cards stay fresh. See the function.
+[functions."daily-rebuild"]
+  schedule = "0 10 * * *"

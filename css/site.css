@@ -562,25 +562,51 @@ section {
 }
 .product-card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 16px 32px -12px rgba(42, 35, 38, 0.22); }
 
+/* The whole card opens the about page. The link is the name; its ::after
+   stretches over the card. .product-live sits above it as its own link. */
+.product-card { display: flex; flex-direction: column; }
 .product-link {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background: none;
     color: inherit;
+    background: none;
     padding: 0;
 }
-.product-link:hover { background: none; color: inherit; }
+.product-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: var(--radius);
+}
+.product-link:hover, .product-link:focus-visible { background: none; color: inherit; }
+.product-link:focus-visible { outline: none; }
+.product-card:has(.product-link:focus-visible) {
+    outline: 2px dashed var(--teal);
+    outline-offset: 3px;
+}
 
 .product-thumb {
     width: 100%;
     aspect-ratio: 16 / 10;
-    background-size: cover;
-    background-position: center top;
+    overflow: hidden;
     background-color: var(--cream-2);
+}
+.product-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+/* Zoom a narrow centred column (e.g. a mobile-first app on a desktop capture)
+   so it fills the card instead of floating in empty gutters. */
+.product-thumb--zoom img {
+    width: calc(100% * var(--zoom));
+    max-width: none;
+    height: auto;
+    margin-left: calc(50% - 50% * var(--zoom));
 }
 
 .product-body {
+    flex: 1;
     padding: 1.1rem 1.2rem 1.3rem;
     display: flex;
     flex-direction: column;
@@ -607,17 +633,113 @@ section {
     max-width: none;
 }
 
+.product-ctas {
+    margin: auto 0 0;
+    padding-top: 0.7rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 1.1rem;
+    max-width: none;
+}
+.product-live {
+    position: relative;
+    z-index: 2;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
 .product-cta {
-    margin-top: 0.7rem;
     font-weight: 600;
     color: var(--teal-deep);
     font-size: 0.95rem;
 }
 
-.product-link--static { cursor: default; }
 .product-card--static:hover {
     transform: none;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(42, 35, 38, 0.18);
+}
+
+.product-update {
+    margin: 0.5rem 0 0;
+    padding-top: 0.6rem;
+    border-top: 1px dashed var(--paper-line);
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: var(--ink);
+}
+.product-update-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+}
+
+/* ----- Product pages: screenshot gallery ----- */
+.shot-grid {
+    display: grid;
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    margin-top: 2rem;
+}
+.shot-grid--wide { grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); }
+.shot-grid--tall { grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr)); }
+
+.shot { margin: 0; }
+.shot-frame {
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--cream-2);
+    padding: 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(42, 35, 38, 0.18);
+    transition: transform 0.18s ease;
+}
+.shot-frame:hover { background: var(--cream-2); transform: translateY(-3px); }
+.shot-grid--wide .shot-frame { aspect-ratio: 16 / 10; }
+.shot-grid--tall .shot-frame { aspect-ratio: 9 / 16; }
+.shot-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+.shot figcaption {
+    margin-top: 0.7rem;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.45;
+}
+
+/* ----- Product pages: changelog ----- */
+.update-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    max-width: 44rem;
+    display: grid;
+    gap: 1.5rem;
+}
+.update {
+    padding-left: 1rem;
+    border-left: 3px solid var(--peach);
+}
+.update-date {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+}
+.update-title {
+    margin: 0.15rem 0 0.3rem;
+    font-size: 1.15rem;
+}
+.update-summary {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.97rem;
 }
 
 /* ----- Tech list ----- */
@@ -941,7 +1063,7 @@ section {
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .wave { animation: none; }
-    .polaroid, .product-card, .hero-portrait { transition: none; }
+    .polaroid, .product-card, .hero-portrait, .shot-frame { transition: none; }
     .hero-portrait, .hero-portrait:hover { transform: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
 }

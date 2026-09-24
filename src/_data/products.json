@@ -1,0 +1,207 @@
+[
+    {
+        "key": "pheidi",
+        "name": "Pheidi",
+        "tag": "Running training plans · Side project · 2025",
+        "desc": "Personalized running plans for 5K to marathon that reschedule when life happens. Built on polarized training and real sports science. Free.",
+        "url": "https://pheidi.training",
+        "urlLabel": "pheidi.training",
+        "page": "pheidi",
+        "about": [
+            "Most training plans are a PDF that assumes nothing goes wrong for sixteen weeks. Pheidi assumes something will. Miss a run, tweak a calf, take a vacation, and the plan reshuffles around it.",
+            "Under the hood it's polarized training: mostly easy miles, a little hard work, not much in between. Workouts export to your calendar and your Garmin."
+        ],
+        "note": "Plans that bend instead of break.",
+        "screenery": {
+            "project": "jfreal/pheidi",
+            "hero": "desktop/plan/today",
+            "heroZoom": 1.5,
+            "heroAlt": "Pheidi's today screen: a 2.7 mile run with pace and heart-rate targets, above this week's schedule.",
+            "shape": "wide",
+            "gallery": [
+                { "asset": "desktop/plan/today", "alt": "Today's run with pace, heart rate, and effort targets, plus this week's days.", "caption": "Today's run, this week, and the season on one screen." },
+                { "asset": "desktop/plan/calendar-month", "alt": "A month calendar with each training day's workout icon and distance.", "caption": "The month view. Icons show the workout type at a glance." },
+                { "asset": "desktop/plan/overview", "alt": "A table of every week in the plan with its distance, long run, and phase.", "caption": "The whole block, week by week." },
+                { "asset": "desktop/readiness/check-in", "alt": "A low readiness score next to a suggestion to take today's run easy.", "caption": "Feeling rough? It suggests backing off. It never rewrites the plan behind your back." },
+                { "asset": "desktop/injury/report", "alt": "The injury form with a body-part picker and a pain slider.", "caption": "Report where it hurts and how much. The plan adjusts." },
+                { "asset": "desktop/vacation/schedule", "alt": "The vacation form with start and end dates and a training-load slider.", "caption": "Pick your vacation dates and how much running you'll keep." },
+                { "asset": "desktop/export/watch", "alt": "The export panel offering the next workout or the whole block as Garmin .fit files.", "caption": "Send the next workout, or the whole block, to a Garmin." }
+            ]
+        },
+        "changelog": "CHANGELOG_PHEIDI_URL"
+    },
+    {
+        "key": "merge-and-tell",
+        "name": "Merge & Tell",
+        "tag": "Dev marketing · SaaS · 2026",
+        "desc": "Watches merged pull requests and drafts the posts about them for X, Bluesky, LinkedIn, Discord, and a changelog. A human approves every draft before it goes out. It wrote the update notes on this site, too.",
+        "url": "https://merge.tel",
+        "urlLabel": "merge.tel",
+        "page": "merge-and-tell",
+        "about": [
+            "Shipping is the easy part. Telling anyone about it is where solo builders go quiet. Merge & Tell reads the diff of every merged pull request and drafts posts for the networks you pick, in your product's voice, aimed at the customer you describe.",
+            "Nothing posts until you approve it, and then it goes out from your own accounts. No third-party scheduler in the middle. The changelogs on this site come straight out of it."
+        ],
+        "note": "You build. It tells people.",
+        "screenery": {
+            "project": "jfreal/mergetel",
+            "hero": "marketing/home",
+            "heroAlt": "The Merge & Tell homepage: \"You've never shipped more. Nobody's heard a thing.\" next to a merged pull request and the post it drafted.",
+            "shape": "wide",
+            "gallery": [
+                { "asset": "marketing/home", "alt": "The homepage, showing a real merged pull request and the Bluesky post drafted from it.", "caption": "A real PR from this repo, and the post it drafted." },
+                { "asset": "app/dashboard", "alt": "The dashboard with a year-long posting heatmap and posting frequency per product.", "caption": "The dashboard. A posting streak heatmap, because guilt works." },
+                { "asset": "app/pr-feed", "alt": "The PR feed listing merged pull requests with what the filter decided for each.", "caption": "Every merge, and what happened to it." },
+                { "asset": "app/compose", "alt": "The compose screen with channel checkboxes and per-network character counts.", "caption": "One-off posts go through the same queue and limits." },
+                { "asset": "app/publish-queue", "alt": "The publish queue with failed posts showing the network's own error and a retry button.", "caption": "When a post fails, the queue says exactly why." }
+            ]
+        },
+        "changelog": "CHANGELOG_MERGETEL_URL"
+    },
+    {
+        "key": "screenery",
+        "name": "Screenery",
+        "tag": "Dev tool · SaaS · 2026",
+        "desc": "A package registry for product screenshots. CI pushes them on every build, and each one gets a URL that updates itself on release. The live screenshots on this page come from it.",
+        "url": "https://app.screenery.dev",
+        "urlLabel": "app.screenery.dev",
+        "page": "screenery",
+        "about": [
+            "CI pushes screenshots on every build, and each one gets a public URL like cdn.screenery.dev/org/project/asset@latest.png. Paste it into a README or a docs page once. When you ship a release, the image behind it changes.",
+            "On GitHub Actions there's no secret to store: the push step trades the runner's OIDC token for a five-minute credential. Setup can run through an MCP server, so your agent can wire up a repo from one sentence. Every screenshot in the tours on this site comes from it."
+        ],
+        "image": { "src": "./img/screenery.jpg", "alt": "The Screenery homepage: \"Screenshots that stay fresh.\"" }
+    },
+    {
+        "key": "auspex-fatalis",
+        "name": "Auspex Fatalis",
+        "tag": "Kill Team league app · Side project · 2026",
+        "desc": "Runs a small in-person Kill Team league from your phone. Score reporting, a schedule with no rematches, standings, and a finals bracket. Sign in with Discord, since that's where the league already hangs out.",
+        "url": "https://auspexfatalis.com",
+        "urlLabel": "auspexfatalis.com",
+        "page": "auspex-fatalis",
+        "about": [
+            "A league app for Kill Team, the Warhammer 40k skirmish game. Players report scores from the table, standings update, and the schedule avoids rematches. The season ends in a finals bracket.",
+            "Organizers get their own screens, a Discord hookup, and a weekly recap. It's dark and a little gothic, because the game is too."
+        ],
+        "note": "Made for game night, not for spreadsheets.",
+        "screenery": {
+            "project": "jfreal/auxf",
+            "hero": "player/standings/desktop",
+            "heroAlt": "Auspex Fatalis league standings: a dark, gothic screen showing the player in second place of five.",
+            "heroZoom": 2.37,
+            "shape": "tall",
+            "gallery": [
+                { "asset": "player/home/mobile", "alt": "The player's matches screen with the next opponent and buttons to enter or live-score a result.", "caption": "Your matches: who's next and how it went." },
+                { "asset": "player/standings/mobile", "alt": "League standings with wins, draws, losses, and points for each player.", "caption": "Standings and the weekly recap." },
+                { "asset": "player/bracket/mobile", "alt": "The finals bracket with two semifinal pairings.", "caption": "The finals bracket." },
+                { "asset": "player/quests/mobile", "alt": "A list of season quests like Fully Painted and Brought a Friend, each with a claim button.", "caption": "Side quests. Paint a new team, bring a friend." },
+                { "asset": "player/gallery/mobile", "alt": "The league photo gallery.", "caption": "Photos from the table." },
+                { "asset": "organizer/recap/mobile", "alt": "Organizer settings for the weekly recap, including a season premise box.", "caption": "Organizers can have Claude write each week's recap, steered by the season's lore." }
+            ]
+        },
+        "changelog": "CHANGELOG_AUXF_URL"
+    },
+    {
+        "key": "wooden-nutmeg",
+        "name": "Wooden Nutmeg",
+        "tag": "Civic data · AI-assisted analysis · 2026",
+        "desc": "Connecticut town budgets, traced to the primary sources. It started as eighteen years of Colchester budgets and now covers all 169 CT towns. Drafted with Claude, spot-checked against the source PDFs (yes, really).",
+        "url": "https://woodennutmeg.com",
+        "urlLabel": "woodennutmeg.com",
+        "page": "wooden-nutmeg",
+        "about": [
+            "A town budget is public, but it arrives as a few hundred pages of line items. Wooden Nutmeg takes what a Connecticut town publishes and puts it on charts a resident can read in a few minutes.",
+            "Colchester is the deep dive: every adopted budget book from FY 2007-08 to FY 2024-25, 132 charts, and about 3,100 documents catalogued. Every number traces to a primary source. When a finding flips under a different deflator or set of peer towns, the alternative sits right next to it."
+        ],
+        "image": { "src": "./img/woodennutmeg.jpg", "alt": "The Wooden Nutmeg homepage with the Colchester deep-dive: 18 budget books, 132 charts, 3,100 documents." }
+    },
+    {
+        "key": "wake-windows",
+        "name": "Wake Windows",
+        "tag": "Baby sleep planner · Side project · 2026",
+        "desc": "A nap planner for parents of babies up to two years old. Give it age, wake windows, and bedtime, and it lays out the day. Suggestions are checked against published guidance, and everything stays on your device.",
+        "url": "https://wake-windows.netlify.app",
+        "urlLabel": "wake-windows.netlify.app",
+        "page": "wake-windows",
+        "about": [
+            "Tell it your baby's age, their wake windows, and bedtime, and it lays out the day: when to start settling for each nap and when bedtime lands. It covers babies up to 24 months.",
+            "Each suggestion is labeled with how strong the evidence behind it is, with the sources one tap away. Everything stays on your device. No account, nothing uploaded."
+        ],
+        "image": { "src": "./img/wake-windows.jpg", "alt": "Wake Windows' today screen: a countdown to the next nap and the day's nap schedule." }
+    },
+    {
+        "key": "eventbell",
+        "name": "EventBell",
+        "tag": "Discord bot · Early days · 2026",
+        "desc": "Your Discord events announce themselves. Pick a channel once and every scheduled event gets reminders, on time, in everyone's time zone. Setup runs through an MCP server, so your agent can do it (there's a small web console for the humans).",
+        "url": "https://eventbell.app",
+        "urlLabel": "eventbell.app",
+        "page": "eventbell",
+        "about": [
+            "Discord has scheduled events, but people tend to notice them after they've started. EventBell attaches reminders to a server's events and posts them through a channel webhook, on time, in everyone's time zone.",
+            "It only reads your events. It never creates or edits them. The main way to set it up is an MCP server, so you can just tell your agent what you want. A small web console covers the rest."
+        ],
+        "image": { "src": "./img/eventbell.jpg", "alt": "The EventBell homepage: \"Your Discord events announce themselves.\"" }
+    },
+    {
+        "key": "ktcalc",
+        "name": "KT24 Calculator",
+        "tag": "Tabletop game tool · Side project",
+        "desc": "A damage and probability calculator for Kill Team 2024. Compare attacker and defender matchups side by side. I took it over because I needed Vespid weapon math. Now I just keep it current.",
+        "url": "https://ktcalc.com",
+        "urlLabel": "ktcalc.com",
+        "page": "ktcalc",
+        "about": [
+            "A probability calculator for shooting and fighting in Kill Team 2024. Pick an attacker and a defender, and it shows the damage you can expect, side by side.",
+            "It started as a fork of jmegner's KT21 Calculator. I took it over because I needed the math for Vespid weapons, and now I keep it current as the rules change."
+        ],
+        "image": { "src": "./img/ktcalc.png", "alt": "KT24 Calculator screenshot" }
+    },
+    {
+        "key": "onebag",
+        "name": "Onebag.Travel",
+        "tag": "Travel community · Side project",
+        "desc": "A community and resource hub for one-bag travelers. Built and run by me.",
+        "url": "https://onebag.travel",
+        "urlLabel": "onebag.travel",
+        "page": "onebag",
+        "about": [
+            "A resource hub for people who travel with one bag: bag specs, airline carry-on limits, and packing lists.",
+            "The public site is static and built with Eleventy, so it's fast and cheap to run. The old ASP.NET app lives on as the admin tool for editing the data."
+        ],
+        "image": { "src": "./img/onebagthumb.JPG", "alt": "Onebag.Travel screenshot" }
+    },
+    {
+        "key": "ordo",
+        "name": "Ordo Upcyclum",
+        "tag": "E-commerce · 2024",
+        "desc": "An e-commerce store for upcycled Warhammer 40k art. Built for a hobbyist who hates waste.",
+        "url": "https://ordoupcyclum.com",
+        "urlLabel": "ordoupcyclum.com",
+        "href": "./ordo-upcyclum.html",
+        "cta": "Case study →",
+        "image": { "src": "./img/ordo.png", "alt": "Ordo Upcyclum store" }
+    },
+    {
+        "key": "power-inbox",
+        "name": "Power Inbox Portal",
+        "tag": "Customer web portal · Sr. Developer",
+        "desc": "Customer self-service for a high-volume email platform. Lets users manage domains, senders, and deliverability without filing a ticket. ASP.NET on top of Service Bus and Redis.",
+        "image": { "src": "./img/pi.jpg", "alt": "Power Inbox portal" }
+    },
+    {
+        "key": "stn",
+        "name": "Soup to Nuts (StN)",
+        "tag": "Intranet platform · Director of Technology",
+        "desc": "Operational platform for BTE that ran sales, inventory, and fulfillment in one place. I wrote the first line and the last. Revenue grew 100× over its lifetime.",
+        "image": { "src": "./img/bte.png", "alt": "Soup to Nuts intranet" }
+    },
+    {
+        "key": "movid-hep",
+        "name": "Movid HEP",
+        "tag": "Health-tech startup · Co-founder & tech lead",
+        "desc": "A health-tech startup I co-founded with a physical therapist who hated paper home-exercise programs. Notebook sketch to Startup Weekend Hartford 2012 winner to a real, revenue-generating business.",
+        "image": { "src": "./img/movid-hep.PNG", "alt": "Movid HEP" }
+    }
+]

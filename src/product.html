@@ -1,0 +1,119 @@
+---js
+// One page per product that has a `page` slug in src/_data/products.json.
+// Screenshots come from Screenery and updates from Merge & Tell, both via
+// src/_data/productLive.js at build time.
+const pagination = {
+    data: "products",
+    size: 1,
+    alias: "product",
+    before: (products) => products.filter((p) => p.page),
+};
+const permalink = (data) => `/${data.product.page}.html`;
+const eleventyComputed = {
+    title: (data) => `${data.product.name} · John Farrell`,
+    description: (data) => data.product.desc,
+    ogTitle: (data) => data.product.name,
+    ogDescription: (data) => data.product.desc,
+    ogPath: (data) => `/${data.product.page}.html`,
+};
+---
+{%- set live = productLive[product.key] %}
+        <section class="hero">
+            <div class="wrap hero-inner">
+                <p class="eyebrow">{{ product.tag.split(" · ")[0] }}</p>
+                <h1><span class="hand hand--coral">{{ product.name }}</span></h1>
+                <p class="lede">{{ product.desc }}</p>
+                <div class="button-row">
+                    <a href="{{ product.url }}" target="_blank" rel="noopener" class="product-cta">Visit {{ product.urlLabel }} ↗</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>What it is</h2>
+{%- for para in product.about %}
+                    <p>{{ para }}</p>
+{%- endfor %}
+                </div>
+{%- if product.note %}
+                <aside class="margin-note">
+                    <p class="note-hand">{{ product.note }}</p>
+                </aside>
+{%- endif %}
+            </div>
+        </section>
+
+{%- if live.gallery.length %}
+        <section>
+            <div class="wrap">
+                <h2>A look around</h2>
+                <p class="section-lede">
+                    Live screenshots. CI takes them on every merge and
+                    <a href="https://app.screenery.dev" target="_blank" rel="noopener">Screenery</a>
+                    serves the newest. Nobody exports a PNG by hand.
+                </p>
+                <div class="shot-grid shot-grid--{{ product.screenery.shape }}">
+{%- for shot in live.gallery %}
+                    <figure class="shot">
+                        <a class="shot-frame" href="{{ shot.src }}" target="_blank" rel="noopener">
+                            <img src="{{ shot.src }}" alt="{{ shot.alt }}"{% if shot.width %} width="{{ shot.width }}" height="{{ shot.height }}"{% endif %} loading="lazy" decoding="async" />
+                        </a>
+                        <figcaption>{{ shot.caption }}</figcaption>
+                    </figure>
+{%- endfor %}
+                </div>
+            </div>
+        </section>
+{%- endif %}
+
+{%- if not live.gallery.length and product.image %}
+        <section>
+            <div class="wrap">
+                <h2>A look around</h2>
+                <div class="shot-grid shot-grid--wide">
+                    <figure class="shot">
+                        <a class="shot-frame" href="{{ product.url }}" target="_blank" rel="noopener">
+                            <img src="{{ product.image.src }}" alt="{{ product.image.alt }}" loading="lazy" decoding="async" />
+                        </a>
+                        <figcaption>{{ product.urlLabel }}</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+{%- endif %}
+
+{%- if live.changelog.length %}
+        <section>
+            <div class="wrap">
+                <h2>Recent updates</h2>
+                <p class="section-lede">
+                    Written by <a href="./merge-and-tell.html">Merge &amp; Tell</a>
+                    from the pull requests that shipped them.
+                </p>
+                <ol class="update-list">
+{%- for entry in live.changelog %}
+                    <li class="update">
+{%- if entry.date %}
+                        <time class="update-date" datetime="{{ entry.date }}">{{ entry.date | shortDate }}</time>
+{%- endif %}
+                        <h3 class="update-title">{{ entry.title }}</h3>
+{%- if entry.summary %}
+                        <p class="update-summary">{{ entry.summary }}</p>
+{%- endif %}
+                    </li>
+{%- endfor %}
+                </ol>
+            </div>
+        </section>
+{%- endif %}
+
+        <section>
+            <div class="wrap">
+                <div class="button-row">
+                    <a href="./index.html#products" class="product-cta">← Back to portfolio</a>
+                    <a href="{{ product.url }}" target="_blank" rel="noopener" class="product-cta">Visit {{ product.urlLabel }} ↗</a>
+                </div>
+            </div>
+        </section>
