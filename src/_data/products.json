@@ -2,7 +2,7 @@
     {
         "key": "pheidi",
         "name": "Pheidi",
-        "tag": "Running training plans · Side project · 2025",
+        "tag": "Running training plans · Side project · 2026",
         "desc": "Personalized running plans for 5K to marathon that reschedule when life happens. Built on polarized training and real sports science. Free.",
         "url": "https://pheidi.training",
         "urlLabel": "pheidi.training",
@@ -57,6 +57,26 @@
             ]
         },
         "changelog": "CHANGELOG_MERGETEL_URL"
+    },
+    {
+        "key": "nightforge",
+        "name": "NightForge",
+        "tag": "Claude Code skills · Private for now · 2026",
+        "desc": "The robot night shift for all my repos. One plugin of Claude Code skills that read the error logs, fix what broke, keep the docs honest, and spend the CodeRabbit reviews where they matter. Every project runs the same pipeline.",
+        "page": "nightforge",
+        "about": [
+            "Every one of my projects used to have its own hand-written nightly sweep. They drifted apart fast. NightForge is the one version they all share now: the pipeline is identical everywhere, each stack gets an adapter, and each project gets a short card with its names and quirks.",
+            "The error sweep collects production errors, dedupes them against a ledger and the issue tracker, checks each one against the real source, files an issue, and hands it to a fix agent that opens a PR. The docs sweep runs each repo's own sync-docs audit once a week. The rest cover CI costs, CodeRabbit re-reviews, PR test plans, and cutting AI tells out of writing."
+        ],
+        "note": "It runs while I sleep. I read the one-line report with coffee.",
+        "terminal": [
+            "nightforge:error-sweep",
+            "nightforge:docs-sweep",
+            "nightforge:coderabbit-sweep",
+            "nightforge:ci-cost-sweep",
+            "nightforge:pr-test",
+            "nightforge:unslop"
+        ]
     },
     {
         "key": "screenery",

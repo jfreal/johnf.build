@@ -1,0 +1,125 @@
+{
+    "_readme": "The web of projects on /stack.html and the 'How it fits' box on each product page. Nodes are the dots; x/y place them in the 960x560 diagram. Links are proven integrations only: each one must point at something real in the repos. status 'planned' draws dashed and says so. 'story' is a case study URL, when one exists. Chapters are the build order, oldest first. Dates come from git history.",
+    "nodes": [
+        { "key": "pheidi", "name": "Pheidi", "label": ["Pheidi"], "x": 180, "y": 150, "core": true, "href": "./pheidi.html" },
+        { "key": "merge-and-tell", "name": "Merge & Tell", "label": ["Merge &", "Tell"], "x": 700, "y": 150, "core": true, "href": "./merge-and-tell.html" },
+        { "key": "nightforge", "name": "NightForge", "label": ["NightForge"], "x": 180, "y": 420, "core": true, "href": "./nightforge.html" },
+        { "key": "screenery", "name": "Screenery", "label": ["Screenery"], "x": 700, "y": 420, "core": true, "href": "./screenery.html" },
+        { "key": "johnf-build", "name": "This site", "label": ["this", "site"], "x": 440, "y": 285, "core": false, "href": "./stack.html" },
+        { "key": "eventbell", "name": "EventBell", "label": ["EventBell"], "x": 440, "y": 60, "core": false, "href": "./eventbell.html" },
+        { "key": "auspex-fatalis", "name": "Auspex Fatalis", "label": ["Auspex", "Fatalis"], "x": 880, "y": 285, "core": false, "href": "./auspex-fatalis.html" }
+    ],
+    "links": [
+        {
+            "from": "merge-and-tell", "to": "pheidi",
+            "says": "Drafts the posts for every Pheidi merge, for @pheiditraining on X, Bluesky, and Mastodon.",
+            "story": "./shipping-out-loud.html"
+        },
+        {
+            "from": "pheidi", "to": "merge-and-tell",
+            "says": "First real customer. A Pheidi PR where three cards disagreed about one channel rebuilt Merge & Tell's PR page.",
+            "story": "./shipping-out-loud.html"
+        },
+        {
+            "from": "screenery", "to": "pheidi",
+            "says": "Hosts Pheidi's docs screenshots, Play Store shots, and listing video. A test fails the build if the pictures and the pages drift apart.",
+            "story": "./screenshots-that-fail-the-build.html"
+        },
+        {
+            "from": "pheidi", "to": "screenery",
+            "says": "The worked example in Screenery's own CI-setup tests.",
+            "story": "./screenshots-that-fail-the-build.html"
+        },
+        {
+            "from": "pheidi", "to": "nightforge",
+            "says": "sync-docs, the skill that keeps docs honest, was born in Pheidi and ported into NightForge.",
+            "story": "./three-sweeps-drifted.html"
+        },
+        {
+            "from": "nightforge", "to": "pheidi",
+            "says": "Runs Pheidi's weekly docs sweep, nightly error sweep, and CodeRabbit re-reviews.",
+            "story": "./three-sweeps-drifted.html"
+        },
+        {
+            "from": "nightforge", "to": "merge-and-tell",
+            "says": "Runs Merge & Tell's weekly docs sweep and CodeRabbit re-reviews.",
+            "story": "./three-sweeps-drifted.html"
+        },
+        {
+            "from": "nightforge", "to": "auspex-fatalis",
+            "says": "Runs the Auspex Fatalis docs sweep through its own sync-docs port.",
+            "story": "./three-sweeps-drifted.html"
+        },
+        {
+            "from": "screenery", "to": "merge-and-tell",
+            "says": "Reshoots every Merge & Tell screen on each merge. Public pages use Screenery shots by name, as a rule."
+        },
+        {
+            "from": "screenery", "to": "auspex-fatalis",
+            "says": "Posts a screenshot gallery on every Auspex Fatalis pull request, and serves the help-article images."
+        },
+        {
+            "from": "screenery", "to": "johnf-build",
+            "says": "Every live screenshot on this site. Nobody here exports a PNG by hand."
+        },
+        {
+            "from": "merge-and-tell", "to": "johnf-build",
+            "says": "Writes the 'Recent updates' on the product pages here, from the PRs that shipped them."
+        },
+        {
+            "from": "merge-and-tell", "to": "auspex-fatalis",
+            "says": "Drafts the posts for Auspex Fatalis merges, steered by the repo's .marketing.yml."
+        },
+        {
+            "from": "eventbell", "to": "merge-and-tell",
+            "says": "EventBell's placeholder splash page taught Merge & Tell to leave a field empty instead of inventing one."
+        },
+        {
+            "from": "merge-and-tell", "to": "screenery",
+            "says": "Screenery's merges get drafted posts too.",
+            "status": "planned"
+        },
+        {
+            "from": "merge-and-tell", "to": "nightforge",
+            "says": "NightForge's skill changes get drafted posts too.",
+            "status": "planned"
+        }
+    ],
+    "chapters": [
+        {
+            "key": "pheidi",
+            "date": "2026-03-02",
+            "when": "March 2026",
+            "title": "I needed a running plan",
+            "body": "Pheidi started in 2019 as an Angular toy, then sat untouched for five years. In March 2026 I restarted it with a spec and a team of agents. It's past 700 commits since then. Plans that bend when you get hurt or go on vacation, which is exactly what I needed."
+        },
+        {
+            "key": "merge-and-tell",
+            "date": "2026-07-19",
+            "when": "July 2026",
+            "title": "Then nobody heard about it",
+            "body": "Pheidi was shipping every day and telling zero people. I'd merge a two-day fix and already be on the next branch. So I built Merge & Tell: every merged PR becomes a drafted post, and I only have to say yes."
+        },
+        {
+            "key": "nightforge",
+            "date": "2026-08-16",
+            "when": "August 2026",
+            "title": "Then the robots drifted",
+            "body": "Now I had several repos, each with a hand-written nightly sweep that read the error logs and opened fixes. In about two months they drifted into three different pipelines. One rediscovered its whole backlog every night. NightForge is the one pipeline they all run now."
+        },
+        {
+            "key": "screenery",
+            "date": "2026-08-28",
+            "when": "Late August 2026",
+            "title": "Then the screenshots went stale",
+            "body": "Docs, store listings, product pages, and Merge & Tell posts all wanted pictures of the app. Mine were frozen PNGs from whenever someone last remembered. Screenery makes CI push them and gives each one a URL that updates on release. Spec to published CLI in under two weeks."
+        },
+        {
+            "key": "johnf-build",
+            "date": "2026-09-29",
+            "when": "Now",
+            "title": "And then this site",
+            "body": "The page you're reading pulls its screenshots from Screenery and its update notes from Merge & Tell. It's less a portfolio and more the place where all of it lands."
+        }
+    ]
+}

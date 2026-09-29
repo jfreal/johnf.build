@@ -1,0 +1,148 @@
+---json
+{
+  "title": "My Running App's Pull Requests Write Their Own Posts · John Farrell",
+  "description": "I shipped Pheidi every day and told nobody. So I built Merge & Tell, which turns every merged PR into a drafted post. Then Pheidi returned the favor by breaking Merge & Tell's PR page.",
+  "ogTitle": "My running app's pull requests write their own posts",
+  "ogDescription": "How Merge & Tell markets Pheidi, and how one Pheidi PR rebuilt Merge & Tell's own PR page.",
+  "ogType": "article",
+  "ogPath": "/shipping-out-loud.html"
+}
+---
+        <section class="hero">
+            <div class="wrap hero-inner">
+                <p class="eyebrow">Merge &amp; Tell × Pheidi</p>
+                <h1>
+                    My running app's<br />
+                    pull requests <span class="hand">write</span><br />
+                    their own <span class="hand hand--coral">posts</span>.
+                </h1>
+                <p class="lede">
+                    Pheidi was shipping every day, and the number of people
+                    who heard about it was roughly zero. Not bad positioning.
+                    Not the wrong channel. I just never said anything. So I
+                    built a tool that says it for me, and pointed it at
+                    Pheidi first.
+                </p>
+                <svg class="hero-squiggle" viewBox="0 0 320 14" aria-hidden="true">
+                    <path d="M2 8 Q 20 -2, 40 8 T 80 8 T 120 8 T 160 8 T 200 8 T 240 8 T 280 8 T 318 8"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>The part I kept skipping</h2>
+                    <p>
+                        I'd merge a change that took two days and fixed a real
+                        problem for anyone using <a href="./pheidi.html">Pheidi</a>.
+                        Then I'd already be on the next branch. With three
+                        agents running and branches landing all day, the gap
+                        between what I'd shipped and what anyone knew I'd
+                        shipped grew every single day. Working harder, looking
+                        quieter.
+                    </p>
+                    <p>
+                        The honest reason is that I was scared of the telling
+                        part. Merging was fine. Saying "I made this" out loud
+                        was the step I'd quietly skip. (Turns out there's a
+                        whole discipline for that step. It's called "go to
+                        market," and I had to look it up.)
+                    </p>
+                    <p>
+                        A merged pull request is already an announcement. It
+                        has a diff, a title, a description, and a timestamp.
+                        That's more structure than most marketing ever starts
+                        with. It just isn't written for anyone outside the repo.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">Distribution as a workaround for nerve.</p>
+                </aside>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <h2>What happens when Pheidi merges a PR</h2>
+                <p class="section-lede">
+                    <a href="./merge-and-tell.html">Merge &amp; Tell</a> gets the
+                    GitHub webhook and does the rest. I only show up at the end.
+                </p>
+                <ol class="timeline">
+                    <li>
+                        <p class="timeline-when">1 · Read</p>
+                        <h3>It reads the diff, not the title</h3>
+                        <p>PR titles lie by omission. The diff doesn't. It gets trimmed at twelve thousand characters, which matters exactly once: the day you merge a lockfile the size of a novel.</p>
+                    </li>
+                    <li>
+                        <p class="timeline-when">2 · Filter</p>
+                        <h3>Most merges aren't news</h3>
+                        <p>Bot PRs, dependency bumps, and changes under ten meaningful lines never become a post. Small ones that survive get batched into a weekly roundup. A feed of every merge would be worse than silence.</p>
+                    </li>
+                    <li>
+                        <p class="timeline-when">3 · Draft</p>
+                        <h3>One draft per channel, for a named reader</h3>
+                        <p>Pheidi's posts go to @pheiditraining on X, pheidi.bsky.social, and Pheidi's Mastodon, plus a changelog. Each draft is aimed at a runner, not a developer, in Pheidi's voice, not mine.</p>
+                    </li>
+                    <li>
+                        <p class="timeline-when">4 · Approve</p>
+                        <h3>Nothing posts until I say yes</h3>
+                        <p>Then it goes out from Pheidi's own accounts. No scheduler in the middle. The number I watch is the kept rate: how many drafts go out with barely an edit.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>Then Pheidi broke Merge &amp; Tell (helpfully)</h2>
+                    <p>
+                        Being the first real customer means you find the bugs.
+                        On Pheidi PR #627, Merge &amp; Tell's PR page tried to
+                        answer "what happens to this PR?" in four places, and
+                        they disagreed. The rules card said <strong>X: Skip</strong>.
+                        The right rail listed <strong>X @pheiditraining</strong>
+                        as a destination. A third card offered to post to
+                        @pheiditraining with "no copy drafted yet." Three
+                        answers for one channel.
+                    </p>
+                    <p>
+                        The fix wasn't a fourth card. It was one card that
+                        draws a timeline from merge to live, where every count,
+                        chip, and button label comes from one field per
+                        channel. Two numbers on a screen can't disagree if
+                        neither of them is worked out twice.
+                    </p>
+                    <p>
+                        That's the deal between these two. Pheidi gets
+                        marketing it would never have gotten from me. Merge
+                        &amp; Tell gets a real repo with real merges, real
+                        social accounts, and real ways to be wrong. Both are
+                        better for it.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">Your first customer should be you. You're very forgiving.</p>
+                </aside>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <h2>Where this sits in the stack</h2>
+                <p>
+                    Merge &amp; Tell now drafts for Auspex Fatalis too, and it
+                    writes the "Recent updates" on the product pages on this
+                    site. Its own screenshots come from
+                    <a href="./screenery.html">Screenery</a>, retaken on every
+                    merge. The <a href="./stack.html">whole web</a> is one page over.
+                </p>
+                <div class="button-row">
+                    <a href="./stack.html" class="product-cta">← The stack</a>
+                    <a href="./screenshots-that-fail-the-build.html" class="product-cta">Next: Screenery × Pheidi →</a>
+                </div>
+            </div>
+        </section>

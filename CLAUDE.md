@@ -39,8 +39,11 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
 
 ## Section-specific notes
 
-- **Hero h1.** Three short lines, handwritten accents on key verbs/nouns. Keep it physical: `build`, `lead`, `ship`. AI sits in the hand font because it's the new beat.
-- **"What I'm looking for" card.** This is the conversion. Stay specific about the role (agentic operations) and the work (harnesses, feedback loops, pulling the org up the curve). Don't generalize it into "any AI role."
+- **The site's job.** Personal brand and marketing channel for John's projects, built in public. Not a job hunt: no "hire me," "open to roles," or résumé pitches. The spine is "every tool I built fixes a problem the last one made."
+- **Hero h1.** Three short lines, handwritten accents on key verbs/nouns. Keep it physical: `build`, `ship`, `show`. AI sits in the hand font because it's the new beat.
+- **"Start here" card.** The home page's one conversion. It sends readers to `/stack.html`.
+- **Case studies.** One project helping another, told with the real PR, the real bug, the real number. Private repos: name the PR ("Pheidi PR #627"), don't link it. Every claim must be something the code does today. Anything not wired up yet is `"status": "planned"` in `stack.json` and says so.
+- **The build order is Pheidi, Merge & Tell, NightForge, Screenery** (dates from git). Tell it in that order.
 - **About section.** Three paragraphs, max. Mechanics, then the operations point, then the humans-are-the-fun-part close. Snark goes in the middle paragraph, never the close.
 - **Product cards.** 2–4 sentences. What it is, who it's for or how it came to be, one tangible detail.
 - **Testimonials.** Verbatim quotes. Do not edit the voice of the person being quoted.
@@ -87,6 +90,20 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
   the `CHANGELOG_*` vars are read during the build (Builds scope), while
   `NETLIFY_BUILD_HOOK_URL` is read by the function at run time, so it needs
   the Functions scope. Without it the function quietly skips the rebuild.
+- **The stack** (`/stack.html`) comes from `src/_data/stack.json`: `nodes`
+  (dots, placed by x/y in a 960x520 diagram), `links` (proven integrations,
+  one line each, optional `story` URL, `"status": "planned"` draws dashed),
+  and `chapters` (the build order, with dates from git). `src/_data/stackGraph.js`
+  turns that into curved edge paths and per-product `fits`, which feeds the
+  "How it fits" box on every product page. Add a link once and the diagram,
+  the stack page list, and both product pages update. Case studies are listed
+  in `src/_data/stories.json`; like Ordo, they stay out of `articles.json`.
+- A product with no screenshot can set `terminal` (a list of lines) and the
+  card shows those as a command list instead. A product with no `url` (a
+  private repo) gets no "Visit" link.
+- `src/sitemap.njk` and `src/robots.njk` build `/sitemap.xml` and `/robots.txt`.
+  The home page carries a `Person` JSON-LD block; product pages carry a
+  `SoftwareApplication` block (both in `base.njk`).
 - Styles in `css/site.css`. Tiny vanilla JS in `js/site.js` (year stamp, scroll reveal).
   Those, plus `img/`, `assets/`, and the favicons, pass through from the repo root.
 - Fonts: Fraunces (serif), Inter (sans), Caveat (handwritten accents).

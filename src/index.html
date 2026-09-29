@@ -1,10 +1,10 @@
 ---json
 {
   "nav": "home",
-  "title": "John Farrell · Builder, Engineering Manager",
-  "description": "John Farrell builds products, leads engineering teams, and ships software. 20+ years of full-stack development, 5+ years of people management.",
-  "ogTitle": "John Farrell · Builder, Engineering Manager",
-  "ogDescription": "Builds products. Leads teams. Ships software.",
+  "title": "John Farrell · Building in public with a team of agents",
+  "description": "John Farrell builds Pheidi, Merge & Tell, NightForge, and Screenery with a team of AI agents, and writes down how it's going. Every tool fixes a problem the last one made.",
+  "ogTitle": "John Farrell · Building in public with a team of agents",
+  "ogDescription": "A running app, the marketing tool it needed, and the robots and screenshots those needed. One person, a team of agents, all of it in the open.",
   "ogType": "website",
   "ogPath": "/"
 }
@@ -14,27 +14,27 @@
               <div class="hero-copy">
                 <p class="eyebrow">Hi, I'm John <span class="wave" aria-hidden="true">👋</span></p>
                 <h1>
-                    I <span class="hand">build</span> products,
+                    I <span class="hand">build</span> products
                     <br />
-                    <span class="hand hand--coral">lead</span> teams,
+                    with <span class="hand">AI</span> agents,
                     <br />
-                    and <span class="hand">ship</span> with <span class="hand">AI</span>.
+                    and <span class="hand hand--coral">show</span> my work.
                 </h1>
                 <p class="lede">
-                    Agentic developer. Fully AI-fluent. Twenty-plus years
-                    writing code, half a decade leading the humans who
-                    write it. Now I get to do both with a team of agents,
-                    and honestly, it rules.
+                    I started with a running app I needed. It needed people
+                    to hear about it, so I built that too. Then that needed
+                    robots and screenshots. Twenty-plus years of writing code,
+                    and this is the most fun I've had doing it. This is where
+                    I write down how it's going, including the parts that broke.
                 </p>
 
                 <div class="looking-for">
-                    <p class="looking-for-label">What I'm looking for</p>
+                    <p class="looking-for-label">Start here</p>
                     <p class="looking-for-body">
-                        An <strong>agentic operations</strong> role where I
-                        help a team actually succeed with generative AI.
-                        Setting up harnesses, tightening feedback loops,
-                        and pulling the whole org up the curve without
-                        losing the plot.
+                        <strong>Every tool I built fixes a problem the last
+                        one made.</strong> See how Pheidi, Merge &amp; Tell,
+                        NightForge, and Screenery run each other.
+                        <a href="./stack.html">The stack →</a>
                     </p>
                 </div>
 
@@ -64,12 +64,27 @@
                     <p class="stat-label">shipping software</p>
                 </div>
                 <div class="stat">
-                    <p class="stat-num">5+<span class="stat-unit">yrs</span></p>
-                    <p class="stat-label">leading engineers</p>
+                    <p class="stat-num">4</p>
+                    <p class="stat-label">tools that run each other</p>
                 </div>
                 <div class="stat stat--hand">
                     <p class="stat-num stat-num--hand">all in</p>
                     <p class="stat-label">on agentic dev</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stack-teaser" id="stack">
+            <div class="wrap">
+                <h2>What I'm building</h2>
+                <p class="section-lede">
+                    Four tools, one person, and a lot of arrows. Every arrow is
+                    something one project really does for another. Click one
+                    for the story.
+                </p>
+{% include "stack-diagram.njk" %}
+                <div class="button-row">
+                    <a href="./stack.html" class="product-cta">How it happened, in order →</a>
                 </div>
             </div>
         </section>
@@ -121,9 +136,25 @@
             </div>
         </section>
 
+        <section class="products" id="products">
+            <div class="wrap">
+                <h2>Everything I'm building</h2>
+                <p class="section-lede">
+                    The top of this list is what I'm building right now. The
+                    bottom is how I got here. Shipping software since 1999.
+                </p>
+
+                <div class="product-grid">
+{%- for product in products %}
+{% include "product-card.njk" %}
+{%- endfor %}
+                </div>
+            </div>
+        </section>
+
         <section class="teams" id="teams">
             <div class="wrap">
-                <h2>Teams I've led</h2>
+                <h2>Before the side projects took over</h2>
                 <p class="section-lede">
                     The most rewarding thing I've done professionally was
                     building, growing, and nurturing a ten-person engineering
@@ -151,21 +182,6 @@
                     sketch to a Startup Weekend Hartford 2012 win to a
                     revenue-generating business.
                 </p>
-            </div>
-        </section>
-
-        <section class="products" id="products">
-            <div class="wrap">
-                <h2>Products I've built</h2>
-                <p class="section-lede">
-                    Shipping software since 1999. The top of this list is what I'm building right now.
-                </p>
-
-                <div class="product-grid">
-{%- for product in products %}
-{% include "product-card.njk" %}
-{%- endfor %}
-                </div>
             </div>
         </section>
 

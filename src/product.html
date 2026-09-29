@@ -23,9 +23,11 @@ const eleventyComputed = {
                 <p class="eyebrow">{{ product.tag.split(" · ")[0] }}</p>
                 <h1><span class="hand hand--coral">{{ product.name }}</span></h1>
                 <p class="lede">{{ product.desc }}</p>
+{%- if product.url %}
                 <div class="button-row">
                     <a href="{{ product.url }}" target="_blank" rel="noopener" class="product-cta">Visit {{ product.urlLabel }} ↗</a>
                 </div>
+{%- endif %}
             </div>
         </section>
 
@@ -44,6 +46,38 @@ const eleventyComputed = {
 {%- endif %}
             </div>
         </section>
+
+{%- set fit = stackGraph.fits[product.key] %}
+{%- if fit and (fit.gives.length or fit.gets.length) %}
+        <section id="how-it-fits">
+            <div class="wrap">
+                <h2>How it fits</h2>
+                <p class="section-lede">
+{%- if fit.chapter %}
+                    {{ fit.chapter.body }}
+{%- endif %}
+                    It's one part of <a href="./stack.html">the stack</a>, where
+                    my projects run each other.
+                </p>
+                <div class="fits-grid">
+{%- if fit.gives.length %}
+                    <div>
+                        <h3>What {{ product.name }} does for the others</h3>
+{%- set links = fit.gives %}
+{% include "link-list.njk" %}
+                    </div>
+{%- endif %}
+{%- if fit.gets.length %}
+                    <div>
+                        <h3>What the others do for {{ product.name }}</h3>
+{%- set links = fit.gets %}
+{% include "link-list.njk" %}
+                    </div>
+{%- endif %}
+                </div>
+            </div>
+        </section>
+{%- endif %}
 
 {%- if live.gallery.length %}
         <section>
@@ -112,8 +146,10 @@ const eleventyComputed = {
         <section>
             <div class="wrap">
                 <div class="button-row">
-                    <a href="./index.html#products" class="product-cta">← Back to portfolio</a>
+                    <a href="./index.html#products" class="product-cta">← Everything I'm building</a>
+{%- if product.url %}
                     <a href="{{ product.url }}" target="_blank" rel="noopener" class="product-cta">Visit {{ product.urlLabel }} ↗</a>
+{%- endif %}
                 </div>
             </div>
         </section>

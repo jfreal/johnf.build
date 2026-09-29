@@ -1,0 +1,13 @@
+{#- A list of links between projects. Expects `links` (edges from
+    stackGraph). -#}
+                <ul class="link-list">
+{%- for edge in links %}
+                    <li{% if edge.planned %} class="is-planned"{% endif %}>
+                        <span class="link-pair"><a href="{{ edge.fromHref }}">{{ edge.fromName }}</a> → <a href="{{ edge.toHref }}">{{ edge.toName }}</a>{% if edge.planned %} <span class="link-status">· Next up</span>{% endif %}</span>
+                        <span class="link-says">{{ edge.says }}</span>
+{%- if edge.story %}
+                        <a class="link-story" href="{{ edge.story }}">Read the story →</a>
+{%- endif %}
+                    </li>
+{%- endfor %}
+                </ul>

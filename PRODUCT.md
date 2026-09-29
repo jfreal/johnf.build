@@ -6,21 +6,28 @@ brand
 
 ## Users
 
-People deciding whether to talk to John: engineering leaders, founders, and
-hiring managers sizing him up for an agentic-operations or engineering-leadership
-role. They arrive from LinkedIn, a résumé link, or a referral, usually skimming
-on a laptop between other tabs. The job they're doing: figure out in ~30 seconds
-whether John is the real thing (genuinely AI-fluent, has shipped, can lead
-humans) and whether he's worth a conversation.
+People who might use, follow, or talk about John's projects: solo founders,
+indie hackers, and developers curious how one person ships this much with
+agents. They arrive from a Merge & Tell post, a product page's footer, Reddit,
+Hacker News, or LinkedIn, usually skimming on a laptop or a phone. The job
+they're doing: figure out in ~30 seconds what John is building, whether it's
+real, and whether one of the projects is worth trying or following.
 
 ## Product Purpose
 
-John Farrell's personal site. It exists to land an **agentic-operations** role:
-someone who helps a team actually succeed with generative AI (setting up
-harnesses, tightening feedback loops, pulling the org up the curve). Success = a
-qualified reader hits the "What I'm looking for" card, believes the AI-fluency
-claim *because the operations behind it are concrete*, and reaches out. It's a
-calling card with one sharp conversion, not a general résumé dump.
+John Farrell's personal brand, and the marketing channel for all his projects.
+It is **not** a job-search page anymore (changed 2026-09-29). The story it
+tells: **every tool John built fixes a problem the last one made.** Pheidi (a
+running app he needed) led to Merge & Tell (Pheidi's marketing), which led to
+NightForge (the robots running every repo) and Screenery (the screenshots
+every page needed). They now run each other, and this site is where it all
+lands.
+
+Success = a reader follows a line from one project to another, reads a case
+study, and clicks through to a product. The hub is `/stack.html`. Every
+product page links back to it through its "How it fits" box, and every case
+study links to the next one. Build in public: the challenges and the broken
+parts are content, not something to hide.
 
 ## Brand Personality
 
@@ -53,7 +60,7 @@ Three-word version: candid, snarky, optimistic.
 - **The voice is the product.** Every line passes the smart-friend-at-a-bar
   test. If it sounds like a LinkedIn post, it's wrong. Craft serves the voice,
   never sands it down.
-- **Specific beats vague, always.** Named projects (Pheidi, ktcalc, Ordo),
+- **Specific beats vague, always.** Named projects (Pheidi, Merge & Tell, Screenery),
   checkable numbers (~100 commits/mo on a hot side project), concrete tools
   (Claude Code, sub-agents, MCP, evals). Categories and adjectives are the enemy.
 - **Earn the wink.** Snark only lands on a claim that's already true. Don't
