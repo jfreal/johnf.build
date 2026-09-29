@@ -99,7 +99,8 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
   the stack page list, and both product pages update. Case studies are listed
   in `src/_data/stories.json`; like Ordo, they stay out of `articles.json`.
 - A product with no screenshot can set `terminal` (a list of lines) and the
-  card shows those as a command list instead (NightForge). A product with no
+  card shows those as a command list instead (NightForge). An optional `logo`
+  sits in that card's corner and above the product page's title. A product with no
   `url` (a private repo) gets no "Visit" link.
 - `src/sitemap.njk` and `src/robots.njk` build `/sitemap.xml` and `/robots.txt`.
   The home page carries a `Person` JSON-LD block; product pages carry a

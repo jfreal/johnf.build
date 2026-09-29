@@ -72,6 +72,7 @@
             "It's public domain. Two commands install the whole set: claude plugin marketplace add jfreal/nightforge, then claude plugin install nightforge@nightforge."
         ],
         "note": "It runs while I sleep. I read the one-line report with coffee.",
+        "logo": { "src": "./img/nightforge-logo.png", "alt": "The NightForge logo: a dark cube with a glowing forge inside." },
         "terminal": [
             "claude plugin install nightforge@nightforge",
             "nightforge:error-sweep",

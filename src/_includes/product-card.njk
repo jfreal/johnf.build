@@ -39,6 +39,9 @@
 {%- elif product.terminal %}
                         {#- No screen to show (a CLI plugin), so the thumb is its command list. #}
                         <div class="product-thumb product-thumb--terminal" aria-hidden="true">
+{%- if product.logo %}
+                            <img class="term-logo" src="{{ product.logo.src }}" alt="" loading="lazy" decoding="async" />
+{%- endif %}
                             <pre>{% for line in product.terminal %}<span class="term-prompt">&gt;</span> {{ line }}
 {% endfor %}</pre>
                         </div>

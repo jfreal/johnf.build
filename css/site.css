@@ -756,6 +756,16 @@ section {
     white-space: pre-wrap;
 }
 .term-prompt { color: var(--coral); }
+.product-thumb--terminal { position: relative; }
+.product-thumb .term-logo {
+    position: absolute;
+    right: 0.9rem;
+    bottom: 0.8rem;
+    width: 3.5rem;
+    height: auto;
+    object-fit: contain;
+}
+.product-logo { display: block; width: 7.5rem; height: auto; margin-bottom: 1rem; }
 
 /* ----- The stack: the web of projects ----- */
 .stack-figure {
