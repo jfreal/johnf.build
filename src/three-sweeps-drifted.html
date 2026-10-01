@@ -1,0 +1,184 @@
+---json
+{
+  "title": "Three Robot Sweeps Drifted, So I Built a Factory · John Farrell",
+  "description": "Every repo had its own hand-written nightly sweep that read the error logs and opened fixes. In two months they became three different pipelines. NightForge is the one they all share now.",
+  "ogTitle": "Three robot sweeps drifted, so I built a factory",
+  "ogDescription": "How NightForge became the shared night shift for Pheidi, Merge & Tell, and the rest, and the bugs that taught each rule.",
+  "ogType": "article",
+  "ogPath": "/three-sweeps-drifted.html"
+}
+---
+        <section class="hero">
+            <div class="wrap hero-inner">
+                <p class="eyebrow">NightForge × every repo</p>
+                <h1>
+                    Three robot sweeps<br />
+                    <span class="hand">drifted</span>. So I built<br />
+                    a <span class="hand hand--coral">factory</span>.
+                </h1>
+                <p class="lede">
+                    Each of my projects had a nightly robot: read the error
+                    logs, figure out what broke, open a fix. I wrote each one
+                    by hand. In about two months they had drifted into three
+                    different pipelines, and one of them was quietly writing
+                    the same report every night. NightForge is the one version
+                    they all run now.
+                </p>
+                <svg class="hero-squiggle" viewBox="0 0 320 14" aria-hidden="true">
+                    <path d="M2 8 Q 20 -2, 40 8 T 80 8 T 120 8 T 160 8 T 200 8 T 240 8 T 280 8 T 318 8"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="wrap stats-grid">
+                <div class="stat">
+                    <p class="stat-num">3</p>
+                    <p class="stat-label">hand-written sweeps, three different pipelines</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-num">24<span class="stat-unit">KB</span></p>
+                    <p class="stat-label">nightly report of the same old findings</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-num">1</p>
+                    <p class="stat-label">pipeline they all share now</p>
+                </div>
+                <div class="stat stat--hand">
+                    <p class="stat-num stat-num--hand">1 line</p>
+                    <p class="stat-label">report on a quiet night</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>How it drifted</h2>
+                    <p>
+                        One sweep filed issues and opened pull requests. One
+                        only filed issues. One was a single sentence with no
+                        memory at all, so every night it rediscovered its whole
+                        backlog from scratch and wrote it all down again. Its
+                        reports grew to 24 KB of findings I'd already read.
+                    </p>
+                    <p>
+                        None of them were wrong, exactly. They'd just each
+                        learned different lessons, and a fix in one never
+                        reached the others. (Robots, it turns out, also
+                        don't read each other's Slack.)
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">That drift is the reason the repo exists.</p>
+                </aside>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <h2>One pipeline, a card per project</h2>
+                <p class="section-lede">
+                    The pipeline is the same everywhere. Each stack (Netlify,
+                    Supabase, Azure App Insights) gets an adapter. Each project
+                    gets a short card with its names and quirks. Adding a
+                    project is one card. A pipeline fix is one edit every
+                    project gets.
+                </p>
+                <ol class="timeline">
+                    <li>
+                        <p class="timeline-when">Collect</p>
+                        <h3>Pull the night's errors</h3>
+                        <p>From whatever the project runs on, through that stack's adapter.</p>
+                    </li>
+                    <li>
+                        <p class="timeline-when">Dedupe</p>
+                        <h3>Check the ledger and the issue tracker</h3>
+                        <p>Including closed issues. On the very first live run, an error that was new to the empty ledger turned out to be fixed already, by a PR merged fourteen minutes after the error last fired. That one check stopped a junk issue and a fix agent aimed at a fix that already shipped.</p>
+                    </li>
+                    <li>
+                        <p class="timeline-when">Triage</p>
+                        <h3>Read it against the real source</h3>
+                        <p>Not the stack trace's opinion of the source. The actual code on the default branch.</p>
+                    </li>
+                    <li>
+                        <p class="timeline-when">Fix</p>
+                        <h3>File it, then hand it to a fix agent</h3>
+                        <p>The agent works in its own worktree and opens a pull request. An issue only closes when a merged, deployed PR and quiet error logs both say so.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>Every rule was paid for</h2>
+                    <p>
+                        A sweep that only watched for exceptions was blind to
+                        404s. One app served them to a live subscriber for 21
+                        hours while every scheduled run reported success.
+                    </p>
+                    <p>
+                        An Azure CLI default quietly narrowed a query to the
+                        last hour, even though the query asked for a week. One
+                        project ran green every day for a week while missing
+                        six of its eight live problems.
+                    </p>
+                    <p>
+                        For a month the sweeps wrote what they learned back
+                        into their own instructions. The cards passed 100 KB.
+                        Now lessons go to a database, and the skill only
+                        changes when a human edits it.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">A green run is not proof the app is healthy.</p>
+                </aside>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <h2>The rest of the night shift</h2>
+                <p>
+                    The error sweep came first. The rest followed the same
+                    shape: one skill, a short card per project.
+                </p>
+                <ul class="link-list">
+                    <li>
+                        <span class="link-pair">docs-sweep · weekly</span>
+                        <span class="link-says">Finds every repo with its own sync-docs audit, runs it, and opens a draft PR where the docs drifted from the code. sync-docs itself was born in <a href="./pheidi.html">Pheidi</a> and ported everywhere else. Pheidi, Merge &amp; Tell, Auspex Fatalis, and NightForge all run their own copy.</span>
+                    </li>
+                    <li>
+                        <span class="link-pair">coderabbit-sweep · hourly</span>
+                        <span class="link-says">I get a limited number of CodeRabbit reviews, so this spends the next one on the pull request across all my repos that needs it most. Its rules come from real Pheidi and Merge &amp; Tell PRs.</span>
+                    </li>
+                    <li>
+                        <span class="link-pair">ci-cost-sweep</span>
+                        <span class="link-says">Measures where CI minutes go, cuts them without cutting coverage, and proves the saving on real runs before claiming it.</span>
+                    </li>
+                    <li>
+                        <span class="link-pair">pr-test</span>
+                        <span class="link-says">Runs a PR's test plan in a real browser, ticks the boxes, and posts the screenshots.</span>
+                    </li>
+                    <li>
+                        <span class="link-pair">unslop</span>
+                        <span class="link-says">Cuts the AI tells out of writing, so the robots don't sound like robots.</span>
+                    </li>
+                </ul>
+                <p>
+                    NightForge is open source and public domain. It's a pile
+                    of Markdown and a little Python, and it has been running
+                    my repos since August. Take it:
+                    <a href="https://github.com/jfreal/nightforge" target="_blank" rel="noopener">github.com/jfreal/nightforge ↗</a>.
+                    Two commands install the lot. See how it plugs into the rest on
+                    <a href="./stack.html">the stack</a>.
+                </p>
+                <div class="button-row">
+                    <a href="./stack.html" class="product-cta">← The stack</a>
+                    <a href="./shipping-out-loud.html" class="product-cta">Next: Merge &amp; Tell × Pheidi →</a>
+                </div>
+            </div>
+        </section>

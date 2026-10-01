@@ -1,0 +1,144 @@
+---json
+{
+  "title": "Screenshots That Fail the Build When They Lie · John Farrell",
+  "description": "Pheidi's docs screenshots, Play Store shots, and listing video all come out of CI through Screenery. A test reads the source as a syntax tree so a stale or missing screenshot fails the build instead of shipping.",
+  "ogTitle": "Screenshots that fail the build when they lie",
+  "ogDescription": "How Screenery keeps every Pheidi screenshot current, and the test that won't let a missing one ship.",
+  "ogType": "article",
+  "ogPath": "/screenshots-that-fail-the-build.html"
+}
+---
+        <section class="hero">
+            <div class="wrap hero-inner">
+                <p class="eyebrow">Screenery × Pheidi</p>
+                <h1>
+                    Screenshots that<br />
+                    <span class="hand">fail</span> the build<br />
+                    when they <span class="hand hand--coral">lie</span>.
+                </h1>
+                <p class="lede">
+                    Every doc page, store listing, and product page wants a
+                    picture of the app. The app changes daily. The pictures
+                    change whenever somebody remembers, which is never. So
+                    now CI takes them, Screenery hosts them, and a test makes
+                    sure the two can't quietly drift apart.
+                </p>
+                <svg class="hero-squiggle" viewBox="0 0 320 14" aria-hidden="true">
+                    <path d="M2 8 Q 20 -2, 40 8 T 80 8 T 120 8 T 160 8 T 200 8 T 240 8 T 280 8 T 318 8"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <h2>This picture is live</h2>
+                <p class="section-lede">
+                    It's Pheidi's "today" screen, straight from Screenery. When
+                    Pheidi ships a change to that screen, this image changes.
+                    Nobody touches this page.
+                </p>
+                <figure class="shot story-shot">
+                    <a class="shot-frame" href="./pheidi.html">
+                        <img src="https://cdn.screenery.dev/jfreal/pheidi/desktop/plan/today@latest.png"
+                            alt="Pheidi's today screen: today's run with pace and heart-rate targets, above this week's schedule."
+                            loading="lazy" decoding="async" />
+                    </a>
+                    <figcaption>cdn.screenery.dev/jfreal/pheidi/desktop/plan/today@latest.png</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>How the pictures get made</h2>
+                    <p>
+                        Pheidi's end-to-end tests already drive the real app in
+                        a real browser. Two of them just stop and take
+                        pictures: one set for the docs, one set for the Google
+                        Play listing. On every merge, CI pushes them to
+                        <a href="./screenery.html">Screenery</a> with
+                        <code>screenery/push@v1</code>. The Play listing video
+                        goes the same way.
+                    </p>
+                    <p>
+                        There's no API key sitting in the repo. The push step
+                        trades GitHub's OIDC token for a five-minute
+                        credential. (The best secret is the one you never
+                        stored.)
+                    </p>
+                    <p>
+                        Each picture gets a name like <code>plan/today</code>
+                        and a URL ending in <code>@latest</code>. Pull request
+                        builds publish to their own channel, so a half-done
+                        branch never replaces what the docs show. A merge to
+                        master does. The doc pages embed the URL once and
+                        never think about it again.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">Docker Hub, but for pictures of your app.</p>
+                </aside>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>The failure nobody would notice</h2>
+                    <p>
+                        Here's the trap. The test that takes a picture says
+                        <code>plan/today</code>. The doc page that shows it
+                        also says <code>plan/today</code>. Nothing connects
+                        those two strings except a URL loading in a
+                        stranger's browser. Rename one, and a doc page serves
+                        a broken image forever. No build fails. No test fails.
+                        No deploy fails.
+                    </p>
+                    <p>
+                        So Pheidi has a test just for that. It reads the list
+                        of names the doc pages use, reads every name the
+                        capture tests take, and fails if they don't match. It
+                        also checks the site's security policy still allows
+                        the Screenery CDN.
+                    </p>
+                    <p>
+                        The fun detail: it reads the C# as a syntax tree, not
+                        with a regex. A regex would count a commented-out
+                        capture as real, so the check would pass while
+                        guarding nothing. That was checked on purpose: a
+                        commented-out capture passes the regex version and
+                        fails this one.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">A guard that passes while guarding nothing is worse than no guard.</p>
+                </aside>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <h2>Pheidi paid it back</h2>
+                <p>
+                    Pheidi was Screenery's proving ground. It's the worked
+                    example in Screenery's own CI-setup tests, and one of
+                    Screenery's regression tests is named after a real Pheidi
+                    setup that made an empty log look broken. Same deal as with
+                    <a href="./shipping-out-loud.html">Merge &amp; Tell</a>:
+                    Pheidi goes first, finds the weird edges, and the tool gets
+                    better for everyone after.
+                </p>
+                <p>
+                    Everyone after, so far: Merge &amp; Tell reshoots its
+                    screens on every merge, Auspex Fatalis gets a screenshot
+                    gallery on every pull request, and every live screenshot
+                    on this site comes from Screenery too.
+                </p>
+                <div class="button-row">
+                    <a href="./stack.html" class="product-cta">← The stack</a>
+                    <a href="./three-sweeps-drifted.html" class="product-cta">Next: NightForge →</a>
+                </div>
+            </div>
+        </section>

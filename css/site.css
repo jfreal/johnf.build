@@ -272,8 +272,8 @@ a:hover, a:focus-visible {
 
 .nav-menu-icon { width: 20px; height: auto; flex: none; }
 
-/* A project with its own header slot (NightForge): icon + name, same pill shape. */
-.nav-project {
+/* Top-level header items (Stack, NightForge): same pill shape as the Writing trigger. */
+.nav-pill {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -282,7 +282,7 @@ a:hover, a:focus-visible {
     border-radius: 999px;
     background: none;
 }
-a.nav-project:hover, a.nav-project:focus-visible { background: none; color: var(--ink); border-color: var(--paper-line); }
+a.nav-pill:hover, a.nav-pill:focus-visible { background: none; color: var(--ink); border-color: var(--paper-line); }
 
 /* LinkedIn / GitHub as icons. The link underline doesn't fit a glyph. */
 .nav-social { display: inline-flex; align-items: center; gap: 0.5rem; }
@@ -804,6 +804,136 @@ section {
     color: var(--ink-soft);
     font-size: 0.97rem;
 }
+
+/* A product with no screen (a CLI plugin) shows its commands instead. */
+.product-thumb--terminal {
+    display: flex;
+    align-items: center;
+    background: var(--ink);
+}
+.product-thumb--terminal pre {
+    margin: 0;
+    padding: 1rem 1.2rem;
+    font: 500 0.85rem/1.7 ui-monospace, SFMono-Regular, Consolas, monospace;
+    color: var(--cream);
+    white-space: pre-wrap;
+}
+.term-prompt { color: var(--coral); }
+.product-thumb--terminal { position: relative; }
+.product-thumb .term-logo {
+    position: absolute;
+    right: 0.9rem;
+    bottom: 0.8rem;
+    width: 3.5rem;
+    height: auto;
+    object-fit: contain;
+}
+.product-logo { display: block; width: 7.5rem; height: auto; margin-bottom: 1rem; }
+
+/* ----- The stack: the web of projects ----- */
+.stack-figure {
+    margin: 2rem 0 0;
+    padding: clamp(0.5rem, 2vw, 1.5rem);
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(42, 35, 38, 0.18);
+}
+.stack-figure svg { display: block; width: 100%; height: auto; }
+.stack-figure figcaption {
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+}
+.stack-edge { fill: none; stroke: var(--teal); stroke-width: 2.5; }
+.stack-edge--planned { stroke: var(--ink-soft); stroke-dasharray: 6 7; stroke-width: 2; }
+.stack-edge-link:hover .stack-edge,
+.stack-edge-link:focus-visible .stack-edge { stroke: var(--coral); stroke-width: 4; }
+.stack-edge-link:hover, .stack-edge-link:focus-visible { background: none; outline: none; }
+.stack-arrow { fill: var(--teal); }
+.stack-arrow--planned { fill: var(--ink-soft); }
+.stack-node circle { fill: var(--cream); stroke: var(--ink); stroke-width: 2.5; }
+.stack-node--core circle { fill: #fff; stroke: var(--teal-deep); stroke-width: 3.5; }
+.stack-node--side circle { stroke-dasharray: 5 5; }
+.stack-node text {
+    font: 700 19px "Fraunces", Georgia, serif;
+    fill: var(--ink);
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+.stack-node-link:hover, .stack-node-link:focus-visible { background: none; outline: none; }
+.stack-node-link:hover circle, .stack-node-link:focus-visible circle { fill: var(--cream-2); stroke: var(--coral); }
+
+.link-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: grid;
+    gap: 0.9rem;
+    max-width: 48rem;
+}
+.link-list li {
+    padding-left: 1rem;
+    border-left: 3px solid var(--teal);
+}
+.link-list li.is-planned { border-left-style: dashed; border-left-color: var(--ink-soft); }
+.link-pair {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+}
+.link-says { display: block; color: var(--ink-soft); font-size: 0.97rem; }
+.link-story { font-weight: 600; font-size: 0.95rem; }
+.link-status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+.timeline {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    max-width: 46rem;
+    display: grid;
+    gap: 1.75rem;
+}
+.timeline li {
+    position: relative;
+    padding-left: 1.6rem;
+    border-left: 2px dashed var(--paper-line);
+}
+.timeline li::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 0.35rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--coral);
+}
+.timeline-when {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+}
+.timeline h3 { margin: 0.15rem 0 0.35rem; }
+.timeline p { margin: 0; color: var(--ink-soft); }
+
+.fits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: 1.5rem 2.5rem;
+    margin-top: 1.5rem;
+}
+.fits-grid h3 { margin: 0 0 0.25rem; font-size: 1.1rem; }
+.fits-grid .link-list { margin-top: 0.75rem; }
+
+.story-shot { margin: 2rem 0 0; max-width: 48rem; }
 
 /* ----- Tech list ----- */
 .tech-list {

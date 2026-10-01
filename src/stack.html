@@ -1,0 +1,127 @@
+---json
+{
+  "title": "The Stack · John Farrell",
+  "description": "I built a running app. It needed marketing, so I built Merge & Tell. That needed robots and screenshots, so I built NightForge and Screenery. Here's how they all feed each other.",
+  "ogTitle": "Every tool I built fixes a problem the last one made",
+  "ogDescription": "Pheidi, Merge & Tell, NightForge, and Screenery: four projects, one person, and the web of ways they run each other.",
+  "ogType": "article",
+  "ogPath": "/stack.html",
+  "nav": "stack"
+}
+---
+        <section class="hero">
+            <div class="wrap hero-inner">
+                <p class="eyebrow">The stack</p>
+                <h1>
+                    Every tool I <span class="hand">built</span><br />
+                    fixes a problem<br />
+                    the last one <span class="hand hand--coral">made</span>.
+                </h1>
+                <p class="lede">
+                    I wanted a running plan, so I built Pheidi. Pheidi needed
+                    people to hear about it, so I built Merge &amp; Tell. Then
+                    the robots running my repos drifted apart, so I built
+                    NightForge. Then every page wanted fresh screenshots, so I
+                    built Screenery. Now they all run each other. (It's
+                    turtles. Very productive turtles.)
+                </p>
+                <svg class="hero-squiggle" viewBox="0 0 320 14" aria-hidden="true">
+                    <path d="M2 8 Q 20 -2, 40 8 T 80 8 T 120 8 T 160 8 T 200 8 T 240 8 T 280 8 T 318 8"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="wrap stats-grid">
+                <div class="stat">
+                    <p class="stat-num">4</p>
+                    <p class="stat-label">tools that feed each other</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-num">1,400+</p>
+                    <p class="stat-label">commits across them in 2026</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-num">1</p>
+                    <p class="stat-label">human, plus a team of agents</p>
+                </div>
+                <div class="stat stat--hand">
+                    <p class="stat-num stat-num--hand">0</p>
+                    <p class="stat-label">screenshots exported by hand</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="web">
+            <div class="wrap">
+                <h2>The web</h2>
+                <p class="section-lede">
+                    Each arrow is something one project really does for
+                    another, today, in the code. No aspirational arrows.
+                    The dashed ones are labeled as next.
+                </p>
+{% include "stack-diagram.njk" %}
+            </div>
+        </section>
+
+        <section id="timeline">
+            <div class="wrap">
+                <h2>How it happened</h2>
+                <p class="section-lede">
+                    In order, with dates from the git history. Each chapter
+                    starts with the problem the chapter before it caused.
+                </p>
+                <ol class="timeline">
+{%- for chapter in stackGraph.chapters %}
+                    <li>
+                        <time class="timeline-when" datetime="{{ chapter.date }}">{{ chapter.when }}</time>
+                        <h3>{{ chapter.title }}</h3>
+                        <p>{{ chapter.body }}</p>
+                    </li>
+{%- endfor %}
+                </ol>
+            </div>
+        </section>
+
+        <section id="stories">
+            <div class="wrap">
+                <h2>The stories</h2>
+                <p class="section-lede">
+                    One project helping another, told with the real pull
+                    requests, the real bugs, and the real numbers.
+                </p>
+                <div class="product-grid">
+{%- for story in stories %}
+                    <article class="product-card">
+                        <div class="product-body">
+                            <h3><a class="product-link" href="{{ story.url }}">{{ story.title }}</a></h3>
+                            <p class="product-tag">{{ story.pair }}</p>
+                            <p class="product-desc">{{ story.desc }}</p>
+                            <p class="product-ctas"><span class="product-cta" aria-hidden="true">Read it →</span></p>
+                        </div>
+                    </article>
+{%- endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section id="stack-links">
+            <div class="wrap">
+                <h2>Every link, spelled out</h2>
+                <p class="section-lede">
+                    Same facts as the picture, for anyone who'd rather read.
+                </p>
+{%- set links = stackGraph.edges %}
+{% include "link-list.njk" %}
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <div class="aside aside--block">Build the thing. Then build the thing that tells people.</div>
+                <div class="button-row">
+                    <a href="./index.html#products" class="product-cta">← Everything I'm building</a>
+                </div>
+            </div>
+        </section>
