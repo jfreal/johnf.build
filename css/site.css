@@ -201,36 +201,87 @@ a:hover, a:focus-visible {
     font-size: 0.95rem;
 }
 
-/* The post links ride along on every page, so any post can reach its siblings.
-   Dashed rules fence them off as one menu, same paper motif as the header's
-   bottom edge. */
-.nav-writing {
+/* The posts ride along on every page as a "Writing" drop-down, so any post can
+   reach its siblings. <details> does the open/close; no JS needed. */
+.nav-writing { position: relative; }
+.nav-writing > summary {
+    list-style: none;
+    cursor: pointer;
+    color: var(--teal-deep);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.75rem;
+    border: 1.5px solid transparent;
+    border-radius: 999px;
+    transition: border-color 0.18s ease, color 0.18s ease;
+}
+.nav-writing > summary::-webkit-details-marker { display: none; }
+.nav-writing > summary:hover,
+.nav-writing[open] > summary { color: var(--ink); border-color: var(--paper-line); }
+.nav-writing > summary:focus-visible { outline: 2px dashed var(--teal); outline-offset: 2px; }
+/* You're reading one of these: the trigger wears the pill too. */
+.nav-writing > summary.is-current { border-color: var(--coral); color: var(--ink); }
+
+.nav-caret {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-0.12rem) rotate(45deg);
+    transition: transform 0.18s ease;
+}
+.nav-writing[open] .nav-caret { transform: translateY(0.08rem) rotate(-135deg); }
+
+.nav-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    z-index: 60;
+    width: max-content;
+    max-width: min(22rem, calc(100vw - 2rem));
+    margin: 0;
+    padding: 0.5rem;
+    list-style: none;
+    background: var(--cream);
+    border: 1px solid var(--paper-line);
+    border-radius: var(--radius);
+    box-shadow: 0 12px 28px -14px rgba(42, 35, 38, 0.3);
+    display: grid;
+    gap: 0.15rem;
+}
+.nav-menu a,
+.nav-menu .nav-current {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: inherit;
-    border-inline: 1px dashed var(--paper-line);
-    padding-inline: clamp(0.75rem, 2vw, 1.5rem);
+    gap: 0.5rem;
+    padding: 0.45rem 0.8rem;
+    border: 1.5px solid transparent;
+    border-radius: 999px;
+    background: none;
+    line-height: 1.3;
 }
+.nav-menu a:hover, .nav-menu a:focus-visible { background: var(--cream-2); color: var(--ink); }
 
-/* You-are-here: the link's own hover state, held on. */
+/* You-are-here: a pill, not a highlighter swipe. */
 .nav-current {
     color: var(--ink);
-    background-image: linear-gradient(120deg, var(--peach) 0%, var(--peach) 100%);
-    background-repeat: no-repeat;
-    background-size: 100% 80%;
-    background-position: 0 92%;
-    padding: 0 0.06em;
+    border-color: var(--coral) !important;
     cursor: default;
 }
 
-/* Narrow screens: the rules turn into clutter once the nav wraps. */
-@media (max-width: 640px) {
-    .nav-writing {
-        border-inline: 0;
-        padding-inline: 0;
-    }
+.nav-menu-icon { width: 20px; height: auto; flex: none; }
+
+/* LinkedIn / GitHub as icons. The link underline doesn't fit a glyph. */
+.nav-social { display: inline-flex; align-items: center; gap: 0.5rem; }
+.nav-icon {
+    display: inline-flex;
+    padding: 0.3rem;
+    border-radius: 999px;
+    background: none;
+    color: var(--teal-deep);
 }
+.nav-icon:hover, .nav-icon:focus-visible { background: var(--cream-2); color: var(--ink); }
 
 /* ----- Hero ----- */
 .hero {
@@ -1026,6 +1077,15 @@ section {
 @media (min-width: 40rem) {
     .product-grid--pairs { grid-template-columns: repeat(2, 1fr); }
 }
+.nf-try { margin: 1.5rem 0 1rem; max-width: var(--measure); }
+.nf-try-label {
+    font-family: var(--font-hand);
+    font-size: 1.45rem;
+    color: var(--teal-deep);
+    margin: 0 0 0.4rem;
+}
+.nf-try-link { margin: 0.6rem 0 0; font-weight: 600; }
+.nf-try pre,
 .theory-takeaway pre {
     background: var(--ink);
     color: var(--cream);
