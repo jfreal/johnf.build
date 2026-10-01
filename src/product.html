@@ -7,6 +7,9 @@ const pagination = {
     size: 1,
     alias: "product",
     before: (products) => products.filter((p) => p.page),
+    // Without this only the first product page joins collections.all, and
+    // the sitemap (which loops collections.all) would miss the rest.
+    addAllPagesToCollections: true,
 };
 const permalink = (data) => `/${data.product.page}.html`;
 const eleventyComputed = {

@@ -1,7 +1,7 @@
 {#- The web of projects as one SVG, from src/_data/stackGraph.js. Every dot
     links to its page and every line to its case study (or the list below it).
-    The list after the figure carries the same facts for screen readers and
-    small phones, so the SVG itself is decorative to assistive tech. -#}
+    Both kinds of link stay in the tab order (the home page has no list to
+    fall back on), and the <title> in each gives it an accessible name. -#}
                 <figure class="stack-figure">
                     <svg viewBox="0 0 960 520" role="img" aria-labelledby="stack-diagram-title">
                         <title id="stack-diagram-title">How my projects feed each other. The full list of links follows the picture.</title>
@@ -14,13 +14,13 @@
                             </marker>
                         </defs>
 {%- for edge in stackGraph.edges %}
-                        <a class="stack-edge-link" href="{{ edge.story or './stack.html#stack-links' }}" tabindex="-1">
+                        <a class="stack-edge-link" href="{{ edge.story or './stack.html#stack-links' }}">
                             <title>{{ edge.fromName }} → {{ edge.toName }}: {{ edge.says }}</title>
                             <path class="stack-edge{% if edge.planned %} stack-edge--planned{% endif %}" d="{{ edge.d }}" marker-end="url(#{{ 'stack-arrow-planned' if edge.planned else 'stack-arrow' }})" />
                         </a>
 {%- endfor %}
 {%- for node in stackGraph.nodes %}
-                        <a class="stack-node-link" href="{{ node.href }}" tabindex="-1">
+                        <a class="stack-node-link" href="{{ node.href }}">
                             <g class="stack-node stack-node--{{ 'core' if node.core else 'side' }}">
                                 <circle cx="{{ node.x }}" cy="{{ node.y }}" r="{{ node.r }}" />
 {%- set lines = node.label.length %}
