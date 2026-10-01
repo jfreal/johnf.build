@@ -3,6 +3,15 @@
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+// Writing drop-down: close on outside click or Escape
+const writing = document.querySelector('.nav-writing');
+if (writing) {
+    document.addEventListener('click', (e) => { if (!writing.contains(e.target)) writing.open = false; });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && writing.open) { writing.open = false; writing.querySelector('summary').focus(); }
+    });
+}
+
 // Reveal sections on scroll
 const reveal = (entries, observer) => {
     entries.forEach((entry) => {

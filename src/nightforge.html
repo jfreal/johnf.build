@@ -1,0 +1,411 @@
+---json
+{
+  "title": "NightForge: The Night Shift for My Repos · John Farrell",
+  "description": "NightForge is the Claude Code plugin I run across every repo: four bellows that run on a schedule, four anvils I strike by hand, two writing skills. What each one does, and the bugs that taught it.",
+  "ogTitle": "NightForge: The Night Shift for My Repos",
+  "ogDescription": "Ten Claude Code skills in one plugin. Error sweeps that open fix PRs overnight, a CodeRabbit retry queue, a PR tester that ticks only what it saw, and a CI cost audit that measures before it touches anything.",
+  "ogType": "article",
+  "ogPath": "/nightforge.html"
+}
+---
+        <section class="hero">
+            <div class="wrap hero-inner">
+                <p class="eyebrow">A thing I built and use every day</p>
+                <h1>
+                    My repos have a <span class="hand">night shift</span>.<br />
+                    It reads the errors,<br />
+                    then <span class="hand hand--coral">ships</span> the fix.
+                </h1>
+                <p class="lede">
+                    NightForge is one Claude Code plugin with ten skills in it.
+                    The <strong>bellows</strong> run on a schedule and keep the
+                    fire going, opening pull requests while I'm asleep. The
+                    <strong>anvils</strong> wait for me to swing, when a PR
+                    needs testing or the CI bill looks rude. Two of them fix my writing. It's public,
+                    it's free, and every rule in it got there because something
+                    broke first.
+                </p>
+                <div class="nf-try">
+                    <p class="nf-try-label">Just try it. Two commands:</p>
+<pre><code>claude plugin marketplace add jfreal/nightforge
+claude plugin install nightforge@nightforge --scope user</code></pre>
+                    <p class="nf-try-link">
+                        <a href="https://github.com/jfreal/nightforge">The plugin on GitHub →</a>
+                    </p>
+                </div>
+                <svg class="hero-squiggle" viewBox="0 0 320 14" aria-hidden="true">
+                    <path d="M2 8 Q 20 -2, 40 8 T 80 8 T 120 8 T 160 8 T 200 8 T 240 8 T 280 8 T 318 8"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="wrap stats-grid">
+                <div class="stat">
+                    <p class="stat-num">10</p>
+                    <p class="stat-label">skills in one plugin</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-num">4</p>
+                    <p class="stat-label">bellows on a schedule, no human in the loop</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-num">128</p>
+                    <p class="stat-label">commits since it started in August 2026</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-num--hand">0 merges</p>
+                    <p class="stat-label">it opens PRs. I'm the one who merges.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="theory-chain">
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>Why it exists</h2>
+                    <p>
+                        I had three error sweeps, one per app, each written by
+                        hand. In about two months they drifted into three
+                        different things. One filed issues and opened PRs. One
+                        only filed issues. One was a single sentence with no
+                        memory at all, so every night it rediscovered its whole
+                        backlog from scratch. Its reports grew to 24 KB of the
+                        same findings.
+                    </p>
+                    <p>
+                        So I pulled the pipeline out into one place. The steps
+                        live in the skill and are the same for every app. Each
+                        tech stack gets an <strong>adapter</strong>: Netlify,
+                        Supabase, App Insights, GitHub. Each app gets a short
+                        <strong>card</strong> that names its repo, its logs, and
+                        how many fixes it's allowed per night.
+                    </p>
+                    <p>
+                        New app? Write a card. New stack? Write an adapter. Fix
+                        the pipeline once, and every app gets the fix tomorrow
+                        morning. (Turns out "don't copy-paste the important
+                        thing" still applies when the thing is a prompt.)
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <img class="nf-logo" src="./img/nightforge-logo.png" alt="NightForge logo, a glowing cube" width="436" height="512" loading="lazy" />
+                    <p class="note-hand">
+                        One pipeline. A card per app. An adapter per stack.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <section class="theory-math">
+            <div class="wrap">
+                <h2>The bellows</h2>
+                <p class="section-lede">
+                    Bellows keep the fire hot while nobody's at the forge.
+                    These four run from scheduled tasks. They start with no
+                    memory of the last run, so everything they need to remember
+                    lives in a ledger, a Notion board, or the issue tracker.
+                </p>
+
+                <div class="product-grid product-grid--pairs">
+                    <article class="product-card product-card--static">
+                        <div class="product-body">
+                            <p class="product-tag">Nightly</p>
+                            <h3>error-sweep</h3>
+                            <p class="product-desc">
+                                Pulls production errors from every source the
+                                app has, boils each one down to a stable
+                                signature, and drops anything already handled.
+                                Then it reads the actual code, files an issue,
+                                and spawns a fix agent in its own worktree that
+                                opens a PR. Quiet night? One line in the report.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="product-card product-card--static">
+                        <div class="product-body">
+                            <p class="product-tag">Hourly</p>
+                            <h3>onboarding-sweep</h3>
+                            <p class="product-desc">
+                                A bot signs up as a brand-new customer and
+                                writes down everything that was wrong or slow.
+                                This sweep reads that board, turns each finding
+                                into a fix PR, and moves the finding along as
+                                the PR merges and deploys. The next signup says
+                                whether the fix held.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="product-card product-card--static">
+                        <div class="product-body">
+                            <p class="product-tag">Hourly</p>
+                            <h3>coderabbit-sweep</h3>
+                            <p class="product-desc">
+                                CodeRabbit gives me roughly one review an hour
+                                across every repo. PRs that open while it's
+                                spent get a "limit reached" note and nothing
+                                ever retries them. This is the retry: once an
+                                hour, it picks exactly one starved PR (a
+                                priority-labelled one first, the oldest
+                                otherwise) and spends the review on it.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="product-card product-card--static">
+                        <div class="product-body">
+                            <p class="product-tag">Weekly</p>
+                            <h3>docs-sweep</h3>
+                            <p class="product-desc">
+                                Finds every repo on my machine that uses
+                                sync-docs, runs its audit in a fresh worktree,
+                                and opens a draft PR wherever the docs drifted
+                                from the code. Clean repos get one line. No
+                                signup step: a repo joins by carrying the
+                                config.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="theory-math">
+            <div class="wrap">
+                <h2>The anvils</h2>
+                <p class="section-lede">
+                    Some jobs should not run at 3am against a machine nobody is
+                    watching. Anvils don't swing themselves. These wait for me
+                    to bring the hammer.
+                </p>
+
+                <div class="product-grid product-grid--pairs">
+                    <article class="product-card product-card--static">
+                        <div class="product-body">
+                            <p class="product-tag"><code>/pr-test &lt;n&gt;</code></p>
+                            <h3>pr-test</h3>
+                            <p class="product-desc">
+                                Tests a PR the way a person would. Checks out
+                                the branch, starts the app, drives a real
+                                browser through the test plan, and ticks each
+                                box the moment it passes or fails. A box only
+                                gets ticked from something it watched happen.
+                                Reading the diff and nodding is review, not
+                                testing.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="product-card product-card--static">
+                        <div class="product-body">
+                            <p class="product-tag"><code>/codebase-cleanup</code></p>
+                            <h3>codebase-cleanup</h3>
+                            <p class="product-desc">
+                                Reads the whole repo first: security,
+                                correctness, error handling, dead code, types,
+                                tests, perf, accessibility, docs drift. Every
+                                finding needs a <code>path:line</code> as
+                                evidence and gets sized S, M, or L. Each small
+                                or medium one becomes its own PR. Big ones
+                                become an issue for me to decide.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="product-card product-card--static">
+                        <div class="product-body">
+                            <p class="product-tag"><code>/ci-cost-sweep</code></p>
+                            <h3>ci-cost-sweep</h3>
+                            <p class="product-desc">
+                                Finds where the CI minutes actually go, then
+                                cuts them without cutting coverage. The whole
+                                skill enforces one rule: measure, never assume.
+                                Plain mode reports. <code>fix</code> mode makes
+                                the changes on a branch and proves the savings
+                                on real runs.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="product-card product-card--static">
+                        <div class="product-body">
+                            <p class="product-tag"><code>/sync-docs</code></p>
+                            <h3>sync-docs</h3>
+                            <p class="product-desc">
+                                Source files carry a <code>@doc:&lt;key&gt;</code>
+                                tag, and the doc page that explains them carries
+                                the same key. When the code changes and the page
+                                doesn't, the audit catches it. <code>fix</code>
+                                repairs the page and never invents a detail to
+                                fill a gap.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="theory-math">
+            <div class="wrap">
+                <h2>The writing ones</h2>
+                <p class="section-lede">
+                    Agents write a lot of words now: PR bodies, issues, reports.
+                    These two keep those words readable.
+                </p>
+
+                <div class="product-grid">
+                    <article class="product-card product-card--static">
+                        <div class="product-body">
+                            <p class="product-tag">Always on</p>
+                            <h3>unslop</h3>
+                            <p class="product-desc">
+                                Cuts the tells that make text read like a
+                                machine wrote it, then puts some voice back.
+                                Removing the patterns is only half the job.
+                                Sterile writing gives itself away just as fast.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="product-card product-card--static">
+                        <div class="product-body">
+                            <p class="product-tag"><code>/simple-issue-description</code></p>
+                            <h3>simple-issue-description</h3>
+                            <p class="product-desc">
+                                Turns a rough bug report or a PR into a short
+                                issue about the problem and what should happen
+                                instead, with the implementation details taken
+                                out. If there's no real problem in there, it
+                                says so instead of making one up.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="product-card product-card--static">
+                        <div class="product-body">
+                            <p class="product-tag">Bonus: output style</p>
+                            <h3>ELI10</h3>
+                            <p class="product-desc">
+                                Not a skill, but it lives in the repo. Every
+                                report comes back as what I did, did it work
+                                (with proof), and what I need from you. Plain
+                                words, jargon defined once, no git commands
+                                pasted at me. Built for end-of-day brains. Mine,
+                                specifically.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+{%- set fit = stackGraph.fits["nightforge"] %}
+{%- if fit and (fit.gives.length or fit.gets.length) %}
+        <section id="how-it-fits">
+            <div class="wrap">
+                <h2>How it fits</h2>
+                <p class="section-lede">
+                    NightForge is one part of <a href="./stack.html">the stack</a>,
+                    where my projects run each other. The bellows run sweeps on
+                    three of them, and one skill came the other way.
+                </p>
+                <div class="fits-grid">
+{%- if fit.gives.length %}
+                    <div>
+                        <h3>What NightForge does for the others</h3>
+{%- set links = fit.gives %}
+{% include "link-list.njk" %}
+                    </div>
+{%- endif %}
+{%- if fit.gets.length %}
+                    <div>
+                        <h3>What the others do for NightForge</h3>
+{%- set links = fit.gets %}
+{% include "link-list.njk" %}
+                    </div>
+{%- endif %}
+                </div>
+            </div>
+        </section>
+{%- endif %}
+
+        <section class="theory-flip">
+            <div class="wrap two-col">
+                <div class="two-col-main">
+                    <h2>Every rule got paid for</h2>
+                    <p>
+                        The skill files are long because the failures were
+                        quiet. A few favorites:
+                    </p>
+                    <p>
+                        <strong>Green is not the same as healthy.</strong> One
+                        app served 404s to a live subscriber for 21 hours while
+                        every scheduled run reported success. The sweep only
+                        looked at exceptions, and a 404 isn't one. Now every
+                        run report has to say which kinds of failure it could
+                        and couldn't see.
+                    </p>
+                    <p>
+                        <strong>Check the closed issues too.</strong> On the
+                        error sweep's first live run, a brand-new error was
+                        about to get filed. The tracker search found an issue
+                        already closed by a PR merged fourteen minutes after
+                        that error last fired. One extra search saved a junk
+                        issue and a fix agent chasing a fix that already
+                        shipped.
+                    </p>
+                    <p>
+                        <strong>"Caching is good" is not a finding.</strong> A
+                        dependency cache that obviously saved time measured 71
+                        seconds per run <em>slower</em> than no cache at all.
+                        The browser cache in the same workflow was a clear win.
+                        That's why ci-cost-sweep wants per-cache numbers before
+                        it touches anything.
+                    </p>
+                    <p>
+                        <strong>Stale checkouts pass tests.</strong> A branch
+                        sitting in a week-old worktree serves the old code,
+                        passes the test plan, and looks exactly like a clean
+                        run. So pr-test finds the worktree, pulls it, and
+                        confirms the head commit before it starts a single
+                        service.
+                    </p>
+                </div>
+                <aside class="margin-note">
+                    <p class="note-hand">
+                        The scary failures aren't loud. They're green.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <section class="theory-takeaway">
+            <div class="wrap">
+                <h2>Setting it up</h2>
+                <p>
+                    The two commands up top install all ten skills. Four work
+                    the second they land: unslop,
+                    simple-issue-description, codebase-cleanup, and
+                    ci-cost-sweep. The bellows (and pr-test and sync-docs) want a little setup first, a card
+                    or a config that names the repo, the logs, and how many
+                    fixes a night. The
+                    <a href="https://github.com/jfreal/nightforge">README on GitHub</a>
+                    walks through each one. It's public domain, so take
+                    whatever's useful and bend it to your own stack.
+                </p>
+                <p>
+                    The best part isn't the PRs. It's that the boring stuff
+                    finally has an owner. Every morning there's a short report
+                    and a few small diffs waiting, and my whole job is deciding
+                    which ones are good. That's a fun way to start a day.
+                </p>
+
+                <div class="aside aside--block">Robots on the night shift. Humans on the merge button.</div>
+
+                <p class="theory-wink">
+                    Related reading: why I spend
+                    <a href="./prove-it-works.html">half my build time proving it works</a>,
+                    and how the <a href="./devops-wishlist.html">DevOps wishlist</a>
+                    got cheap enough to just build.
+                </p>
+
+                <div class="button-row">
+                    <a href="./index.html" class="product-cta">← Back to portfolio</a>
+                </div>
+            </div>
+        </section>
