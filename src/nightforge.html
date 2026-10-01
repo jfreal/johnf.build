@@ -1,7 +1,7 @@
 ---json
 {
   "title": "NightForge: The Night Shift for My Repos · John Farrell",
-  "description": "NightForge is the Claude Code plugin I run across every repo: four sweeps on a schedule, four tools I call by hand, two writing skills. What each one does, and the bugs that taught it.",
+  "description": "NightForge is the Claude Code plugin I run across every repo: four bellows that run on a schedule, four anvils I strike by hand, two writing skills. What each one does, and the bugs that taught it.",
   "ogTitle": "NightForge: The Night Shift for My Repos",
   "ogDescription": "Ten Claude Code skills in one plugin. Error sweeps that open fix PRs overnight, a CodeRabbit retry queue, a PR tester that ticks only what it saw, and a CI cost audit that measures before it touches anything.",
   "ogType": "article",
@@ -18,9 +18,10 @@
                 </h1>
                 <p class="lede">
                     NightForge is one Claude Code plugin with ten skills in it.
-                    Some run on a schedule and open pull requests while I'm
-                    asleep. Some I call by hand when a PR needs testing or the
-                    CI bill looks rude. Two of them fix my writing. It's public,
+                    The <strong>bellows</strong> run on a schedule and keep the
+                    fire going, opening pull requests while I'm asleep. The
+                    <strong>anvils</strong> wait for me to swing, when a PR
+                    needs testing or the CI bill looks rude. Two of them fix my writing. It's public,
                     it's free, and every rule in it got there because something
                     broke first.
                 </p>
@@ -47,7 +48,7 @@ claude plugin install nightforge@nightforge --scope user</code></pre>
                 </div>
                 <div class="stat">
                     <p class="stat-num">4</p>
-                    <p class="stat-label">run on a schedule, no human in the loop</p>
+                    <p class="stat-label">bellows on a schedule, no human in the loop</p>
                 </div>
                 <div class="stat">
                     <p class="stat-num">128</p>
@@ -99,8 +100,9 @@ claude plugin install nightforge@nightforge --scope user</code></pre>
 
         <section class="theory-math">
             <div class="wrap">
-                <h2>The night shift</h2>
+                <h2>The bellows</h2>
                 <p class="section-lede">
+                    Bellows keep the fire hot while nobody's at the forge.
                     These four run from scheduled tasks. They start with no
                     memory of the last run, so everything they need to remember
                     lives in a ledger, a Notion board, or the issue tracker.
@@ -170,10 +172,11 @@ claude plugin install nightforge@nightforge --scope user</code></pre>
 
         <section class="theory-math">
             <div class="wrap">
-                <h2>The ones I call by hand</h2>
+                <h2>The anvils</h2>
                 <p class="section-lede">
                     Some jobs should not run at 3am against a machine nobody is
-                    watching. These wait for me to ask.
+                    watching. Anvils don't swing themselves. These wait for me
+                    to bring the hammer.
                 </p>
 
                 <div class="product-grid product-grid--pairs">
@@ -348,7 +351,7 @@ claude plugin install nightforge@nightforge --scope user</code></pre>
                     The two commands up top install all ten skills. Four work
                     the second they land: unslop,
                     simple-issue-description, codebase-cleanup, and
-                    ci-cost-sweep. The rest want a little setup first, a card
+                    ci-cost-sweep. The bellows (and pr-test and sync-docs) want a little setup first, a card
                     or a config that names the repo, the logs, and how many
                     fixes a night. The
                     <a href="https://github.com/jfreal/nightforge">README on GitHub</a>
