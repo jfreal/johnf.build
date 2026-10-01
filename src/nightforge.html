@@ -294,6 +294,36 @@ claude plugin install nightforge@nightforge --scope user</code></pre>
             </div>
         </section>
 
+{%- set fit = stackGraph.fits["nightforge"] %}
+{%- if fit and (fit.gives.length or fit.gets.length) %}
+        <section id="how-it-fits">
+            <div class="wrap">
+                <h2>How it fits</h2>
+                <p class="section-lede">
+                    NightForge is one part of <a href="./stack.html">the stack</a>,
+                    where my projects run each other. The bellows run sweeps on
+                    three of them, and one skill came the other way.
+                </p>
+                <div class="fits-grid">
+{%- if fit.gives.length %}
+                    <div>
+                        <h3>What NightForge does for the others</h3>
+{%- set links = fit.gives %}
+{% include "link-list.njk" %}
+                    </div>
+{%- endif %}
+{%- if fit.gets.length %}
+                    <div>
+                        <h3>What the others do for NightForge</h3>
+{%- set links = fit.gets %}
+{% include "link-list.njk" %}
+                    </div>
+{%- endif %}
+                </div>
+            </div>
+        </section>
+{%- endif %}
+
         <section class="theory-flip">
             <div class="wrap two-col">
                 <div class="two-col-main">
