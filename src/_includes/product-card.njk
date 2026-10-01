@@ -32,9 +32,20 @@
 {%- endif -%}
 {%- set liveLink = product.url and not external %}
                     <article class="product-card{% if not href %} product-card--static{% endif %}">
+{%- if shot %}
                         <div class="product-thumb{% if zoom %} product-thumb--zoom{% endif %}"{% if zoom %} style="--zoom: {{ zoom }};"{% endif %}>
                             <img src="{{ shot.src }}" alt="{{ alt }}"{% if shot.width %} width="{{ shot.width }}" height="{{ shot.height }}"{% endif %} loading="lazy" decoding="async" />
                         </div>
+{%- elif product.terminal %}
+                        {#- No screen to show (a CLI plugin), so the thumb is its command list. #}
+                        <div class="product-thumb product-thumb--terminal" aria-hidden="true">
+{%- if product.logo %}
+                            <img class="term-logo" src="{{ product.logo.src }}" alt="" loading="lazy" decoding="async" />
+{%- endif %}
+                            <pre>{% for line in product.terminal %}<span class="term-prompt">&gt;</span> {{ line }}
+{% endfor %}</pre>
+                        </div>
+{%- endif %}
                         <div class="product-body">
                             <h3>{% if href %}<a class="product-link" href="{{ href }}"{% if external %} target="_blank" rel="noopener"{% endif %}>{{ product.name }}</a>{% else %}{{ product.name }}{% endif %}</h3>
                             <p class="product-tag">{{ product.tag }}</p>

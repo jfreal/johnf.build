@@ -1,0 +1,38 @@
+{#- The web of projects as one SVG, from src/_data/stackGraph.js. Every dot
+    links to its page and every line to its case study (or the list below it).
+    Both kinds of link stay in the tab order (the home page has no list to
+    fall back on), and the <title> in each gives it an accessible name. -#}
+                <figure class="stack-figure">
+                    <svg viewBox="0 0 960 520" role="img" aria-labelledby="stack-diagram-title">
+                        <title id="stack-diagram-title">How my projects feed each other. The full list of links follows the picture.</title>
+                        <defs>
+                            <marker id="stack-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                <path class="stack-arrow" d="M 0 0 L 10 5 L 0 10 z" />
+                            </marker>
+                            <marker id="stack-arrow-planned" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                <path class="stack-arrow stack-arrow--planned" d="M 0 0 L 10 5 L 0 10 z" />
+                            </marker>
+                        </defs>
+{%- for edge in stackGraph.edges %}
+                        <a class="stack-edge-link" href="{{ edge.story or './stack.html#stack-links' }}">
+                            <title>{{ edge.fromName }} → {{ edge.toName }}: {{ edge.says }}</title>
+                            <path class="stack-edge{% if edge.planned %} stack-edge--planned{% endif %}" d="{{ edge.d }}" marker-end="url(#{{ 'stack-arrow-planned' if edge.planned else 'stack-arrow' }})" />
+                        </a>
+{%- endfor %}
+{%- for node in stackGraph.nodes %}
+                        <a class="stack-node-link" href="{{ node.href }}">
+                            <g class="stack-node stack-node--{{ 'core' if node.core else 'side' }}">
+                                <circle cx="{{ node.x }}" cy="{{ node.y }}" r="{{ node.r }}" />
+{%- set lines = node.label.length %}
+{%- for line in node.label %}
+                                <text x="{{ node.x }}" y="{{ node.y + (loop.index0 - (lines - 1) / 2) * 22 }}">{{ line }}</text>
+{%- endfor %}
+                            </g>
+                        </a>
+{%- endfor %}
+                    </svg>
+                    <figcaption>
+                        Solid lines are wired up today. Dashed ones are next.
+                        Hover a line for what it does, click it for the story.
+                    </figcaption>
+                </figure>
