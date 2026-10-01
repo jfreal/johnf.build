@@ -1014,6 +1014,29 @@ section {
     .wishlist li { grid-template-columns: 1.25rem 1fr; gap: 0.4rem; font-size: 0.95rem; }
 }
 
+/* ----- NightForge page ----- */
+.nf-logo {
+    display: block;
+    width: 7rem;
+    height: auto;
+    margin: 0 0 1rem;
+}
+.product-tag code { font-size: 0.85rem; color: inherit; }
+/* Four cards read as a 2x2, not a row of three and an orphan. */
+@media (min-width: 40rem) {
+    .product-grid--pairs { grid-template-columns: repeat(2, 1fr); }
+}
+.theory-takeaway pre {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: var(--radius);
+    padding: 1rem 1.2rem;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: var(--measure);
+}
+
 .theory-wink {
     font-size: 0.9rem;
     color: var(--ink-soft);
