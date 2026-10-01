@@ -272,6 +272,18 @@ a:hover, a:focus-visible {
 
 .nav-menu-icon { width: 20px; height: auto; flex: none; }
 
+/* A project with its own header slot (NightForge): icon + name, same pill shape. */
+.nav-project {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.2rem 0.75rem 0.2rem 0.55rem;
+    border: 1.5px solid transparent;
+    border-radius: 999px;
+    background: none;
+}
+a.nav-project:hover, a.nav-project:focus-visible { background: none; color: var(--ink); border-color: var(--paper-line); }
+
 /* LinkedIn / GitHub as icons. The link underline doesn't fit a glyph. */
 .nav-social { display: inline-flex; align-items: center; gap: 0.5rem; }
 .nav-icon {

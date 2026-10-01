@@ -59,7 +59,7 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
 ## Build notes (not voice)
 
 - Static HTML, built with Eleventy. No client-side framework: what ships is
-  still plain HTML, one stylesheet, and 70 lines of vanilla JS.
+  still plain HTML, one stylesheet, and about 80 lines of vanilla JS.
 - Pages live in `src/` as HTML with JSON front matter. The shared head, header,
   nav, and footer come from `src/_includes/layouts/base.njk`.
 - Front matter per page: `title`, `description`, optional `ogTitle` /
@@ -68,12 +68,17 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
   `/prove-it-works/`) via the permalink rule in `src/src.json`. Don't change it;
   the existing URLs are linked from outside.
 - **Adding an article:** new file in `src/`, then add it to
-  `src/_data/articles.json` so it joins the post menu.
-- The post menu (`.nav-writing`) is the fenced group of article links in the
-  header. It renders on every page, not just the index, so a post can reach its
-  siblings. The current post shows as `.nav-current` instead of a link. Only
-  real articles belong in `articles.json`; case studies and one-off pages
-  (Ordo, the Kill Team alert) stay out of it and just get the back link.
+  `src/_data/articles.json` (`title` + `url`) so it joins the post menu.
+- The post menu (`.nav-writing`) is a "Writing" `<details>` drop-down in the
+  header listing full post titles. It renders on every page, not just the
+  index, so a post can reach its siblings. The current post shows as
+  `.nav-current` (a coral pill) instead of a link, and the trigger gets the
+  pill too. Only real articles belong in `articles.json`; case studies and
+  one-off pages (Ordo, the Kill Team alert) stay out of it and just get the
+  back link.
+- NightForge has its own header slot (`.nav-project`, with its logo icon),
+  hard-coded in `base.njk`, not in `articles.json`. LinkedIn and GitHub are
+  icon links (`.nav-social`).
 - **Product cards** come from `src/_data/products.json`, in display order.
   Words live there; `src/_data/productLive.js` adds the live parts at build
   time: Screenery screenshots (`lib/screenery.js`, public gallery API, card

@@ -64,15 +64,19 @@
                     <summary{% if onArticle %} class="is-current"{% endif %}>Writing<span class="nav-caret" aria-hidden="true"></span></summary>
                     <ul class="nav-menu">
 {%- for article in articles %}
-{%- set icon %}{% if article.icon %}<img class="nav-menu-icon" src="{{ article.icon }}" alt="" width="20" height="24" />{% endif %}{% endset %}
 {%- if article.url == page.url %}
-                        <li><span class="nav-current" aria-current="page">{{ icon | safe }}{{ article.title }}</span></li>
+                        <li><span class="nav-current" aria-current="page">{{ article.title }}</span></li>
 {%- else %}
-                        <li><a href="{{ article.url }}">{{ icon | safe }}{{ article.title }}</a></li>
+                        <li><a href="{{ article.url }}">{{ article.title }}</a></li>
 {%- endif %}
 {%- endfor %}
                     </ul>
                 </details>
+{%- if page.url == "/nightforge.html" %}
+                <span class="nav-current nav-project" aria-current="page"><img class="nav-menu-icon" src="/img/nightforge-icon.png" alt="" width="20" height="24" />NightForge</span>
+{%- else %}
+                <a class="nav-project" href="/nightforge.html"><img class="nav-menu-icon" src="/img/nightforge-icon.png" alt="" width="20" height="24" />NightForge</a>
+{%- endif %}
 {%- if nav == "home" %}
                 <a href="{{ site.resume }}" target="_blank" rel="noopener">Résumé</a>
 {%- endif %}
