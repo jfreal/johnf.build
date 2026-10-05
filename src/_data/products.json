@@ -63,8 +63,8 @@
         "name": "NightForge",
         "tag": "Claude Code skills · Open source · 2026",
         "desc": "The robot night shift for all my repos. One plugin of Claude Code skills that read the error logs, fix what broke, keep the docs honest, and spend the CodeRabbit reviews where they matter. Every project runs the same pipeline.",
-        "url": "https://github.com/jfreal/nightforge",
-        "urlLabel": "github.com/jfreal/nightforge",
+        "url": "https://jfreal.github.io/nightforge/",
+        "urlLabel": "jfreal.github.io/nightforge",
         "href": "./nightforge.html",
         "cta": "Bellows, anvils + install →",
         "about": [
