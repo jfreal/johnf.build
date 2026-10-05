@@ -18,7 +18,12 @@
         });
         gtag('js', new Date());
 
-        gtag('config', '{{ site.gaId }}');
+        // Only report from production, so localhost, CI and deploy previews stay out of GA.
+        var gaHost = new URL('{{ site.url }}').hostname.toLowerCase();
+        var hereHost = location.hostname.toLowerCase();
+        if (hereHost === gaHost || hereHost === 'www.' + gaHost) {
+            gtag('config', '{{ site.gaId }}');
+        }
     </script>
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}" />
