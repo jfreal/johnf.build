@@ -1,0 +1,19 @@
+---
+permalink: /_redirects
+layout: null
+eleventyExcludeFromCollections: true
+---
+# Built from collections.all, so every page Eleventy writes gets a line.
+# Pages build to flat files (stack.html) and Netlify serves /stack from them.
+# These send the old .html addresses, which are linked from outside, to the
+# clean URL with a 301 so search engines see one page, not two. The `!`
+# forces the rule even though stack.html exists; without it Netlify serves
+# the file and skips the redirect. The home page's url is already "/", so
+# the loop skips it and it gets its own line.
+/index.html  /  301!
+{%- for entry in collections.all %}
+{%- set clean = entry.url | cleanUrl %}
+{%- if clean != entry.url %}
+{{ entry.url }}  {{ clean }}  301!
+{%- endif %}
+{%- endfor %}

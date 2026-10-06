@@ -27,11 +27,13 @@
     </script>
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}" />
+{%- set canonical = site.url + (page.url | cleanUrl) %}
+    <link rel="canonical" href="{{ canonical }}" />
 {% if ogTitle %}
     <meta property="og:title" content="{{ ogTitle }}" />
     <meta property="og:description" content="{{ ogDescription }}" />
     <meta property="og:type" content="{{ ogType | default('article') }}" />
-    <meta property="og:url" content="{{ site.url }}{{ ogPath }}" />
+    <meta property="og:url" content="{{ canonical }}" />
     <meta name="twitter:card" content="summary" />
 {% endif %}
 {%- if nav == "home" %}
@@ -54,7 +56,7 @@
     "@type": "SoftwareApplication",
     "name": product.name,
     "description": product.desc,
-    "url": product.url or (site.url + "/" + product.page + ".html"),
+    "url": product.url or (site.url + "/" + product.page),
     "applicationCategory": product.tag.split(" · ")[0],
     "author": { "@type": "Person", "@id": site.url + "/#john", "name": "John Farrell", "url": site.url + "/" }
 } | dump | safe }}
@@ -81,26 +83,27 @@
 
     <header class="site-header">
         <div class="wrap header-inner">
-            <a class="mark" href="/index.html" aria-label="Home">
+            <a class="mark" href="/" aria-label="Home">
                 <span class="mark-ink">jf</span>
                 <span class="mark-dot" aria-hidden="true"></span>
             </a>
             <nav class="primary-nav" aria-label="Primary">
 {%- if nav != "home" %}
-                <a href="/index.html">← Home</a>
+                <a href="/">← Home</a>
 {%- endif %}
 {%- if nav == "stack" %}
                 <span class="nav-current nav-pill" aria-current="page">Stack</span>
 {%- else %}
-                <a class="nav-pill" href="/stack.html">Stack</a>
+                <a class="nav-pill" href="/stack">Stack</a>
 {%- endif %}
+{%- set here = page.url | cleanUrl %}
 {%- set onArticle = false %}
-{%- for article in articles %}{% if article.url == page.url %}{% set onArticle = true %}{% endif %}{% endfor %}
+{%- for article in articles %}{% if article.url == here %}{% set onArticle = true %}{% endif %}{% endfor %}
                 <details class="nav-writing">
                     <summary{% if onArticle %} class="is-current"{% endif %}>Writing<span class="nav-caret" aria-hidden="true"></span></summary>
                     <ul class="nav-menu">
 {%- for article in articles %}
-{%- if article.url == page.url %}
+{%- if article.url == here %}
                         <li><span class="nav-current" aria-current="page">{{ article.title }}</span></li>
 {%- else %}
                         <li><a href="{{ article.url }}">{{ article.title }}</a></li>
@@ -108,10 +111,10 @@
 {%- endfor %}
                     </ul>
                 </details>
-{%- if page.url == "/nightforge.html" %}
+{%- if page.url | cleanUrl == "/nightforge" %}
                 <span class="nav-current nav-pill" aria-current="page"><img class="nav-menu-icon" src="/img/nightforge-icon.png" alt="" width="20" height="24" />NightForge</span>
 {%- else %}
-                <a class="nav-pill" href="/nightforge.html"><img class="nav-menu-icon" src="/img/nightforge-icon.png" alt="" width="20" height="24" />NightForge</a>
+                <a class="nav-pill" href="/nightforge"><img class="nav-menu-icon" src="/img/nightforge-icon.png" alt="" width="20" height="24" />NightForge</a>
 {%- endif %}
                 <span class="nav-social">
                     <a class="nav-icon" href="{{ site.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">

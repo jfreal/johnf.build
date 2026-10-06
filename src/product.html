@@ -14,10 +14,11 @@ const pagination = {
 const permalink = (data) => `/${data.product.page}.html`;
 const eleventyComputed = {
     title: (data) => `${data.product.name} · John Farrell`,
-    description: (data) => data.product.desc,
+    // `meta` is the search-result snippet (<= 160 chars); the card and hero
+    // keep the longer `desc`.
+    description: (data) => data.product.meta || data.product.desc,
     ogTitle: (data) => data.product.name,
-    ogDescription: (data) => data.product.desc,
-    ogPath: (data) => `/${data.product.page}.html`,
+    ogDescription: (data) => data.product.meta || data.product.desc,
 };
 ---
 {%- set live = productLive[product.key] %}
@@ -62,7 +63,7 @@ const eleventyComputed = {
 {%- if fit.chapter %}
                     {{ fit.chapter.body }}
 {%- endif %}
-                    It's one part of <a href="./stack.html">the stack</a>, where
+                    It's one part of <a href="/stack">the stack</a>, where
                     my projects run each other.
                 </p>
                 <div class="fits-grid">
@@ -129,7 +130,7 @@ const eleventyComputed = {
             <div class="wrap">
                 <h2>Recent updates</h2>
                 <p class="section-lede">
-                    Written by <a href="./merge-and-tell.html">Merge &amp; Tell</a>
+                    Written by <a href="/merge-and-tell">Merge &amp; Tell</a>
                     from the pull requests that shipped them.
                 </p>
                 <ol class="update-list">
@@ -152,7 +153,7 @@ const eleventyComputed = {
         <section>
             <div class="wrap">
                 <div class="button-row">
-                    <a href="./index.html#products" class="product-cta">← Everything I'm building</a>
+                    <a href="/#products" class="product-cta">← Everything I'm building</a>
 {%- if product.url %}
                     <a href="{{ product.url }}" target="_blank" rel="noopener" class="product-cta">Visit {{ product.urlLabel }} ↗</a>
 {%- endif %}

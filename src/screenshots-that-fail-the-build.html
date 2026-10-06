@@ -1,11 +1,10 @@
 ---json
 {
   "title": "Screenshots That Fail the Build When They Lie · John Farrell",
-  "description": "Pheidi's docs screenshots, Play Store shots, and listing video all come out of CI through Screenery. A test reads the source as a syntax tree so a stale or missing screenshot fails the build instead of shipping.",
+  "description": "Pheidi's docs screenshots, Play Store shots, and listing video all come out of CI through Screenery. A stale or missing screenshot fails the build.",
   "ogTitle": "Screenshots that fail the build when they lie",
   "ogDescription": "How Screenery keeps every Pheidi screenshot current, and the test that won't let a missing one ship.",
-  "ogType": "article",
-  "ogPath": "/screenshots-that-fail-the-build.html"
+  "ogType": "article"
 }
 ---
         <section class="hero">
@@ -39,7 +38,7 @@
                     Nobody touches this page.
                 </p>
                 <figure class="shot story-shot">
-                    <a class="shot-frame" href="./pheidi.html">
+                    <a class="shot-frame" href="/pheidi">
                         <img src="https://cdn.screenery.dev/jfreal/pheidi/desktop/plan/today@latest.png"
                             alt="Pheidi's today screen: today's run with pace and heart-rate targets, above this week's schedule."
                             loading="lazy" decoding="async" />
@@ -58,7 +57,7 @@
                         a real browser. Two of them just stop and take
                         pictures: one set for the docs, one set for the Google
                         Play listing. On every merge, CI pushes them to
-                        <a href="./screenery.html">Screenery</a> with
+                        <a href="/screenery">Screenery</a> with
                         <code>screenery/push@v1</code>. The Play listing video
                         goes the same way.
                     </p>
@@ -126,7 +125,7 @@
                     example in Screenery's own CI-setup tests, and one of
                     Screenery's regression tests is named after a real Pheidi
                     setup that made an empty log look broken. Same deal as with
-                    <a href="./shipping-out-loud.html">Merge &amp; Tell</a>:
+                    <a href="/shipping-out-loud">Merge &amp; Tell</a>:
                     Pheidi goes first, finds the weird edges, and the tool gets
                     better for everyone after.
                 </p>
@@ -137,8 +136,8 @@
                     on this site comes from Screenery too.
                 </p>
                 <div class="button-row">
-                    <a href="./stack.html" class="product-cta">← The stack</a>
-                    <a href="./three-sweeps-drifted.html" class="product-cta">Next: NightForge →</a>
+                    <a href="/stack" class="product-cta">← The stack</a>
+                    <a href="/three-sweeps-drifted" class="product-cta">Next: NightForge →</a>
                 </div>
             </div>
         </section>

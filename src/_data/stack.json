@@ -1,54 +1,54 @@
 {
-    "_readme": "The web of projects on /stack.html and the 'How it fits' box on each product page. Nodes are the dots; x/y place them in the 960x560 diagram. Links are proven integrations only: each one must point at something real in the repos. status 'planned' draws dashed and says so. 'story' is a case study URL, when one exists. Chapters are the build order, oldest first. Dates come from git history.",
+    "_readme": "The web of projects on /stack and the 'How it fits' box on each product page. Nodes are the dots; x/y place them in the 960x560 diagram. Links are proven integrations only: each one must point at something real in the repos. status 'planned' draws dashed and says so. 'story' is a case study URL, when one exists. Chapters are the build order, oldest first. Dates come from git history.",
     "nodes": [
-        { "key": "pheidi", "name": "Pheidi", "label": ["Pheidi"], "x": 180, "y": 150, "core": true, "href": "./pheidi.html" },
-        { "key": "merge-and-tell", "name": "Merge & Tell", "label": ["Merge &", "Tell"], "x": 700, "y": 150, "core": true, "href": "./merge-and-tell.html" },
-        { "key": "nightforge", "name": "NightForge", "label": ["NightForge"], "x": 180, "y": 420, "core": true, "href": "./nightforge.html" },
-        { "key": "screenery", "name": "Screenery", "label": ["Screenery"], "x": 700, "y": 420, "core": true, "href": "./screenery.html" },
-        { "key": "johnf-build", "name": "This site", "label": ["this", "site"], "x": 440, "y": 285, "core": false, "href": "./stack.html" },
-        { "key": "eventbell", "name": "EventBell", "label": ["EventBell"], "x": 440, "y": 60, "core": false, "href": "./eventbell.html" },
-        { "key": "auspex-fatalis", "name": "Auspex Fatalis", "label": ["Auspex", "Fatalis"], "x": 880, "y": 285, "core": false, "href": "./auspex-fatalis.html" }
+        { "key": "pheidi", "name": "Pheidi", "label": ["Pheidi"], "x": 180, "y": 150, "core": true, "href": "/pheidi" },
+        { "key": "merge-and-tell", "name": "Merge & Tell", "label": ["Merge &", "Tell"], "x": 700, "y": 150, "core": true, "href": "/merge-and-tell" },
+        { "key": "nightforge", "name": "NightForge", "label": ["NightForge"], "x": 180, "y": 420, "core": true, "href": "/nightforge" },
+        { "key": "screenery", "name": "Screenery", "label": ["Screenery"], "x": 700, "y": 420, "core": true, "href": "/screenery" },
+        { "key": "johnf-build", "name": "This site", "label": ["this", "site"], "x": 440, "y": 285, "core": false, "href": "/stack" },
+        { "key": "eventbell", "name": "EventBell", "label": ["EventBell"], "x": 440, "y": 60, "core": false, "href": "/eventbell" },
+        { "key": "auspex-fatalis", "name": "Auspex Fatalis", "label": ["Auspex", "Fatalis"], "x": 880, "y": 285, "core": false, "href": "/auspex-fatalis" }
     ],
     "links": [
         {
             "from": "merge-and-tell", "to": "pheidi",
             "says": "Drafts the posts for every Pheidi merge, for @pheiditraining on X, Bluesky, and Mastodon.",
-            "story": "./shipping-out-loud.html"
+            "story": "/shipping-out-loud"
         },
         {
             "from": "pheidi", "to": "merge-and-tell",
             "says": "First real customer. A Pheidi PR where three cards disagreed about one channel rebuilt Merge & Tell's PR page.",
-            "story": "./shipping-out-loud.html"
+            "story": "/shipping-out-loud"
         },
         {
             "from": "screenery", "to": "pheidi",
             "says": "Hosts Pheidi's docs screenshots, Play Store shots, and listing video. A test fails the build if the pictures and the pages drift apart.",
-            "story": "./screenshots-that-fail-the-build.html"
+            "story": "/screenshots-that-fail-the-build"
         },
         {
             "from": "pheidi", "to": "screenery",
             "says": "The worked example in Screenery's own CI-setup tests.",
-            "story": "./screenshots-that-fail-the-build.html"
+            "story": "/screenshots-that-fail-the-build"
         },
         {
             "from": "pheidi", "to": "nightforge",
             "says": "sync-docs, the skill that keeps docs honest, was born in Pheidi and ported into NightForge.",
-            "story": "./three-sweeps-drifted.html"
+            "story": "/three-sweeps-drifted"
         },
         {
             "from": "nightforge", "to": "pheidi",
             "says": "Runs Pheidi's weekly docs sweep, nightly error sweep, and CodeRabbit re-reviews.",
-            "story": "./three-sweeps-drifted.html"
+            "story": "/three-sweeps-drifted"
         },
         {
             "from": "nightforge", "to": "merge-and-tell",
             "says": "Runs Merge & Tell's weekly docs sweep and CodeRabbit re-reviews.",
-            "story": "./three-sweeps-drifted.html"
+            "story": "/three-sweeps-drifted"
         },
         {
             "from": "nightforge", "to": "auspex-fatalis",
             "says": "Runs the Auspex Fatalis docs sweep through its own sync-docs port.",
-            "story": "./three-sweeps-drifted.html"
+            "story": "/three-sweeps-drifted"
         },
         {
             "from": "screenery", "to": "merge-and-tell",

@@ -31,6 +31,13 @@ module.exports = function (eleventyConfig) {
     });
     eleventyConfig.addFilter("shortDate", (iso) => shortDate.format(new Date(iso)));
 
+    // Pages build to flat files (stack.html) but are served and linked at the
+    // clean URL (/stack). This is the one place that mapping lives: canonical
+    // tags, the sitemap, nav matching, and _redirects all go through it.
+    // "/index.html" -> "/", "/stack.html" -> "/stack".
+    eleventyConfig.addFilter("cleanUrl", (url) =>
+        url.replace(/(^|\/)index\.html$/, "$1").replace(/\.html$/, ""));
+
     // lib/ feeds the data files; rebuild when it changes during `npm start`.
     eleventyConfig.addWatchTarget("./lib/");
 
