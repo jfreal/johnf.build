@@ -14,7 +14,7 @@
                             </marker>
                         </defs>
 {%- for edge in stackGraph.edges %}
-                        <a class="stack-edge-link" href="{{ edge.story or './stack.html#stack-links' }}">
+                        <a class="stack-edge-link" href="{{ edge.story or '/stack#stack-links' }}">
                             <title>{{ edge.fromName }} → {{ edge.toName }}: {{ edge.says }}</title>
                             <path class="stack-edge{% if edge.planned %} stack-edge--planned{% endif %}" d="{{ edge.d }}" marker-end="url(#{{ 'stack-arrow-planned' if edge.planned else 'stack-arrow' }})" />
                         </a>

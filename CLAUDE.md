@@ -41,7 +41,7 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
 
 - **The site's job.** Personal brand and marketing channel for John's projects, built in public. Not a job hunt: no "hire me," "open to roles," or résumé pitches. The spine is "every tool I built fixes a problem the last one made."
 - **Hero h1.** Three short lines, handwritten accents on key verbs/nouns. Keep it physical: `build`, `ship`, `show`. AI sits in the hand font because it's the new beat.
-- **"Start here" card.** The home page's one conversion. It sends readers to `/stack.html`.
+- **"Start here" card.** The home page's one conversion. It sends readers to `/stack`.
 - **Case studies.** One project helping another, told with the real PR, the real bug, the real number. Private repos: name the PR ("Pheidi PR #627"), don't link it. Every claim must be something the code does today. Anything not wired up yet is `"status": "planned"` in `stack.json` and says so.
 - **The build order is Pheidi, Merge & Tell, NightForge, Screenery** (dates from git). Tell it in that order.
 - **About section.** Three paragraphs, max. Mechanics, then the operations point, then the humans-are-the-fun-part close. Snark goes in the middle paragraph, never the close.
@@ -65,13 +65,21 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
   still plain HTML, one stylesheet, and about 80 lines of vanilla JS.
 - Pages live in `src/` as HTML with JSON front matter. The shared head, header,
   nav, and footer come from `src/_includes/layouts/base.njk`.
-- Front matter per page: `title`, `description`, optional `ogTitle` /
-  `ogDescription` / `ogType` / `ogPath`, and `nav: "home"` on the index only.
-- Output keeps the flat `.html` URLs (`/prove-it-works.html`, not
-  `/prove-it-works/`) via the permalink rule in `src/src.json`. Don't change it;
-  the existing URLs are linked from outside.
+- Front matter per page: `title` (keep it under 60 characters, suffix
+  included), `description` (70 to 160 characters: it's the search snippet),
+  optional `ogTitle` / `ogDescription` / `ogType`, and `nav: "home"` on the
+  index only. `og:url` and `<link rel="canonical">` come from the page's URL.
+- **URLs.** Files build flat (`_site/prove-it-works.html`, via the permalink
+  rule in `src/src.json`) and Netlify serves them at the clean URL
+  (`/prove-it-works`). The clean URL is canonical: every internal link, the
+  sitemap, and the canonical tag use it. Link with `/slug`, never
+  `./slug.html`. The `cleanUrl` filter in `eleventy.config.js` does the
+  mapping. `src/redirects.njk` builds `_redirects` from `collections.all` so
+  every old `.html` address 301s to its clean URL (those are linked from
+  outside). Don't change the flat output: `slug/index.html` would make the
+  URLs end in a slash.
 - **Adding an article:** new file in `src/`, then add it to
-  `src/_data/articles.json` (`title` + `url`) so it joins the post menu.
+  `src/_data/articles.json` (`title` + clean `url`) so it joins the post menu.
 - The post menu (`.nav-writing`) is a "Writing" `<details>` drop-down in the
   header listing full post titles. It renders on every page, not just the
   index, so a post can reach its siblings. The current post shows as
@@ -84,12 +92,13 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
   LinkedIn and GitHub are icon links (`.nav-social`).
 - NightForge's page is hand-written (`src/nightforge.html`), not generated:
   its product card uses `href` instead of `page`, so `src/product.html` doesn't
-  also try to build `/nightforge.html`.
+  also try to build `nightforge.html`.
 - **Product cards** come from `src/_data/products.json`, in display order.
-  Words live there; `src/_data/productLive.js` adds the live parts at build
+  Words live there; a product page uses `meta` (if set) as its meta
+  description, since `desc` often runs past 160 characters; `src/_data/productLive.js` adds the live parts at build
   time: Screenery screenshots (`lib/screenery.js`, public gallery API, card
   shot = `screenery.hero`) and the Merge & Tell changelog (`lib/changelog.js`).
-  A product with a `page` slug also gets `/<slug>.html` from `src/product.html`
+  A product with a `page` slug also gets `/<slug>` from `src/product.html`
   (gallery + recent updates). Changelog feed URLs are secrets: each product
   names an env var (`CHANGELOG_PHEIDI_URL` etc.) set in Netlify, never
   committed. A Screenery asset name that isn't on `@latest` fails the build on
@@ -98,7 +107,7 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
   the `CHANGELOG_*` vars are read during the build (Builds scope), while
   `NETLIFY_BUILD_HOOK_URL` is read by the function at run time, so it needs
   the Functions scope. Without it the function quietly skips the rebuild.
-- **The stack** (`/stack.html`) comes from `src/_data/stack.json`: `nodes`
+- **The stack** (`/stack`) comes from `src/_data/stack.json`: `nodes`
   (dots, placed by x/y in a 960x520 diagram), `links` (proven integrations,
   one line each, optional `story` URL, `"status": "planned"` draws dashed),
   and `chapters` (the build order, with dates from git). `src/_data/stackGraph.js`

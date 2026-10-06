@@ -1,18 +1,18 @@
 [
     {
-        "url": "./shipping-out-loud.html",
+        "url": "/shipping-out-loud",
         "title": "My running app's pull requests write their own posts",
         "pair": "Merge & Tell × Pheidi",
         "desc": "I shipped Pheidi every day and told nobody. Merge & Tell turns each merge into a drafted post. Then a Pheidi PR where three cards disagreed rebuilt Merge & Tell's own PR page."
     },
     {
-        "url": "./screenshots-that-fail-the-build.html",
+        "url": "/screenshots-that-fail-the-build",
         "title": "Screenshots that fail the build when they lie",
         "pair": "Screenery × Pheidi",
         "desc": "Pheidi's docs, Play Store listing, and promo video all come out of CI through Screenery. A test reads the source as a syntax tree so a stale screenshot can't sneak through."
     },
     {
-        "url": "./three-sweeps-drifted.html",
+        "url": "/three-sweeps-drifted",
         "title": "Three robot sweeps drifted, so I built a factory",
         "pair": "NightForge × every repo",
         "desc": "Hand-written nightly sweeps turned into three different pipelines in two months. One wrote 24 KB of the same findings every night. NightForge is the one pipeline they all share now."
