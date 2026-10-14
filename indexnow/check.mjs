@@ -161,8 +161,9 @@ function diff(previous, current) {
     const removed = [];
     for (const [url, lastmod] of Object.entries(current)) {
         if (!(url in previous)) added.push(url);
-        // A <lastmod> that disappeared isn't news. One that moved is.
-        else if (lastmod && lastmod !== previous[url]) changed.push(url);
+        // Only a <lastmod> that moved is news. One that appeared (a sitemap
+        // gaining dates for the first time) or disappeared says nothing about an edit.
+        else if (lastmod && previous[url] && lastmod !== previous[url]) changed.push(url);
     }
     for (const url of Object.keys(previous)) {
         if (!(url in current)) removed.push(url);

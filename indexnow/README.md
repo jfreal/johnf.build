@@ -58,7 +58,9 @@ section, a migration), run the workflow by hand with **force** on.
 ## Sites with no `<lastmod>`
 
 The job still sees pages appear and disappear, but an edit to an existing page
-doesn't change the sitemap, so it isn't submitted.
+doesn't change the sitemap, so it isn't submitted. Adding `<lastmod>` later is
+safe: a date showing up where there was none doesn't count as a change, so the
+first run after doesn't resubmit the whole site.
 
 ## Run it locally
 
