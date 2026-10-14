@@ -3,6 +3,9 @@
 const PASSTHROUGH_DIRS = ["css", "js", "img", "assets"];
 
 const PASSTHROUGH_FILES = [
+    // IndexNow key, served at the site root. Every portfolio site carries the
+    // same file; IndexNow fetches it to check the daily job's submissions.
+    "a0b4cc5a5653b1278fbe1db5a316aaeb.txt",
     "android-chrome-192x192.png",
     "android-chrome-384x384.png",
     "apple-touch-icon.png",
