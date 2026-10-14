@@ -12,6 +12,9 @@ const pagination = {
     addAllPagesToCollections: true,
 };
 const permalink = (data) => `/${data.product.page}.html`;
+// Sitemap <lastmod>. File-level, so editing one product's words dates every
+// product page. Live screenshots and changelogs aren't in git and don't count.
+const lastmodFrom = ["src/_data/products.json"];
 const eleventyComputed = {
     title: (data) => `${data.product.name} · John Farrell`,
     // `meta` is the search-result snippet (<= 160 chars); the card and hero

@@ -16,6 +16,32 @@ const PASSTHROUGH_FILES = [
     "site.webmanifest",
 ];
 
+const { execFileSync } = require("node:child_process");
+
+// Last commit that touched any of these files, as an ISO timestamp. Feeds the
+// sitemap's <lastmod>, which the IndexNow job diffs to spot edited pages.
+// Git, not file times: a fresh clone stamps every file with the build time,
+// which would mark every page as changed on every deploy. "" (no <lastmod>)
+// when git can't answer honestly: no git, an uncommitted file, or a shallow
+// clone, where every file looks last touched by the one commit it has.
+const gitDates = new Map();
+let shallow;
+function lastCommitDate(files) {
+    const key = files.join("\n");
+    if (gitDates.has(key)) return gitDates.get(key);
+    let date = "";
+    try {
+        shallow ??= execFileSync("git", ["rev-parse", "--is-shallow-repository"], { encoding: "utf8" }).trim() === "true";
+        if (!shallow) {
+            date = execFileSync("git", ["log", "-1", "--format=%cI", "--", ...files], { encoding: "utf8" }).trim();
+        }
+    } catch {
+        date = "";
+    }
+    gitDates.set(key, date);
+    return date;
+}
+
 module.exports = function (eleventyConfig) {
     for (const path of [...PASSTHROUGH_DIRS, ...PASSTHROUGH_FILES]) {
         eleventyConfig.addPassthroughCopy({ [path]: path });
@@ -37,6 +63,14 @@ module.exports = function (eleventyConfig) {
     // "/index.html" -> "/", "/stack.html" -> "/stack".
     eleventyConfig.addFilter("cleanUrl", (url) =>
         url.replace(/(^|\/)index\.html$/, "$1").replace(/\.html$/, ""));
+
+    // A page's <lastmod>: its own file, plus the data files named in its
+    // `lastmodFrom` front matter. List only the data that carries the page's
+    // main content (index reads products.json for its cards). Incidental bits
+    // like layouts, the nav, or the "How it fits" box stay out: one edit there
+    // would mark most of the site changed, and IndexNow's guard skips that.
+    eleventyConfig.addFilter("lastModified", (inputPath, lastmodFrom = []) =>
+        lastCommitDate([inputPath, ...lastmodFrom]));
 
     // lib/ feeds the data files; rebuild when it changes during `npm start`.
     eleventyConfig.addWatchTarget("./lib/");
