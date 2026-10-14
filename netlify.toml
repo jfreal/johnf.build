@@ -1,0 +1,3 @@
+# Sitemap snapshots for the IndexNow job. Data only: never build this branch.
+[build]
+  ignore = "exit 0"
