@@ -1,0 +1,64 @@
+# Daily IndexNow run for every site in the portfolio. See indexnow/README.md.
+name: IndexNow
+
+on:
+  schedule:
+    - cron: "0 11 * * *" # an hour after the 10:00 UTC Netlify rebuild, so johnf.build's sitemap is fresh
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Skip the mass-change guard for this run
+        type: boolean
+        default: false
+
+permissions:
+  contents: write # pushes the indexnow-snapshots branch
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Snapshots live on their own branch because master only takes PRs. The
+      # first run creates it, with a netlify.toml that tells Netlify never to
+      # build it (a branch deploy of plain JSON would just fail).
+      - name: Check out snapshots
+        run: |
+          if git ls-remote --exit-code --heads origin indexnow-snapshots > /dev/null; then
+            git fetch --depth=1 origin indexnow-snapshots
+            git worktree add -B indexnow-snapshots indexnow-snapshots FETCH_HEAD
+          else
+            git worktree add --orphan -b indexnow-snapshots indexnow-snapshots
+            printf '%s\n' '# Sitemap snapshots for the IndexNow job. Data only: never build this branch.' '[build]' '  ignore = "exit 0"' > indexnow-snapshots/netlify.toml
+          fi
+
+      - name: Diff sitemaps and submit
+        env:
+          INDEXNOW_KEY: ${{ vars.INDEXNOW_KEY }}
+          SNAPSHOT_DIR: indexnow-snapshots
+          FORCE: ${{ inputs.force }}
+        run: node indexnow/check.mjs
+
+      # Runs even when a site failed, so the sites that worked keep their new snapshots.
+      - name: Save snapshots
+        if: ${{ !cancelled() }}
+        working-directory: indexnow-snapshots
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No snapshot changes."
+            exit 0
+          fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "Sitemap snapshots $(date -u +%F)"
+          git push origin indexnow-snapshots
