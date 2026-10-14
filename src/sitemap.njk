@@ -6,6 +6,7 @@ eleventyExcludeFromCollections: true
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- for entry in collections.all %}
-    <url><loc>{{ site.url }}{{ entry.url | cleanUrl }}</loc></url>
+{%- set lastmod = entry.inputPath | lastModified(entry.data.lastmodFrom) %}
+    <url><loc>{{ site.url }}{{ entry.url | cleanUrl }}</loc>{% if lastmod %}<lastmod>{{ lastmod }}</lastmod>{% endif %}</url>
 {%- endfor %}
 </urlset>

@@ -120,6 +120,10 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
   sits in that card's corner and above the product page's title. A product with no
   `url` (a private repo) gets no "Visit" link.
 - `src/sitemap.njk` and `src/robots.njk` build `/sitemap.xml` and `/robots.txt`.
+  Each sitemap `<lastmod>` is the last git commit to touch the page's file,
+  plus any data files in its `lastmodFrom` front matter (`lastModified` filter
+  in `eleventy.config.js`). A new page whose content lives in a data file
+  should name that file there. Shallow clones get no `<lastmod>` at all.
   The home page carries a `Person` JSON-LD block; product pages carry a
   `SoftwareApplication` block (both in `base.njk`).
 - Styles in `css/site.css`. Tiny vanilla JS in `js/site.js` (year stamp, scroll reveal).
