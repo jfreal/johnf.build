@@ -122,6 +122,11 @@ This is John's personal site. The writing voice is the whole point. Match it. Do
 - `src/sitemap.njk` and `src/robots.njk` build `/sitemap.xml` and `/robots.txt`.
   The home page carries a `Person` JSON-LD block; product pages carry a
   `SoftwareApplication` block (both in `base.njk`).
+- **IndexNow** (`indexnow/check.mjs`, run daily by `.github/workflows/indexnow.yml`)
+  diffs the live sitemap of johnf.build and every product with a `url` against
+  the last snapshot, then submits what changed. Snapshots live on the
+  `indexnow-snapshots` branch, because master only takes PRs. `"indexnow": false`
+  on a product leaves it out. Details in `indexnow/README.md`.
 - Styles in `css/site.css`. Tiny vanilla JS in `js/site.js` (year stamp, scroll reveal).
   Those, plus `img/`, `assets/`, and the favicons, pass through from the repo root.
 - Fonts: Fraunces (serif), Inter (sans), Caveat (handwritten accents).
