@@ -42,6 +42,8 @@ update, nothing is submitted.
 - **A sitemap 404s or isn't XML.** That site is skipped, the others still run,
   and its snapshot stays as it was. An empty sitemap is treated the same way, so
   a bad deploy can't read as "every page was deleted."
+- **A snapshot won't parse** (a bad edit or merge on the branch). That site is
+  skipped. Fix the file, or delete it so the next run saves a fresh one.
 - **IndexNow says no.** `403` means the key file is missing or wrong. The
   snapshot isn't updated, so the next run retries the same URLs.
 

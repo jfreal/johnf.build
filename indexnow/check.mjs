@@ -128,12 +128,25 @@ async function readSitemap(url, out, depth = 0) {
 }
 
 async function readSnapshot(file) {
+    let text;
     try {
-        return JSON.parse(await readFile(file, "utf8"));
+        text = await readFile(file, "utf8");
     } catch (error) {
         if (error.code === "ENOENT") return null;
         throw error;
     }
+    // A broken snapshot (bad merge on the branch, truncated write) is that
+    // site's problem. It must not stop the rest of the run.
+    let snapshot;
+    try {
+        snapshot = JSON.parse(text);
+    } catch (error) {
+        throw new SiteError(`${file}: unreadable snapshot (${error.message})`);
+    }
+    if (!snapshot || typeof snapshot !== "object" || Array.isArray(snapshot)) {
+        throw new SiteError(`${file}: snapshot isn't a { url: lastmod } object`);
+    }
+    return snapshot;
 }
 
 // Sorted keys, one URL per line, so the branch history diffs cleanly.

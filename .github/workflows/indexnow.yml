@@ -23,6 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      # Credentials stay persisted on purpose: "Save snapshots" pushes from a
+      # worktree that shares this checkout's git config. The token's only write
+      # scope is contents, and check.mjs is this repo's own code.
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
