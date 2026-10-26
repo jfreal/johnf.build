@@ -1,0 +1,14 @@
+{
+  "extraKnownMarketplaces": {
+    "nightforge": {
+      "source": {
+        "source": "github",
+        "repo": "jfreal/nightforge"
+      },
+      "autoUpdate": true
+    }
+  },
+  "enabledPlugins": {
+    "nightforge@nightforge": true
+  }
+}
