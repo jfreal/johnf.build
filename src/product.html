@@ -16,7 +16,9 @@ const permalink = (data) => `/${data.product.page}.html`;
 // product page. Live screenshots and changelogs aren't in git and don't count.
 const lastmodFrom = ["src/_data/products.json"];
 const eleventyComputed = {
-    title: (data) => `${data.product.name} · John Farrell`,
+    // `seoTitle` (if set) replaces the name in <title>, for a product whose
+    // name isn't what people search for. The page heading keeps the name.
+    title: (data) => `${data.product.seoTitle || data.product.name} · John Farrell`,
     // `meta` is the search-result snippet (<= 160 chars); the card and hero
     // keep the longer `desc`.
     description: (data) => data.product.meta || data.product.desc,
