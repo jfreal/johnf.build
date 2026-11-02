@@ -5,7 +5,7 @@ using MediaReconciler.Hashing;
 using MediaReconciler.Reporting;
 
 const string Usage = """
-    MediaReconciler — checks that every photo and video is backed up, across any number of
+    MediaReconciler: checks that every photo and video is backed up, across any number of
     iCloud mirrors, Dropbox accounts, Google Takeout exports, iPhones and folders.
     Read-only: it never deletes or changes anything.
 

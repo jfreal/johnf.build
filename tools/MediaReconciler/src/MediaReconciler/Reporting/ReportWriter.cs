@@ -71,7 +71,7 @@ public static partial class ReportWriter
         sb.AppendLine();
         if (notBackedUp.Count > 0)
         {
-            sb.AppendLine($"- ⚠️ **{notBackedUp.Count:N0} items ({Bytes(notBackedUp.Bytes)}) are in no backup at all** — only on a device. See `at-risk.csv` (listed first).");
+            sb.AppendLine($"- ⚠️ **{notBackedUp.Count:N0} items ({Bytes(notBackedUp.Bytes)}) are in no backup at all**, only on a device. See `at-risk.csv` (listed first).");
         }
 
         if (belowMin.Count > notBackedUp.Count)
@@ -163,7 +163,7 @@ public static partial class ReportWriter
         sb.AppendLine();
         sb.AppendLine($"- Exact (identical bytes): {strengths.GetValueOrDefault(MatchStrength.Exact):N0}");
         sb.AppendLine($"- Strong (same original name + size or capture time): {strengths.GetValueOrDefault(MatchStrength.Strong):N0}");
-        sb.AppendLine($"- Weak (same capture second, one copy renamed): {strengths.GetValueOrDefault(MatchStrength.Weak):N0} — spot-check a few in `weak-matches.csv`");
+        sb.AppendLine($"- Weak (same capture second, one copy renamed): {strengths.GetValueOrDefault(MatchStrength.Weak):N0}. Spot-check a few in `weak-matches.csv`.");
 
         var notes = analysis.Sources.Where(s => s.Notes.Count > 0).ToList();
         if (notes.Count > 0)
