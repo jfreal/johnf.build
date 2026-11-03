@@ -111,6 +111,13 @@ public sealed class ReconcileConfig
             source.Type = source.Type.Trim().ToLowerInvariant();
             source.Exclude ??= [];
 
+            // Fail before the first source is scanned: a typo here would otherwise surface only
+            // after the sources listed before it had been read and hashed for hours.
+            if (!SourceTypes.IsKnown(source.Type))
+            {
+                throw new ConfigException($"Source \"{source.Name}\" has unknown type \"{source.Type}\".");
+            }
+
             if (source.Path is not null && SourceTypes.UsesLocalPath(source.Type) && !System.IO.Path.IsPathRooted(source.Path))
             {
                 source.Path = System.IO.Path.GetFullPath(System.IO.Path.Combine(baseDirectory, source.Path));
@@ -139,6 +146,9 @@ public static class SourceTypes
     public const string GoogleTakeout = "google-takeout";
     public const string IPhone = "iphone";
     public const string Manifest = "manifest";
+
+    public static bool IsKnown(string type) =>
+        type is Folder or Dropbox or GoogleTakeout or IPhone or Manifest;
 
     public static bool UsesLocalPath(string type) =>
         type is Folder or GoogleTakeout or Manifest;

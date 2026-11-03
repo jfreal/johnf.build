@@ -80,6 +80,10 @@ public sealed class FolderSource : IMediaSource
     {
         var pending = new Stack<DirectoryInfo>();
         pending.Push(new DirectoryInfo(root));
+
+        // Symlinks and junctions can point back up the tree (an endless walk) or at a folder
+        // already read (every photo in it counted twice), so each real folder is read once.
+        var visited = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { RealPath(pending.Peek()) };
         var options = new EnumerationOptions { IgnoreInaccessible = true, AttributesToSkip = FileAttributes.System };
 
         while (pending.Count > 0)
@@ -87,13 +91,25 @@ public sealed class FolderSource : IMediaSource
             var dir = pending.Pop();
             foreach (var sub in dir.EnumerateDirectories("*", options))
             {
-                if (!excludes.Contains(sub.Name) && !sub.Attributes.HasFlag(FileAttributes.Hidden)) pending.Push(sub);
+                if (!excludes.Contains(sub.Name) && !sub.Attributes.HasFlag(FileAttributes.Hidden) && visited.Add(RealPath(sub))) pending.Push(sub);
             }
 
             foreach (var file in dir.EnumerateFiles("*", options))
             {
                 if (MediaNames.GetKind(file.Name) is not null) yield return file;
             }
+        }
+    }
+
+    private static string RealPath(DirectoryInfo dir)
+    {
+        try
+        {
+            return (dir.ResolveLinkTarget(returnFinalTarget: true) ?? dir).FullName;
+        }
+        catch (IOException)
+        {
+            return dir.FullName;
         }
     }
 

@@ -119,7 +119,19 @@ public sealed class DropboxClient(HttpClient http)
             };
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-            using var response = await http.SendAsync(request, ct);
+            HttpResponseMessage response;
+            try
+            {
+                response = await http.SendAsync(request, ct);
+            }
+            catch (Exception e) when ((e is HttpRequestException || (e is TaskCanceledException && !ct.IsCancellationRequested)) && attempt < 6)
+            {
+                // A dropped connection or a timeout partway through a long listing shouldn't lose the whole run.
+                await Task.Delay(TimeSpan.FromSeconds(Math.Pow(2, attempt)), ct);
+                continue;
+            }
+
+            using var owned = response;
             if ((response.StatusCode == HttpStatusCode.TooManyRequests || (int)response.StatusCode >= 500) && attempt < 6)
             {
                 var wait = response.Headers.RetryAfter?.Delta ?? TimeSpan.FromSeconds(Math.Pow(2, attempt));
