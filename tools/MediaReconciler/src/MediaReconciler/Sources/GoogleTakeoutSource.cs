@@ -254,16 +254,20 @@ public sealed partial class GoogleTakeoutSource : IMediaSource
         var withoutCopy = CopySuffix().Replace(stemOnly, "") + Path.GetExtension(name);
 
         // "IMG_1234(1).jpg" belongs to "IMG_1234.jpg(1).json", whose title is also "IMG_1234.jpg".
-        var exact =
-            folder.Find(withoutCopy, s => s.CopyIndex == copyIndex)
-            ?? folder.Find(name, _ => true)
-            ?? folder.Find(withoutCopy, _ => true);
-        if (exact is not null) return exact;
+        // A numbered copy is a different photo that happens to share a name, so neither it nor the
+        // original ever borrows the other's sidecar (and with it, the other's capture time).
+        if ((!copy.Success || copyIndex is not null) && folder.Find(withoutCopy, s => s.CopyIndex == copyIndex) is { } own)
+        {
+            return own;
+        }
+
+        // A name that really ends in "(1)", such as a downloaded "Photo (1).jpg".
+        if (copy.Success && folder.Find(name, s => s.CopyIndex is null) is { } literal) return literal;
 
         // Long names are truncated in the export; the sidecar title still has the full name.
         var stem = Path.GetFileNameWithoutExtension(withoutCopy);
         return stem.Length >= 30
-            ? folder.All.FirstOrDefault(s => s.Title.StartsWith(stem, StringComparison.OrdinalIgnoreCase))
+            ? folder.All.FirstOrDefault(s => s.CopyIndex == copyIndex && s.Title.StartsWith(stem, StringComparison.OrdinalIgnoreCase))
             : null;
     }
 

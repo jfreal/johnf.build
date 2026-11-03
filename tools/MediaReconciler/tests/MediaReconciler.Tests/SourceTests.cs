@@ -248,8 +248,8 @@ public class SourceTests
         var dir = TestData.TempDirectory();
         Directory.CreateDirectory(Path.Combine(dir, "2024"));
         File.WriteAllBytes(Path.Combine(dir, "2024", "IMG_0001.JPG"), TestData.JpegWithExif(Taken, "+02:00"));
-        Directory.CreateSymbolicLink(Path.Combine(dir, "2024", "back-to-top"), dir); // a cycle
-        Directory.CreateSymbolicLink(Path.Combine(dir, "also-2024"), Path.Combine(dir, "2024")); // a second way in
+        if (!TryCreateLink(Path.Combine(dir, "2024", "back-to-top"), dir)) return; // a cycle
+        if (!TryCreateLink(Path.Combine(dir, "also-2024"), Path.Combine(dir, "2024"))) return; // a second way in
 
         var items = await new FolderSource().ScanAsync(Context(new SourceConfig { Name = "f", Type = "folder", Path = dir }), default);
 
@@ -279,6 +279,60 @@ public class SourceTests
 
         var error = Assert.Throws<ConfigException>(() => ReconcileConfig.Load(path));
         Assert.Contains("dropbx", error.Message);
+    }
+
+    [Fact]
+    public void A_folder_reached_through_a_link_counts_as_the_same_folder()
+    {
+        var dir = TestData.TempDirectory();
+        Directory.CreateDirectory(Path.Combine(dir, "real", "2024"));
+        if (!TryCreateLink(Path.Combine(dir, "link"), Path.Combine(dir, "real"))) return;
+        var path = Path.Combine(dir, "reconcile.json");
+
+        foreach (var other in new[] { "link", "link/2024" })
+        {
+            File.WriteAllText(path, $$"""
+                { "sources": [ { "name": "a", "type": "folder", "path": "real" }, { "name": "b", "type": "folder", "path": "{{other}}" } ] }
+                """);
+            Assert.Contains("read the same folder", Assert.Throws<ConfigException>(() => ReconcileConfig.Load(path)).Message);
+        }
+    }
+
+    [Fact]
+    public async Task Numbered_takeout_copies_never_borrow_each_others_sidecars()
+    {
+        var dir = TestData.TempDirectory();
+        var unix = new DateTimeOffset(2024, 5, 1, 19, 34, 56, TimeSpan.Zero).ToUnixTimeSeconds();
+        WriteZip(Path.Combine(dir, "takeout-001.zip"), new()
+        {
+            // IMG_0003(1) has no sidecar of its own; IMG_0004 has only its copy's sidecar.
+            ["Takeout/Google Photos/Photos from 2024/IMG_0003.JPG"] = TestData.JpegWithExif(Taken, null, padding: 10),
+            ["Takeout/Google Photos/Photos from 2024/IMG_0003(1).JPG"] = TestData.JpegWithExif(Taken.AddDays(3), null, padding: 20),
+            ["Takeout/Google Photos/Photos from 2024/IMG_0003.JPG.json"] = Sidecar("IMG_0003.JPG", unix),
+            ["Takeout/Google Photos/Photos from 2024/IMG_0004.JPG"] = TestData.JpegWithExif(Taken.AddDays(5), null, padding: 30),
+            ["Takeout/Google Photos/Photos from 2024/IMG_0004.JPG(1).json"] = Sidecar("IMG_0004.JPG", unix),
+        });
+
+        var items = await new GoogleTakeoutSource().ScanAsync(Context(new SourceConfig { Name = "g", Type = "google-takeout", Path = dir }), default);
+
+        var sidecarTime = new DateTime(2024, 5, 1, 19, 34, 56);
+        Assert.Equal(sidecarTime, Assert.Single(items, i => i.Location.EndsWith("/IMG_0003.JPG")).TakenUtc);
+        Assert.NotEqual(sidecarTime, Assert.Single(items, i => i.Location.EndsWith("IMG_0003(1).JPG")).TakenUtc);
+        Assert.NotEqual(sidecarTime, Assert.Single(items, i => i.Location.EndsWith("IMG_0004.JPG")).TakenUtc);
+    }
+
+    /// <summary>Windows only lets admins (or Developer Mode) create symbolic links; skip there instead of failing.</summary>
+    private static bool TryCreateLink(string link, string target)
+    {
+        try
+        {
+            Directory.CreateSymbolicLink(link, target);
+            return true;
+        }
+        catch (Exception e) when (e is UnauthorizedAccessException or IOException)
+        {
+            return false;
+        }
     }
 
     [Fact]

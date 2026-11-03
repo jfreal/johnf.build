@@ -64,7 +64,7 @@ public sealed class ReconcileConfig
         var comparison = OperatingSystem.IsWindows() ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
         var folders = Sources
             .Where(s => s.Path is not null && s.Type is SourceTypes.Folder or SourceTypes.GoogleTakeout)
-            .Select(s => (s.Name, Full: Path.TrimEndingDirectorySeparator(Path.GetFullPath(s.Path!))))
+            .Select(s => (s.Name, Full: Path.TrimEndingDirectorySeparator(RealPath(s.Path!))))
             .ToList();
 
         for (var i = 0; i < folders.Count; i++)
@@ -87,6 +87,36 @@ public sealed class ReconcileConfig
             return relative != "." && !Path.IsPathRooted(relative) &&
                    relative != ".." && !relative.StartsWith(".." + Path.DirectorySeparatorChar, comparison);
         }
+    }
+
+    /// <summary>
+    /// The folder's path with every symbolic link or junction along it resolved, so a source that
+    /// reaches a folder through a link is recognized as the same folder. Parts that don't exist
+    /// (yet) are kept as written.
+    /// </summary>
+    internal static string RealPath(string path, int depth = 0)
+    {
+        var full = Path.GetFullPath(path);
+        var root = Path.GetPathRoot(full) ?? "";
+        var current = root;
+        foreach (var part in full[root.Length..].Split(Path.DirectorySeparatorChar, StringSplitOptions.RemoveEmptyEntries))
+        {
+            current = Path.Combine(current, part);
+            try
+            {
+                var dir = new DirectoryInfo(current);
+                if (depth < 32 && dir.LinkTarget is not null && dir.ResolveLinkTarget(returnFinalTarget: true) is { } target)
+                {
+                    current = RealPath(target.FullName, depth + 1); // the target may itself sit under a link
+                }
+            }
+            catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+            {
+                // A broken or unreadable link: compare the path as written.
+            }
+        }
+
+        return current;
     }
 
     private void Validate(string baseDirectory)
