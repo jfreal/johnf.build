@@ -56,7 +56,8 @@ public sealed class IPhoneSource : IMediaSource
                 if (config.Hash)
                 {
                     var key = ScanCache.Key($"iphone:{device.SerialNumber}:{path}", size, modified ?? default);
-                    if (context.Cache.TryGet(key, out var cached) && cached.Hash is not null)
+                    // Without a modified time the key can't notice a replaced file, so don't cache.
+                    if (modified is not null && context.Cache.TryGet(key, out var cached) && cached.Hash is not null)
                     {
                         hash = cached.Hash;
                     }
@@ -65,7 +66,7 @@ public sealed class IPhoneSource : IMediaSource
                         using var hasher = new DropboxContentHasher();
                         device.DownloadFile(path, hasher);
                         hash = hasher.GetHashString();
-                        context.Cache.Set(key, new ScanCache.Entry(hash, null, false, null));
+                        if (modified is not null) context.Cache.Set(key, new ScanCache.Entry(hash, null, false, null));
                     }
                 }
 

@@ -34,6 +34,10 @@ public sealed class ReconcileConfig
         AllowTrailingCommas = true,
         WriteIndented = true,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+
+        // A typo like "isBakcup" would otherwise fall back to the default and could turn the
+        // phone into a "backup". Fail loudly instead.
+        UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
     };
 
     public static ReconcileConfig Load(string path)
@@ -50,6 +54,40 @@ public sealed class ReconcileConfig
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData, Environment.SpecialFolderOption.Create),
             "MediaReconciler",
             "scan-cache.json");
+
+    /// <summary>
+    /// Two sources reading the same folder (or one inside the other) would count every photo
+    /// there as two backups, which could mark a photo with one real backup as safe to delete.
+    /// </summary>
+    private void RejectOverlappingFolders()
+    {
+        var comparison = OperatingSystem.IsWindows() ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+        var folders = Sources
+            .Where(s => s.Path is not null && s.Type is SourceTypes.Folder or SourceTypes.GoogleTakeout)
+            .Select(s => (s.Name, Full: Path.TrimEndingDirectorySeparator(Path.GetFullPath(s.Path!))))
+            .ToList();
+
+        for (var i = 0; i < folders.Count; i++)
+        {
+            for (var j = i + 1; j < folders.Count; j++)
+            {
+                var (a, b) = (folders[i], folders[j]);
+                if (a.Full.Equals(b.Full, comparison) || IsInside(a.Full, b.Full) || IsInside(b.Full, a.Full))
+                {
+                    throw new ConfigException(
+                        $"Sources \"{a.Name}\" and \"{b.Name}\" read the same folder (or one is inside the other), " +
+                        "so every photo there would count as two backups.");
+                }
+            }
+        }
+
+        bool IsInside(string child, string parent)
+        {
+            var relative = Path.GetRelativePath(parent, child);
+            return relative != "." && !Path.IsPathRooted(relative) &&
+                   relative != ".." && !relative.StartsWith(".." + Path.DirectorySeparatorChar, comparison);
+        }
+    }
 
     private void Validate(string baseDirectory)
     {
@@ -78,6 +116,8 @@ public sealed class ReconcileConfig
                 source.Path = System.IO.Path.GetFullPath(System.IO.Path.Combine(baseDirectory, source.Path));
             }
         }
+
+        RejectOverlappingFolders();
 
         if (!Path.IsPathRooted(OutputDirectory))
         {

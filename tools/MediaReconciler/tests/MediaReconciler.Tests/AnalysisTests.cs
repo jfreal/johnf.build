@@ -144,6 +144,21 @@ public class AnalysisTests
     }
 
     [Fact]
+    public void Lists_for_renamed_or_retired_sources_are_removed()
+    {
+        var dir = TempDirectory();
+        var old = Path.Combine(dir, "safe-to-remove-from-old-phone-name.csv");
+        File.WriteAllText(old, "id,name\n1,old.jpg\n");
+        var unrelated = Path.Combine(dir, "my-notes.csv");
+        File.WriteAllText(unrelated, "keep me");
+
+        ReportWriter.Write(Build(), dir);
+
+        Assert.False(File.Exists(old));
+        Assert.True(File.Exists(unrelated));
+    }
+
+    [Fact]
     public void Duplicate_lists_are_rewritten_even_when_empty()
     {
         var dir = TempDirectory();
@@ -184,6 +199,9 @@ public class AnalysisTests
     [Theory]
     [InlineData("=HYPERLINK(\"x\").jpg", "\"'=HYPERLINK(\"\"x\"\").jpg\"")]
     [InlineData("+1.jpg", "'+1.jpg")]
+    [InlineData("-1.jpg", "'-1.jpg")]
+    [InlineData("\tx.jpg", "'\tx.jpg")]
+    [InlineData("\rx.jpg", "\"'\rx.jpg\"")]
     [InlineData("@x.jpg", "'@x.jpg")]
     [InlineData("IMG_0001.HEIC", "IMG_0001.HEIC")]
     [InlineData("a,b.jpg", "\"a,b.jpg\"")]

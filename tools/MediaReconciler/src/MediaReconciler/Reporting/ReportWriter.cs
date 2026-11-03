@@ -12,6 +12,13 @@ public static partial class ReportWriter
     public static string Write(Analysis analysis, string outputDirectory)
     {
         Directory.CreateDirectory(outputDirectory);
+
+        // A renamed source, or one whose isBackup changed, would otherwise leave its old
+        // per-source lists behind, and an old safe-to-remove list is the dangerous kind.
+        foreach (var pattern in new[] { "missing-from-*.csv", "safe-to-remove-from-*.csv", "duplicates-in-*.csv" })
+        {
+            foreach (var stale in Directory.EnumerateFiles(outputDirectory, pattern)) File.Delete(stale);
+        }
         var summary = BuildSummary(analysis);
         File.WriteAllText(Path.Combine(outputDirectory, "summary.md"), summary);
 

@@ -204,6 +204,44 @@ public class SourceTests
         Assert.Equal(4, ReconcileConfig.Load(path).Sources.Count);
     }
 
+    [Theory]
+    [InlineData("photos", "photos")]
+    [InlineData("photos", "photos/2024")]
+    [InlineData("photos/2024", "photos")]
+    public void Overlapping_folders_are_rejected(string first, string second)
+    {
+        var path = Path.Combine(TestData.TempDirectory(), "reconcile.json");
+        File.WriteAllText(path, $$"""
+            { "sources": [ { "name": "a", "type": "folder", "path": "{{first}}" }, { "name": "b", "type": "folder", "path": "{{second}}" } ] }
+            """);
+
+        var error = Assert.Throws<ConfigException>(() => ReconcileConfig.Load(path));
+        Assert.Contains("same folder", error.Message);
+    }
+
+    [Fact]
+    public void Sibling_folders_with_a_shared_prefix_are_fine()
+    {
+        var path = Path.Combine(TestData.TempDirectory(), "reconcile.json");
+        File.WriteAllText(path, """
+            { "sources": [ { "name": "a", "type": "folder", "path": "photos" }, { "name": "b", "type": "folder", "path": "photos-old" } ] }
+            """);
+
+        Assert.Equal(2, ReconcileConfig.Load(path).Sources.Count);
+    }
+
+    [Fact]
+    public void Misspelled_config_keys_are_rejected()
+    {
+        var path = Path.Combine(TestData.TempDirectory(), "reconcile.json");
+        File.WriteAllText(path, """
+            { "sources": [ { "name": "a", "type": "folder", "path": "x" }, { "name": "phone", "type": "manifest", "path": "p.csv", "isBakcup": false } ] }
+            """);
+
+        var error = Assert.Throws<System.Text.Json.JsonException>(() => ReconcileConfig.Load(path));
+        Assert.Contains("isBakcup", error.Message);
+    }
+
     [Fact]
     public void Duplicate_source_names_are_rejected()
     {

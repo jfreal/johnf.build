@@ -139,6 +139,7 @@ public class MatcherTests
 
         Assert.Equal(count, groups.Count);
         Assert.All(groups, g => Assert.Equal(2, g.Sources.Count()));
+        Assert.All(groups, g => Assert.Equal(g.Items[0].ContentHash![1..], g.Items[1].ContentHash![1..])); // a{k} with b{k}
         Assert.True(watch.Elapsed < TimeSpan.FromSeconds(10), $"took {watch.Elapsed}");
     }
 
