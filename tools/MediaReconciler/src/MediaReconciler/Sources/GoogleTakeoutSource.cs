@@ -25,6 +25,23 @@ public sealed partial class GoogleTakeoutSource : IMediaSource
     /// <param name="CopyIndex">N for "IMG_1234.jpg(N).json": the sidecar of "IMG_1234(N).jpg".</param>
     private sealed record Sidecar(string Title, DateTime TakenUtc, int? CopyIndex);
 
+    /// <summary>One folder's sidecars, indexed by title so a "Photos from 2023" folder of tens of thousands isn't searched linearly per photo.</summary>
+    private sealed class SidecarFolder
+    {
+        public List<Sidecar> All { get; } = [];
+        public Dictionary<string, List<Sidecar>> ByTitle { get; } = new(StringComparer.OrdinalIgnoreCase);
+
+        public void Add(Sidecar sidecar)
+        {
+            All.Add(sidecar);
+            if (!ByTitle.TryGetValue(sidecar.Title, out var list)) ByTitle[sidecar.Title] = list = [];
+            list.Add(sidecar);
+        }
+
+        public Sidecar? Find(string title, Func<Sidecar, bool> accept) =>
+            ByTitle.TryGetValue(title, out var list) ? list.FirstOrDefault(accept) : null;
+    }
+
     public async Task<IReadOnlyList<MediaItem>> ScanAsync(ScanContext context, CancellationToken ct)
     {
         var config = context.Config;
@@ -33,7 +50,7 @@ public sealed partial class GoogleTakeoutSource : IMediaSource
             throw new DirectoryNotFoundException($"Source \"{config.Name}\": folder \"{config.Path}\" does not exist.");
         }
 
-        var zips = Directory.EnumerateFiles(config.Path, "*.zip", SearchOption.AllDirectories).Order().ToList();
+        var zips = Directory.EnumerateFiles(config.Path, "*.zip", WalkOptions).Order().ToList();
         var archives = new List<ZipArchive>();
         try
         {
@@ -67,14 +84,14 @@ public sealed partial class GoogleTakeoutSource : IMediaSource
         // Pass 1: the JSON sidecars carry the real capture time (photoTakenTime) and the
         // original file name ("title"), which Takeout truncates in the media file's own name.
         // A sidecar can sit in a different zip part than its photo, so index all of them first.
-        var sidecars = new Dictionary<string, List<Sidecar>>(StringComparer.OrdinalIgnoreCase);
+        var sidecars = new Dictionary<string, SidecarFolder>(StringComparer.OrdinalIgnoreCase);
         foreach (var entry in entries.Where(e => e.EntryPath.EndsWith(".json", StringComparison.OrdinalIgnoreCase)))
         {
             if (TryReadSidecar(entry) is { } sidecar)
             {
                 var dir = DirectoryOf(entry.EntryPath);
-                if (!sidecars.TryGetValue(dir, out var list)) sidecars[dir] = list = [];
-                list.Add(sidecar);
+                if (!sidecars.TryGetValue(dir, out var folder)) sidecars[dir] = folder = new SidecarFolder();
+                folder.Add(sidecar);
             }
         }
 
@@ -160,6 +177,10 @@ public sealed partial class GoogleTakeoutSource : IMediaSource
         return items;
     }
 
+    // One unreadable subfolder shouldn't abort the whole export scan.
+    private static readonly EnumerationOptions WalkOptions =
+        new() { RecurseSubdirectories = true, IgnoreInaccessible = true, AttributesToSkip = 0 };
+
     private static IEnumerable<Entry> EnumerateEntries(string root, List<string> zips, List<ZipArchive> archives)
     {
         for (var i = 0; i < zips.Count; i++)
@@ -179,7 +200,7 @@ public sealed partial class GoogleTakeoutSource : IMediaSource
         }
 
         // Already-extracted exports.
-        foreach (var path in Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories))
+        foreach (var path in Directory.EnumerateFiles(root, "*", WalkOptions))
         {
             if (path.EndsWith(".zip", StringComparison.OrdinalIgnoreCase)) continue;
             var info = new FileInfo(path);
@@ -222,9 +243,9 @@ public sealed partial class GoogleTakeoutSource : IMediaSource
         }
     }
 
-    private static Sidecar? FindSidecar(Dictionary<string, List<Sidecar>> sidecars, string mediaPath)
+    private static Sidecar? FindSidecar(Dictionary<string, SidecarFolder> sidecars, string mediaPath)
     {
-        if (!sidecars.TryGetValue(DirectoryOf(mediaPath), out var candidates)) return null;
+        if (!sidecars.TryGetValue(DirectoryOf(mediaPath), out var folder)) return null;
 
         var name = Path.GetFileName(mediaPath);
         var stemOnly = Path.GetFileNameWithoutExtension(name);
@@ -234,15 +255,15 @@ public sealed partial class GoogleTakeoutSource : IMediaSource
 
         // "IMG_1234(1).jpg" belongs to "IMG_1234.jpg(1).json", whose title is also "IMG_1234.jpg".
         var exact =
-            candidates.FirstOrDefault(s => s.CopyIndex == copyIndex && s.Title.Equals(withoutCopy, StringComparison.OrdinalIgnoreCase))
-            ?? candidates.FirstOrDefault(s => s.Title.Equals(name, StringComparison.OrdinalIgnoreCase))
-            ?? candidates.FirstOrDefault(s => s.Title.Equals(withoutCopy, StringComparison.OrdinalIgnoreCase));
+            folder.Find(withoutCopy, s => s.CopyIndex == copyIndex)
+            ?? folder.Find(name, _ => true)
+            ?? folder.Find(withoutCopy, _ => true);
         if (exact is not null) return exact;
 
         // Long names are truncated in the export; the sidecar title still has the full name.
         var stem = Path.GetFileNameWithoutExtension(withoutCopy);
         return stem.Length >= 30
-            ? candidates.FirstOrDefault(s => s.Title.StartsWith(stem, StringComparison.OrdinalIgnoreCase))
+            ? folder.All.FirstOrDefault(s => s.Title.StartsWith(stem, StringComparison.OrdinalIgnoreCase))
             : null;
     }
 

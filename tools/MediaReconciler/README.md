@@ -14,7 +14,10 @@ picture across all of them and writes a report with:
 - **byte-identical duplicates** wasting space inside one source,
 - a CSV for each backup listing what's **missing from it** (and where to copy it from).
 
-It is **read-only**: it never deletes, moves or uploads anything.
+It is **read-only** for your photos and videos: it never deletes, moves or uploads them. The only
+files it writes are its own report and scan cache; a rerun replaces the report's
+`missing-from-*`, `safe-to-remove-from-*` and `duplicates-in-*` CSVs, so point `outputDirectory`
+at a folder of its own.
 
 ## Build and run
 

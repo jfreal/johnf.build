@@ -159,7 +159,8 @@ public sealed class FolderSource : IMediaSource
             FileName = file.Name,
             Kind = MediaNames.GetKind(file.Name)!.Value,
             Size = file.Length,
-            ContentHash = cached.Hash,
+            // A hash cached by an earlier run must not leak in when hashing is switched off for this source.
+            ContentHash = config.Hash ? cached.Hash : null,
             TakenUtc = cached.TakenUtc,
             UtcIsFileTime = cached.UtcIsFileTime,
             TakenLocal = cached.TakenLocal,
