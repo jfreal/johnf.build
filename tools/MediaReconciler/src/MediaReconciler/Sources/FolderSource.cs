@@ -83,7 +83,10 @@ public sealed class FolderSource : IMediaSource
 
         // Symlinks and junctions can point back up the tree (an endless walk) or at a folder
         // already read (every photo in it counted twice), so each real folder is read once.
-        var visited = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { RealPath(pending.Peek()) };
+        var visited = new HashSet<string>(OperatingSystem.IsWindows() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal)
+        {
+            RealPath(pending.Peek()),
+        };
         var options = new EnumerationOptions { IgnoreInaccessible = true, AttributesToSkip = FileAttributes.System };
 
         while (pending.Count > 0)
@@ -107,7 +110,7 @@ public sealed class FolderSource : IMediaSource
         {
             return (dir.ResolveLinkTarget(returnFinalTarget: true) ?? dir).FullName;
         }
-        catch (IOException)
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
         {
             return dir.FullName;
         }

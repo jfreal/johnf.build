@@ -243,6 +243,45 @@ public class SourceTests
     }
 
     [Fact]
+    public async Task Folder_links_are_read_once_and_never_loop()
+    {
+        var dir = TestData.TempDirectory();
+        Directory.CreateDirectory(Path.Combine(dir, "2024"));
+        File.WriteAllBytes(Path.Combine(dir, "2024", "IMG_0001.JPG"), TestData.JpegWithExif(Taken, "+02:00"));
+        Directory.CreateSymbolicLink(Path.Combine(dir, "2024", "back-to-top"), dir); // a cycle
+        Directory.CreateSymbolicLink(Path.Combine(dir, "also-2024"), Path.Combine(dir, "2024")); // a second way in
+
+        var items = await new FolderSource().ScanAsync(Context(new SourceConfig { Name = "f", Type = "folder", Path = dir }), default);
+
+        Assert.Single(items);
+    }
+
+    [Fact]
+    public async Task Folders_differing_only_by_case_are_both_read_where_the_file_system_allows()
+    {
+        if (OperatingSystem.IsWindows() || OperatingSystem.IsMacOS()) return; // case-insensitive file systems
+        var dir = TestData.TempDirectory();
+        Directory.CreateDirectory(Path.Combine(dir, "Photos"));
+        Directory.CreateDirectory(Path.Combine(dir, "photos"));
+        File.WriteAllBytes(Path.Combine(dir, "Photos", "IMG_0001.JPG"), TestData.JpegWithExif(Taken, "+02:00"));
+        File.WriteAllBytes(Path.Combine(dir, "photos", "IMG_0002.JPG"), TestData.JpegWithExif(Taken.AddSeconds(1), "+02:00"));
+
+        var items = await new FolderSource().ScanAsync(Context(new SourceConfig { Name = "f", Type = "folder", Path = dir }), default);
+
+        Assert.Equal(2, items.Count);
+    }
+
+    [Fact]
+    public void Unknown_source_types_are_rejected_before_scanning()
+    {
+        var path = Path.Combine(TestData.TempDirectory(), "reconcile.json");
+        File.WriteAllText(path, """{ "sources": [ { "name": "a", "type": "folder" }, { "name": "b", "type": "dropbx" } ] }""");
+
+        var error = Assert.Throws<ConfigException>(() => ReconcileConfig.Load(path));
+        Assert.Contains("dropbx", error.Message);
+    }
+
+    [Fact]
     public void Duplicate_source_names_are_rejected()
     {
         var path = Path.Combine(TestData.TempDirectory(), "reconcile.json");
