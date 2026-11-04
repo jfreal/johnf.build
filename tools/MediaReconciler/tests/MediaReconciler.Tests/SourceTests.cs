@@ -1,0 +1,360 @@
+using System.IO.Compression;
+using System.Text;
+using MediaReconciler.Config;
+using MediaReconciler.Hashing;
+using MediaReconciler.Sources;
+
+namespace MediaReconciler.Tests;
+
+public class SourceTests
+{
+    private static readonly DateTime Taken = new(2024, 5, 1, 12, 34, 56);
+
+    private static ScanContext Context(SourceConfig config, int index = 0) =>
+        new(index, config, ScanCache.InMemory(), _ => { });
+
+    [Fact]
+    public async Task Folder_source_hashes_and_reads_exif()
+    {
+        var dir = TestData.TempDirectory();
+        Directory.CreateDirectory(Path.Combine(dir, "2024", ".dropbox.cache"));
+        var jpeg = TestData.JpegWithExif(Taken, "+02:00");
+        File.WriteAllBytes(Path.Combine(dir, "2024", "IMG_0001.JPG"), jpeg);
+        File.WriteAllText(Path.Combine(dir, "2024", "notes.txt"), "not media");
+        File.WriteAllBytes(Path.Combine(dir, "2024", ".dropbox.cache", "IMG_0001.JPG"), jpeg);
+
+        var items = await new FolderSource().ScanAsync(Context(new SourceConfig { Name = "f", Type = "folder", Path = dir }), default);
+
+        var item = Assert.Single(items);
+        Assert.Equal(Path.Combine("2024", "IMG_0001.JPG"), item.Location);
+        Assert.Equal(DropboxContentHasher.Compute(jpeg), item.ContentHash);
+        Assert.Equal(Taken, item.TakenLocal);
+        Assert.Equal(Taken.AddHours(-2), item.TakenUtc);
+        Assert.False(item.UtcIsFileTime);
+    }
+
+    [Fact]
+    public async Task Folder_source_uses_the_cache_on_the_second_run()
+    {
+        var dir = TestData.TempDirectory();
+        File.WriteAllBytes(Path.Combine(dir, "IMG_0001.JPG"), TestData.JpegWithExif(Taken, null));
+        var cachePath = Path.Combine(dir, "cache", "scan-cache.json");
+        var config = new SourceConfig { Name = "f", Type = "folder", Path = dir };
+
+        var first = await new FolderSource().ScanAsync(new ScanContext(0, config, ScanCache.Load(cachePath), _ => { }), default);
+        Assert.True(File.Exists(cachePath));
+
+        var cache = ScanCache.Load(cachePath);
+        var key = ScanCache.Key("folder:meta:" + Path.Combine(dir, "IMG_0001.JPG"), new FileInfo(Path.Combine(dir, "IMG_0001.JPG")).Length,
+            File.GetLastWriteTimeUtc(Path.Combine(dir, "IMG_0001.JPG")));
+        Assert.True(cache.TryGet(key, out var entry));
+        Assert.Equal(first[0].ContentHash, entry.Hash);
+    }
+
+    [Fact]
+    public async Task Takeout_reads_zips_sidecars_across_parts_and_skips_album_copies_and_edits()
+    {
+        var dir = TestData.TempDirectory();
+        var photo = TestData.JpegWithExif(Taken, null, padding: 10);
+        var longName = "A very long original file name that Google truncates.jpg";
+        var truncated = longName[..47] + ".jpg";
+        var unix = new DateTimeOffset(2024, 5, 1, 19, 34, 56, TimeSpan.Zero).ToUnixTimeSeconds();
+
+        // Part 1: the photos. Part 2: their sidecars, plus an album copy and an edited copy.
+        WriteZip(Path.Combine(dir, "takeout-001.zip"), new()
+        {
+            ["Takeout/Google Photos/Photos from 2024/IMG_0001.JPG"] = photo,
+            ["Takeout/Google Photos/Photos from 2024/IMG_0001(1).JPG"] = TestData.JpegWithExif(Taken, null, padding: 20),
+            ["Takeout/Google Photos/Photos from 2024/" + truncated] = TestData.JpegWithExif(Taken, null, padding: 30),
+            ["Takeout/Google Photos/Photos from 2024/IMG_0002(99999999999).JPG"] = TestData.JpegWithExif(Taken, null, padding: 50),
+        });
+        WriteZip(Path.Combine(dir, "takeout-002.zip"), new()
+        {
+            ["Takeout/Google Photos/Photos from 2024/IMG_0001.JPG.supplemental-metadata(1).json"] = Sidecar("IMG_0001.JPG", unix + 1),
+            ["Takeout/Google Photos/Photos from 2024/IMG_0001.JPG.supplemental-metadata.json"] = Sidecar("IMG_0001.JPG", unix),
+            ["Takeout/Google Photos/Photos from 2024/huge.json"] = Encoding.UTF8.GetBytes(
+                """{ "title": "x.jpg", "photoTakenTime": { "timestamp": "99999999999999999999" } }"""),
+            ["Takeout/Google Photos/Photos from 2024/z.jpg(99999999999).json"] = Sidecar("z.jpg", unix),
+            ["Takeout/Google Photos/Photos from 2024/far.json"] = Encoding.UTF8.GetBytes(
+                """{ "title": "y.jpg", "photoTakenTime": { "timestamp": 999999999999999 } }"""),
+            ["Takeout/Google Photos/Photos from 2024/" + longName[..40] + ".json"] = Sidecar(longName, unix + 2),
+            ["Takeout/Google Photos/Holiday/IMG_0001.JPG"] = photo,
+            ["Takeout/Google Photos/Holiday/metadata.json"] = Encoding.UTF8.GetBytes("""{ "title": "Holiday" }"""),
+            ["Takeout/Google Photos/Photos from 2024/IMG_0001-edited.JPG"] = TestData.JpegWithExif(Taken, null, padding: 40),
+        });
+
+        var context = Context(new SourceConfig { Name = "g", Type = "google-takeout", Path = dir });
+        var items = await new GoogleTakeoutSource().ScanAsync(context, default);
+
+        Assert.Equal(4, items.Count); // oversized "(N)" suffixes are tolerated, not fatal
+        var first = Assert.Single(items, i => i.Location == "takeout-001.zip!Takeout/Google Photos/Photos from 2024/IMG_0001.JPG");
+        Assert.Equal(new DateTime(2024, 5, 1, 19, 34, 56), first.TakenUtc);
+        Assert.False(first.UtcIsFileTime);
+        Assert.Equal(DropboxContentHasher.Compute(photo), first.ContentHash);
+
+        var duplicateName = Assert.Single(items, i => i.Location.EndsWith("IMG_0001(1).JPG"));
+        Assert.Equal("IMG_0001.JPG", duplicateName.FileName);
+        Assert.Equal(new DateTime(2024, 5, 1, 19, 34, 57), duplicateName.TakenUtc);
+
+        var restored = Assert.Single(items, i => i.Location.EndsWith(truncated));
+        Assert.Equal(longName, restored.FileName);
+        Assert.Equal(new DateTime(2024, 5, 1, 19, 34, 58), restored.TakenUtc);
+
+        Assert.Contains(context.Notes, n => n.Contains("-edited"));
+    }
+
+    [Fact]
+    public async Task Takeout_without_hashing_keeps_same_name_and_size_from_different_years()
+    {
+        var dir = TestData.TempDirectory();
+        var old = new DateTimeOffset(2019, 3, 1, 10, 0, 0, TimeSpan.Zero).ToUnixTimeSeconds();
+        var recent = new DateTimeOffset(2023, 7, 4, 18, 0, 0, TimeSpan.Zero).ToUnixTimeSeconds();
+        var bytes = new byte[500];
+
+        WriteZip(Path.Combine(dir, "takeout-001.zip"), new()
+        {
+            ["Takeout/Google Photos/Photos from 2019/IMG_1234.JPG"] = bytes,
+            ["Takeout/Google Photos/Photos from 2019/IMG_1234.JPG.json"] = Sidecar("IMG_1234.JPG", old),
+            ["Takeout/Google Photos/Photos from 2023/IMG_1234.JPG"] = bytes,
+            ["Takeout/Google Photos/Photos from 2023/IMG_1234.JPG.json"] = Sidecar("IMG_1234.JPG", recent),
+            ["Takeout/Google Photos/Holiday/IMG_1234.JPG"] = bytes,
+            ["Takeout/Google Photos/Holiday/IMG_1234.JPG.json"] = Sidecar("IMG_1234.JPG", recent),
+        });
+
+        var config = new SourceConfig { Name = "g", Type = "google-takeout", Path = dir, Hash = false };
+        var items = await new GoogleTakeoutSource().ScanAsync(Context(config), default);
+
+        // Two different photos (iPhone counters wrap), plus one album copy that is skipped.
+        Assert.Equal(2, items.Count);
+        Assert.Equal(
+            [new DateTime(2019, 3, 1, 10, 0, 0), new DateTime(2023, 7, 4, 18, 0, 0)],
+            items.Select(i => i.TakenUtc!.Value).Order());
+    }
+
+    [Fact]
+    public void Manifest_rows_become_items()
+    {
+        var items = ManifestSource.Parse(
+            [
+                "name,size,hash,taken_utc,location",
+                "IMG_0001.HEIC,123,ABCDEF,2024-05-01T19:34:56Z,DCIM/100APPLE/IMG_0001.HEIC",
+                "\"Holiday, day 1.jpg\",,,,",
+                "notes.txt,1,,,",
+            ],
+            sourceIndex: 2,
+            out var skipped);
+
+        Assert.Equal(1, skipped);
+        Assert.Equal(2, items.Count);
+        Assert.Equal("abcdef", items[0].ContentHash);
+        Assert.Equal(123, items[0].Size);
+        Assert.Equal(new DateTime(2024, 5, 1, 19, 34, 56, DateTimeKind.Utc), items[0].TakenUtc);
+        Assert.Equal("Holiday, day 1.jpg", items[1].FileName);
+        Assert.Equal(-1, items[1].Size);
+    }
+
+    [Fact]
+    public void Config_resolves_paths_and_secrets()
+    {
+        var dir = TestData.TempDirectory();
+        var path = Path.Combine(dir, "reconcile.json");
+        File.WriteAllText(path, """
+            {
+              // comments are allowed
+              "sources": [
+                { "name": "a", "type": "folder", "path": "photos" },
+                { "name": "b", "type": "dropbox", "path": "/Camera Uploads", "refreshToken": "env:MR_TEST_TOKEN" },
+                { "name": "c", "type": "iphone" },
+              ],
+            }
+            """);
+
+        var config = ReconcileConfig.Load(path);
+
+        Assert.Equal(Path.Combine(dir, "photos"), config.Sources[0].Path);
+        Assert.Equal("/Camera Uploads", config.Sources[1].Path);
+        Assert.Equal(Path.Combine(dir, "report"), config.OutputDirectory);
+        Assert.Null(config.CachePath);
+        Assert.True(config.Sources[0].CountsAsBackup);
+        Assert.False(config.Sources[2].CountsAsBackup);
+
+        Environment.SetEnvironmentVariable("MR_TEST_TOKEN", "secret");
+        Assert.Equal("secret", SourceConfig.ResolveSecret(config.Sources[1].RefreshToken));
+    }
+
+    [Fact]
+    public void Relative_cache_path_is_relative_to_the_config()
+    {
+        var dir = TestData.TempDirectory();
+        var path = Path.Combine(dir, "reconcile.json");
+        File.WriteAllText(path, """
+            { "cachePath": "cache/scan.json", "sources": [ { "name": "a", "type": "folder" }, { "name": "b", "type": "folder" } ] }
+            """);
+
+        Assert.Equal(Path.Combine(dir, "cache", "scan.json"), ReconcileConfig.Load(path).ResolveCachePath());
+    }
+
+    [Fact]
+    public void Sample_config_is_valid()
+    {
+        var dir = TestData.TempDirectory();
+        var path = Path.Combine(dir, "reconcile.json");
+        File.WriteAllText(path, SampleConfig.Json);
+
+        Assert.Equal(4, ReconcileConfig.Load(path).Sources.Count);
+    }
+
+    [Theory]
+    [InlineData("photos", "photos")]
+    [InlineData("photos", "photos/2024")]
+    [InlineData("photos/2024", "photos")]
+    public void Overlapping_folders_are_rejected(string first, string second)
+    {
+        var path = Path.Combine(TestData.TempDirectory(), "reconcile.json");
+        File.WriteAllText(path, $$"""
+            { "sources": [ { "name": "a", "type": "folder", "path": "{{first}}" }, { "name": "b", "type": "folder", "path": "{{second}}" } ] }
+            """);
+
+        var error = Assert.Throws<ConfigException>(() => ReconcileConfig.Load(path));
+        Assert.Contains("same folder", error.Message);
+    }
+
+    [Fact]
+    public void Sibling_folders_with_a_shared_prefix_are_fine()
+    {
+        var path = Path.Combine(TestData.TempDirectory(), "reconcile.json");
+        File.WriteAllText(path, """
+            { "sources": [ { "name": "a", "type": "folder", "path": "photos" }, { "name": "b", "type": "folder", "path": "photos-old" } ] }
+            """);
+
+        Assert.Equal(2, ReconcileConfig.Load(path).Sources.Count);
+    }
+
+    [Fact]
+    public void Misspelled_config_keys_are_rejected()
+    {
+        var path = Path.Combine(TestData.TempDirectory(), "reconcile.json");
+        File.WriteAllText(path, """
+            { "sources": [ { "name": "a", "type": "folder", "path": "x" }, { "name": "phone", "type": "manifest", "path": "p.csv", "isBakcup": false } ] }
+            """);
+
+        var error = Assert.Throws<System.Text.Json.JsonException>(() => ReconcileConfig.Load(path));
+        Assert.Contains("isBakcup", error.Message);
+    }
+
+    [Fact]
+    public async Task Folder_links_are_read_once_and_never_loop()
+    {
+        var dir = TestData.TempDirectory();
+        Directory.CreateDirectory(Path.Combine(dir, "2024"));
+        File.WriteAllBytes(Path.Combine(dir, "2024", "IMG_0001.JPG"), TestData.JpegWithExif(Taken, "+02:00"));
+        if (!TryCreateLink(Path.Combine(dir, "2024", "back-to-top"), dir)) return; // a cycle
+        if (!TryCreateLink(Path.Combine(dir, "also-2024"), Path.Combine(dir, "2024"))) return; // a second way in
+
+        var items = await new FolderSource().ScanAsync(Context(new SourceConfig { Name = "f", Type = "folder", Path = dir }), default);
+
+        Assert.Single(items);
+    }
+
+    [Fact]
+    public async Task Folders_differing_only_by_case_are_both_read_where_the_file_system_allows()
+    {
+        if (OperatingSystem.IsWindows() || OperatingSystem.IsMacOS()) return; // case-insensitive file systems
+        var dir = TestData.TempDirectory();
+        Directory.CreateDirectory(Path.Combine(dir, "Photos"));
+        Directory.CreateDirectory(Path.Combine(dir, "photos"));
+        File.WriteAllBytes(Path.Combine(dir, "Photos", "IMG_0001.JPG"), TestData.JpegWithExif(Taken, "+02:00"));
+        File.WriteAllBytes(Path.Combine(dir, "photos", "IMG_0002.JPG"), TestData.JpegWithExif(Taken.AddSeconds(1), "+02:00"));
+
+        var items = await new FolderSource().ScanAsync(Context(new SourceConfig { Name = "f", Type = "folder", Path = dir }), default);
+
+        Assert.Equal(2, items.Count);
+    }
+
+    [Fact]
+    public void Unknown_source_types_are_rejected_before_scanning()
+    {
+        var path = Path.Combine(TestData.TempDirectory(), "reconcile.json");
+        File.WriteAllText(path, """{ "sources": [ { "name": "a", "type": "folder" }, { "name": "b", "type": "dropbx" } ] }""");
+
+        var error = Assert.Throws<ConfigException>(() => ReconcileConfig.Load(path));
+        Assert.Contains("dropbx", error.Message);
+    }
+
+    [Fact]
+    public void A_folder_reached_through_a_link_counts_as_the_same_folder()
+    {
+        var dir = TestData.TempDirectory();
+        Directory.CreateDirectory(Path.Combine(dir, "real", "2024"));
+        if (!TryCreateLink(Path.Combine(dir, "link"), Path.Combine(dir, "real"))) return;
+        var path = Path.Combine(dir, "reconcile.json");
+
+        foreach (var other in new[] { "link", "link/2024" })
+        {
+            File.WriteAllText(path, $$"""
+                { "sources": [ { "name": "a", "type": "folder", "path": "real" }, { "name": "b", "type": "folder", "path": "{{other}}" } ] }
+                """);
+            Assert.Contains("read the same folder", Assert.Throws<ConfigException>(() => ReconcileConfig.Load(path)).Message);
+        }
+    }
+
+    [Fact]
+    public async Task Numbered_takeout_copies_never_borrow_each_others_sidecars()
+    {
+        var dir = TestData.TempDirectory();
+        var unix = new DateTimeOffset(2024, 5, 1, 19, 34, 56, TimeSpan.Zero).ToUnixTimeSeconds();
+        WriteZip(Path.Combine(dir, "takeout-001.zip"), new()
+        {
+            // IMG_0003(1) has no sidecar of its own; IMG_0004 has only its copy's sidecar.
+            ["Takeout/Google Photos/Photos from 2024/IMG_0003.JPG"] = TestData.JpegWithExif(Taken, null, padding: 10),
+            ["Takeout/Google Photos/Photos from 2024/IMG_0003(1).JPG"] = TestData.JpegWithExif(Taken.AddDays(3), null, padding: 20),
+            ["Takeout/Google Photos/Photos from 2024/IMG_0003.JPG.json"] = Sidecar("IMG_0003.JPG", unix),
+            ["Takeout/Google Photos/Photos from 2024/IMG_0004.JPG"] = TestData.JpegWithExif(Taken.AddDays(5), null, padding: 30),
+            ["Takeout/Google Photos/Photos from 2024/IMG_0004.JPG(1).json"] = Sidecar("IMG_0004.JPG", unix),
+        });
+
+        var items = await new GoogleTakeoutSource().ScanAsync(Context(new SourceConfig { Name = "g", Type = "google-takeout", Path = dir }), default);
+
+        var sidecarTime = new DateTime(2024, 5, 1, 19, 34, 56);
+        Assert.Equal(sidecarTime, Assert.Single(items, i => i.Location.EndsWith("/IMG_0003.JPG")).TakenUtc);
+        Assert.NotEqual(sidecarTime, Assert.Single(items, i => i.Location.EndsWith("IMG_0003(1).JPG")).TakenUtc);
+        Assert.NotEqual(sidecarTime, Assert.Single(items, i => i.Location.EndsWith("IMG_0004.JPG")).TakenUtc);
+    }
+
+    /// <summary>Windows only lets admins (or Developer Mode) create symbolic links; skip there instead of failing.</summary>
+    private static bool TryCreateLink(string link, string target)
+    {
+        try
+        {
+            Directory.CreateSymbolicLink(link, target);
+            return true;
+        }
+        catch (Exception e) when (e is UnauthorizedAccessException or IOException)
+        {
+            return false;
+        }
+    }
+
+    [Fact]
+    public void Duplicate_source_names_are_rejected()
+    {
+        var path = Path.Combine(TestData.TempDirectory(), "reconcile.json");
+        File.WriteAllText(path, """{ "sources": [ { "name": "a", "type": "folder" }, { "name": "A", "type": "folder" } ] }""");
+
+        Assert.Throws<ConfigException>(() => ReconcileConfig.Load(path));
+    }
+
+    private static byte[] Sidecar(string title, long unix) => Encoding.UTF8.GetBytes($$"""
+        { "title": "{{title}}", "photoTakenTime": { "timestamp": "{{unix}}", "formatted": "..." } }
+        """);
+
+    private static void WriteZip(string path, Dictionary<string, byte[]> files)
+    {
+        using var zip = ZipFile.Open(path, ZipArchiveMode.Create);
+        foreach (var (name, bytes) in files)
+        {
+            using var stream = zip.CreateEntry(name).Open();
+            stream.Write(bytes);
+        }
+    }
+}
