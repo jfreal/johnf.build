@@ -224,7 +224,7 @@
   "https://pheidi.training/support/": "2026-11-02",
   "https://pheidi.training/terms/": "2026-11-02",
   "https://pheidi.training/tools/": "2026-11-02",
-  "https://pheidi.training/updates/": "2026-11-02",
+  "https://pheidi.training/updates/": "2026-11-04",
   "https://pheidi.training/updates/2026-08-11-regenerating-your-plan-no-longer-erases-your-beginner-ramp/": "2026-08-11",
   "https://pheidi.training/updates/2026-08-11-your-beginner-ramp-weeks-stop-ghosting-you-after-refresh/": "2026-08-11",
   "https://pheidi.training/updates/2026-08-14-elite-plan-calendars-stopped-dying-on-doubles-days/": "2026-08-14",
@@ -262,5 +262,10 @@
   "https://pheidi.training/updates/2026-11-02-intervals-icu-sync-now-sees-your-whole-plan-not-just-the-next-two/": "2026-11-02",
   "https://pheidi.training/updates/2026-11-02-phase-labels-on-the-training-chart-now-sit-under-the-weeks-they-belong/": "2026-11-02",
   "https://pheidi.training/updates/2026-11-02-the-feedback-button-now-works-more-than-once/": "2026-11-02",
-  "https://pheidi.training/updates/2026-11-02-the-homepage-shows-up-about-1-1-seconds-sooner-on-your-phone/": "2026-11-02"
+  "https://pheidi.training/updates/2026-11-02-the-homepage-shows-up-about-1-1-seconds-sooner-on-your-phone/": "2026-11-02",
+  "https://pheidi.training/updates/2026-11-03-a-new-web-app-is-live-sign-in-and-see-todays-run/": "2026-11-03",
+  "https://pheidi.training/updates/2026-11-03-enter-now-submits-your-sign-in-code/": "2026-11-03",
+  "https://pheidi.training/updates/2026-11-03-first-sign-ups-now-go-through-clean/": "2026-11-03",
+  "https://pheidi.training/updates/2026-11-03-resolving-an-injury-no-longer-rewrites-the-run-you-already-did/": "2026-11-03",
+  "https://pheidi.training/updates/2026-11-04-logging-a-run-no-longer-starts-you-off-with-a-pile-of-decimals/": "2026-11-04"
 }
