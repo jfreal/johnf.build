@@ -220,7 +220,7 @@
   "https://pheidi.training/docs/roadmap-running-mobile-app/": "2026-11-11",
   "https://pheidi.training/features/": "2026-11-02",
   "https://pheidi.training/plan-builder/": "2026-11-07",
-  "https://pheidi.training/privacy/": "2026-11-11",
+  "https://pheidi.training/privacy/": "2026-11-12",
   "https://pheidi.training/support/": "2026-11-11",
   "https://pheidi.training/terms/": "2026-11-11",
   "https://pheidi.training/tools/": "2026-11-02",
@@ -298,8 +298,11 @@
   "https://pheidi.training/updates/2026-11-11-privacy-policy-and-terms-now-spell-out-whats-free-and-what-costs-money/": "2026-11-11",
   "https://pheidi.training/updates/2026-11-12-garmin-runners-now-get-the-right-reason-when-weekly-mileage-looks/": "2026-11-12",
   "https://pheidi.training/updates/2026-11-12-garmin-sync-no-longer-drops-good-runs-when-one-activity-has-bad-data/": "2026-11-12",
+  "https://pheidi.training/updates/2026-11-12-moving-the-domain-to-cloudflare-no-longer-takes-the-app-down-for-a/": "2026-11-12",
   "https://pheidi.training/updates/2026-11-12-privacy-policy-now-says-which-data-stays-after-you-delete-your-account/": "2026-11-12",
+  "https://pheidi.training/updates/2026-11-12-setup-stays-readable-and-sign-in-sends-you-to-your-own-plan/": "2026-11-12",
   "https://pheidi.training/updates/2026-11-12-shared-workout-cards-no-longer-print-the-wrong-distance/": "2026-11-12",
   "https://pheidi.training/updates/2026-11-12-the-play-store-listing-now-sends-you-to-the-right-address/": "2026-11-12",
-  "https://pheidi.training/updates/2026-11-12-the-roadmap-now-matches-what-exists/": "2026-11-12"
+  "https://pheidi.training/updates/2026-11-12-the-roadmap-now-matches-what-exists/": "2026-11-12",
+  "https://pheidi.training/updates/2026-11-12-three-broken-source-links-on-the-site-now-work/": "2026-11-12"
 }
