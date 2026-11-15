@@ -224,7 +224,7 @@
   "https://pheidi.training/support/": "2026-11-11",
   "https://pheidi.training/terms/": "2026-11-11",
   "https://pheidi.training/tools/": "2026-11-02",
-  "https://pheidi.training/updates/": "2026-11-12",
+  "https://pheidi.training/updates/": "2026-11-14",
   "https://pheidi.training/updates/2026-08-11-regenerating-your-plan-no-longer-erases-your-beginner-ramp/": "2026-08-11",
   "https://pheidi.training/updates/2026-08-11-your-beginner-ramp-weeks-stop-ghosting-you-after-refresh/": "2026-08-11",
   "https://pheidi.training/updates/2026-08-14-elite-plan-calendars-stopped-dying-on-doubles-days/": "2026-08-14",
@@ -304,5 +304,9 @@
   "https://pheidi.training/updates/2026-11-12-shared-workout-cards-no-longer-print-the-wrong-distance/": "2026-11-12",
   "https://pheidi.training/updates/2026-11-12-the-play-store-listing-now-sends-you-to-the-right-address/": "2026-11-12",
   "https://pheidi.training/updates/2026-11-12-the-roadmap-now-matches-what-exists/": "2026-11-12",
-  "https://pheidi.training/updates/2026-11-12-three-broken-source-links-on-the-site-now-work/": "2026-11-12"
+  "https://pheidi.training/updates/2026-11-12-three-broken-source-links-on-the-site-now-work/": "2026-11-12",
+  "https://pheidi.training/updates/2026-11-14-nightly-android-tests-now-finish-and-leave-their-results-behind/": "2026-11-14",
+  "https://pheidi.training/updates/2026-11-14-pheidi-now-knows-which-screens-get-used-and-which-dont/": "2026-11-14",
+  "https://pheidi.training/updates/2026-11-14-stalled-database-connections-now-time-out-and-retry-instead-of-hanging/": "2026-11-14",
+  "https://pheidi.training/updates/2026-11-14-switching-google-accounts-no-longer-trips-a-sign-in-error/": "2026-11-14"
 }
