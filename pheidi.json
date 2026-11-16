@@ -219,12 +219,12 @@
   "https://pheidi.training/docs/roadmap-heart-rate-training/": "2026-11-11",
   "https://pheidi.training/docs/roadmap-running-mobile-app/": "2026-11-11",
   "https://pheidi.training/features/": "2026-11-02",
-  "https://pheidi.training/plan-builder/": "2026-11-07",
+  "https://pheidi.training/plan-builder/": "2026-11-15",
   "https://pheidi.training/privacy/": "2026-11-12",
   "https://pheidi.training/support/": "2026-11-11",
-  "https://pheidi.training/terms/": "2026-11-11",
+  "https://pheidi.training/terms/": "2026-11-15",
   "https://pheidi.training/tools/": "2026-11-02",
-  "https://pheidi.training/updates/": "2026-11-14",
+  "https://pheidi.training/updates/": "2026-11-15",
   "https://pheidi.training/updates/2026-08-11-regenerating-your-plan-no-longer-erases-your-beginner-ramp/": "2026-08-11",
   "https://pheidi.training/updates/2026-08-11-your-beginner-ramp-weeks-stop-ghosting-you-after-refresh/": "2026-08-11",
   "https://pheidi.training/updates/2026-08-14-elite-plan-calendars-stopped-dying-on-doubles-days/": "2026-08-14",
@@ -308,5 +308,9 @@
   "https://pheidi.training/updates/2026-11-14-nightly-android-tests-now-finish-and-leave-their-results-behind/": "2026-11-14",
   "https://pheidi.training/updates/2026-11-14-pheidi-now-knows-which-screens-get-used-and-which-dont/": "2026-11-14",
   "https://pheidi.training/updates/2026-11-14-stalled-database-connections-now-time-out-and-retry-instead-of-hanging/": "2026-11-14",
-  "https://pheidi.training/updates/2026-11-14-switching-google-accounts-no-longer-trips-a-sign-in-error/": "2026-11-14"
+  "https://pheidi.training/updates/2026-11-14-switching-google-accounts-no-longer-trips-a-sign-in-error/": "2026-11-14",
+  "https://pheidi.training/updates/2026-11-15-ask-an-assistant-if-pheidi-costs-money-and-get-the-right-answer/": "2026-11-15",
+  "https://pheidi.training/updates/2026-11-15-finish-times-now-type-correctly-on-iphone/": "2026-11-15",
+  "https://pheidi.training/updates/2026-11-15-nightly-test-runs-now-tell-you-the-truth-about-a-bad-night/": "2026-11-15",
+  "https://pheidi.training/updates/2026-11-15-quieter-error-alerts-so-real-problems-get-caught-faster/": "2026-11-15"
 }
