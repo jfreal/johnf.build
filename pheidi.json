@@ -224,7 +224,7 @@
   "https://pheidi.training/support/": "2026-11-19",
   "https://pheidi.training/terms/": "2026-11-15",
   "https://pheidi.training/tools/": "2026-11-02",
-  "https://pheidi.training/updates/": "2026-11-19",
+  "https://pheidi.training/updates/": "2026-11-22",
   "https://pheidi.training/updates/2026-08-11-regenerating-your-plan-no-longer-erases-your-beginner-ramp/": "2026-08-11",
   "https://pheidi.training/updates/2026-08-11-your-beginner-ramp-weeks-stop-ghosting-you-after-refresh/": "2026-08-11",
   "https://pheidi.training/updates/2026-08-14-elite-plan-calendars-stopped-dying-on-doubles-days/": "2026-08-14",
@@ -323,5 +323,6 @@
   "https://pheidi.training/updates/2026-11-18-spotty-signal-no-longer-blocks-a-retry/": "2026-11-18",
   "https://pheidi.training/updates/2026-11-19-deleting-your-account-no-longer-trips-a-false-alarm/": "2026-11-19",
   "https://pheidi.training/updates/2026-11-19-intervals-icu-syncs-that-run-long-are-now-logged-as-timeouts-not/": "2026-11-19",
-  "https://pheidi.training/updates/2026-11-19-medium-long-run-now-means-something/": "2026-11-19"
+  "https://pheidi.training/updates/2026-11-19-medium-long-run-now-means-something/": "2026-11-19",
+  "https://pheidi.training/updates/2026-11-22-fewer-false-alarms-from-the-database-warm-up/": "2026-11-22"
 }
